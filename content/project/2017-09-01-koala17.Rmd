@@ -13,7 +13,7 @@ summary: "German election coalition analysis (KOALA) 2017"
 - In 2013, [ZEIT ONLINE](http://www.zeit.de/serie/wahlistik) and the [Statistical Consulting Unit](http://www.stablab.stat.uni-muenchen.de/index.html) developed
 a method to calculate coalition probabilities for the German general election.
 
-- For the the general election 2017, we host a
+- For the the election 2017, we host a
 [shiny app](https://shiny.rstudio.com/) with up to date probabilities based on
 the most current surveys at
 [koala.stat.uni-muenchen.de](http://koala.stat.uni-muenchen.de):
