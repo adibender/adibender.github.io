@@ -132,7 +132,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "sandbox/"]
   [[params.social]]
     icon = "envelope"
     icon_pack = "fa"
-    link = "bender.at.R@gmail.com"
+    link = "mailto:bender.at.R@gmail.com"
 
   [[params.social]]
     icon = "twitter"
