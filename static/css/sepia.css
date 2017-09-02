@@ -1,19 +1,19 @@
 /*
 * @Author: abhs
 * @Date:   2017-09-01 23:41:02
-* @Last Modified by:   abhs
-* @Last Modified time: 2017-09-02 01:41:38
+* @Last Modified by:   adibender
+* @Last Modified time: 2017-09-02 03:58:13
 */
 
 .home-section {
-  background-color: #EBE9D1;
+  background-color: #FFFEEE;
   padding: 110px 0 110px 0;
   animation: intro 0.3s both;
   animation-delay: 0.15s;
 }
 
 .home-section:nth-of-type(even) {
-  background-color: #D4D4CD;
+  background-color: #EEEEE6;
 }
 
 
