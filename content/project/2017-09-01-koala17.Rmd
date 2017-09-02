@@ -1,0 +1,36 @@
+---
+title: koala17
+author: Andreas Bender
+date: '2017-09-01'
+slug: koala17
+categories: ["coalition analysis", "election"]
+tags: ["koala17", "BTW17", "german election", "coalition analysis"]
+image_preview: "koala17.jpg"
+summary: "German election coalition analysis 2017"
+---
+
+
+In 2013, [ZEIT ONLINE](http://www.zeit.de/serie/wahlistik) and the [Statistical Consulting Unit](http://www.stablab.stat.uni-muenchen.de/index.html) developed
+a method to calculate coalition probabilities for the German general election.
+
+For the the general election 2017 #BTW17, we additionally provide a
+[shiny app](http://koala.stat.uni-muenchen.de/) with up to date probabilities based on the most current surveys
+<iframe src="http://koala.stat.uni-muenchen.de/" width="100%" height="500" frameborder="0" scrolling="yes"></iframe>
+
+&nbsp;
+&nbsp;
+
+Updates are also provided via
+<a class="twitter-timeline"
+  href="https://twitter.com/KOALA_LMU"
+  data-width="300"
+  data-height="300"
+  data-tweet-limit="1">Tweets by KOALA_LMU</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+&nbsp;
+&nbsp;
+
+The R package [coalitions](https://adibender.github.io/coalitions/) contains
+open source code for our calculations
+

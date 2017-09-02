@@ -1,0 +1,41 @@
+/*
+* @Author: abhs
+* @Date:   2017-09-01 23:41:02
+* @Last Modified by:   abhs
+* @Last Modified time: 2017-09-02 01:41:38
+*/
+
+.home-section {
+  background-color: #EBE9D1;
+  padding: 110px 0 110px 0;
+  animation: intro 0.3s both;
+  animation-delay: 0.15s;
+}
+
+.home-section:nth-of-type(even) {
+  background-color: #D4D4CD;
+}
+
+
+/* social media colors */
+.big-icon {
+  font-size: 2rem;
+  color: #203D8A;
+}
+
+/* General Link colors */
+
+a {
+    color: #203D8A;
+}
+
+
+/* navigation bar */
+.navbar-default {
+  background: #D4D4CD;
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(0,0,0,.11)
+}
+
+nav#navbar-main li {
+  font-size: 22px;
+}
