@@ -132,7 +132,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "sandbox/"]
   [[params.social]]
     icon = "envelope"
     icon_pack = "fa"
-    link = "bender.at.R@gmail.com"
+    link = "mailto:bender.at.R@gmail.com"
 
   [[params.social]]
     icon = "twitter"
@@ -177,13 +177,13 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "sandbox/"]
   weight = 1
 
 [[menu.main]]
-  name = "Publications"
-  url = "#publications_selected"
+  name = "Posts"
+  url = "#posts"
   weight = 2
 
 [[menu.main]]
-  name = "Posts"
-  url = "#posts"
+  name = "Publications"
+  url = "#publications_selected"
   weight = 3
 
 [[menu.main]]
