@@ -95,7 +95,7 @@ Untenstehende Tabelle zeigt die letzte Forsa-Umfrage vor der Bundestagswahl
 forsa_13[, 1:2] %>%
   select(Partei=party, Anteil=percent) %>%
   mutate(
-    Partei = prettify_parties(Partei),
+    Partei = prettify_strings(Partei),
     Anteil = str_pad(paste0(Anteil * 100, "%"), 3)) %>%
   spread(Partei, Anteil) %>%
   kable(
@@ -152,7 +152,7 @@ Sitzverteilung für dieses konkrete Beispiel sähe folgendermaßen aus:
 ```{r, results="asis"}
 frd_13 <- redistribute(forsa_13) %>%
     transmute(
-        Partei = prettify_parties(party),
+        Partei = prettify_strings(party),
         Anteil = paste0(round(percent, 4)*100, "%"),
         Sitze = sls(votes, party))
 kable(frd_13,
@@ -219,7 +219,7 @@ Wahrscheinlichkeiten:
 ```{r}
 probs_13 %>%
   transmute(
-    Koalition = prettify_coalitions(coalition),
+    Koalition = prettify_strings(coalition),
     Wahrscheinlichkeit = paste(probability, "%")) %>%
   kable(
     format="html",
