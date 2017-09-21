@@ -1,0 +1,301 @@
+---
+title: "koala17: Koalitionsanalysen zur Bundestagswahl 2017"
+author: "Andreas Bender"
+showonlyimage: true
+draft: false
+thumbnailImage: "/img/koala17.jpg"
+date: "2017-09-21"
+output: blogdown::html_page
+categories: ["election", "coalition analysis"]
+tags: ["Koalitionsanalyse", "Bundestagswahl", "#BTW17", "#rstats"]
+---
+
+
+
+<p>Kurz vor der Bundestagswahl am 24. September 2017 steigt wieder das Interesse an Wahlberichterstattung. Einen Beitrag hierzu leisten diverse Meinungsforschungsinstitute, die in regelmäßigen Abständen Umfragewerte zur sogenannten <em>Sonntagsfrage</em> veröffentlichen:</p>
+<blockquote>
+<p>“Welche Partei würden sie wählen, wenn Sonntag Bundestagswahl wäre?”</p>
+</blockquote>
+<p>Anhand dieser Umfragen versuchen die Medien dann meist Fragen wie</p>
+<blockquote>
+<p>Welche Parteien bilden die Regierungskoalition?</p>
+</blockquote>
+<p>oder</p>
+<blockquote>
+<p>Schaffen es die kleinen Parteien in den Bundestag?</p>
+</blockquote>
+<p>zu beantworten.</p>
+<p>Oft werden zur Beantwortung dieser Fragen die erzielten Anteile betrachtet oder für Koalitionen von Interesse aufaddiert. Diese einfache Betrachtung ist allerdings oft <strong>irreführend und uninformativ</strong>, wie weiter unten gezeigt wird.</p>
+<p>In Zusammenarbeit mit <a href="http://www.zeit.de/serie/wahlistik">ZEIT ONLINE</a> hat das <a href="http://www.stablab.stat.uni-muenchen.de/index.html">Statistische Beratungslabor (StaBLab) der LMU</a> deshalb 2013 ein Verfahren entwickelt, dass eine <strong>genauere und aussagekräftigere Interpretation von Umfragen</strong> erlaubt.</p>
+<p>Zur Bundestagswahl 2017 laufen unsere Analysen unter dem Namen <a href="http://koala.stat.uni-muenchen.de/">#koala17</a>:</p>
+<ul>
+<li><p>Aktuelle Updates gibt es in unserem <a href="https://twitter.com/KOALA_LMU">Twitter Feed</a></p></li>
+<li><p>Detaillierte Auswertungen bietet unser <a href="http://koala.stat.uni-muenchen.de/">interaktives Tool</a></p></li>
+<li><p>Details zur Methodik finden sich <a href="http://www.stablab.stat.uni-muenchen.de/forschung/koala/methodik.pdf">hier</a></p></li>
+<li><p>Details zur Implementierung findet man in unserem Open Source R-Paket <a href="https://adibender.github.io/coalitions/">coalitions</a></p></li>
+</ul>
+<div id="warum-reicht-es-nicht-anteile-zu-betrachten" class="section level2">
+<h2>Warum reicht es nicht Anteile zu betrachten?</h2>
+<p>Untenstehende Tabelle zeigt die letzte Forsa-Umfrage vor der Bundestagswahl 2013:</p>
+<?xml version="1.0" encoding="UTF-8"?>
+<table class="table table-striped table-hover table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-1">Table 1: </span>Forsa-Umfrage vom 20.September 2013
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+AfD
+</th>
+<th style="text-align:right;">
+FDP
+</th>
+<th style="text-align:left;">
+gruene
+</th>
+<th style="text-align:right;">
+linke
+</th>
+<th style="text-align:left;">
+piraten
+</th>
+<th style="text-align:right;">
+sonstige
+</th>
+<th style="text-align:left;">
+SPD
+</th>
+<th style="text-align:right;">
+Union
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+4%
+</td>
+<td style="text-align:right;">
+5%
+</td>
+<td style="text-align:left;">
+10%
+</td>
+<td style="text-align:right;">
+9%
+</td>
+<td style="text-align:left;">
+2%
+</td>
+<td style="text-align:right;">
+4%
+</td>
+<td style="text-align:left;">
+26%
+</td>
+<td style="text-align:right;">
+40%
+</td>
+</tr>
+</tbody>
+</table>
+<p>Betrachtet man einfach die Anteile, kommt die FDP in den Bundestag und Schwarz-Gelb hätte nicht genügend Stimmen für eine Mehrheit.</p>
+<blockquote>
+<p>Warum ist diese Betrachtung ungenügend?</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li><p><strong>Die Stimmumverteilung wird nicht berücksichtigt</strong>:</p>
+<ul>
+<li><p>Die Stimmen aller Parteien, die es nicht über die 5%-Hürde schaffen, werden umverteilt.</p></li>
+<li><p>Je mehr Stimmen umverteilt werden, desto geringer muss der Anteil an Stimmen in den Befragungen sein, um eine Mehrheit der Sitze erreichen zu können.</p></li>
+<li><p>Parteien mit einem hohen Stimmanteil profitieren dabei stärker als kleinere Parteien.</p></li>
+</ul></li>
+<li><p><strong>Die Stichprobenunsicherheit wird nicht berücksichtigt</strong>:</p>
+<ul>
+<li><p>Selbst wenn eine Umfrage repräsentativ ist, bedeutet es nicht, dass es bei der Wahl nicht zu Abweichungen vom Umfragewert kommen kann.</p></li>
+<li><p>Dies kann für potentielle Koalitionen eine große Rolle spielen, insbesondere wenn eine oder mehrere Parteien nahe an der 5%-Hürde liegen.</p></li>
+</ul></li>
+<li><p><strong>Ausreißer und Institutsbias</strong>:</p>
+<ul>
+<li><p>Einzelne Umfragen können von der tatsächlichen Stimmungslage abweichen.</p></li>
+<li><p>Umfragen verschiedener Institute weisen teilweise starke Unterschiede auf</p></li>
+<li><p>Oft wird der Anteil einzelner Parteien je nach Umfrageinstitut systematisch höher/niedriger geschätzt als bei den anderen Instituten</p></li>
+</ul></li>
+</ol>
+</div>
+<div id="was-bedeutet-dies-konkret" class="section level2">
+<h2>Was bedeutet dies konkret?</h2>
+<div id="umverteilung" class="section level3">
+<h3>1. Umverteilung</h3>
+<p>Bei der Bundestagswahl 2013 war der Anteil umverteilter Stimmen ungewöhnlich hoch. Nach obiger Umfrage würden die Stimmen der Piraten, AfD und Sonstigen umverteilt, also bereits 10% aller Stimmen. Zusätzlich war die FDP nahe der 5%-Hürde, d.h. insgesamt hätten bis zu 15% der Stimmen umverteilt werden können. Die Sitzverteilung für dieses konkrete Beispiel sähe folgendermaßen aus:</p>
+<?xml version="1.0" encoding="UTF-8"?>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 2: </span>Anteile und Zuordnung von Sitzen (nach dem Verfahren von Sainte-Lague-Scheppers) nach der Umverteilung der Stimmen
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Partei
+</th>
+<th style="text-align:right;">
+Anteil
+</th>
+<th style="text-align:right;">
+Sitze
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Union
+</td>
+<td style="text-align:right;">
+44.44%
+</td>
+<td style="text-align:right;">
+266
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SPD
+</td>
+<td style="text-align:right;">
+28.89%
+</td>
+<td style="text-align:right;">
+173
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gruene
+</td>
+<td style="text-align:right;">
+11.11%
+</td>
+<td style="text-align:right;">
+66
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FDP
+</td>
+<td style="text-align:right;">
+5.56%
+</td>
+<td style="text-align:right;">
+33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+linke
+</td>
+<td style="text-align:right;">
+10%
+</td>
+<td style="text-align:right;">
+60
+</td>
+</tr>
+</tbody>
+</table>
+<p>In diesem Szenario hätte Schwarz-Gelb also nur knapp weniger als 50% anstatt der knapp 45%, die sich aus der Umfrage ergaben. Schwarz-Grün hätte eine solide Mehrheit von 55.6% statt der 50%, welche sich aus der Umfrage ohne Umverteilung der Stimmen ergeben würden.</p>
+</div>
+<div id="stichprobenunsicherheit" class="section level3">
+<h3>2. Stichprobenunsicherheit</h3>
+<p>Selbst wenn man davon ausgeht, dass die einzelnen Umfrageinstitute keinen systematischen Fehler machen, ist jede Befragung basierend auf einer Stichprobe mit Unsicherheit behaftet. Das heißt, dass die wahren Anteile einzelner Parteien von den erfragten Anteilen abweichen können. Je kleiner die Stichprobe, desto größer die Unsicherheit.</p>
+<p>Für die FDP würde die Forsa-Umfrage deshalb bedeuten, dass sie es nur in 50% der Fälle in den Bundestag schafft. D.h. selbst wenn es für Schwarz-Gelb, laut Umfrage und nach Umverteilung, knapp für eine Mehrheit reichen würde, <strong>realisiert</strong> sich diese Mehrheit nur in etwa 50% der Fälle. In den anderen 50% der Fälle profitiert die Union zwar davon, dass die Anteile der FDP umverteilt werden, aber nicht in vollem Umfang, sodass z.B. eine alleinige Mehrheit sehr unwahrscheinlich war.</p>
+</div>
+<div id="ausreier-und-institutsbias" class="section level3">
+<h3>3. Ausreißer und Institutsbias</h3>
+<p>Bei jeder Umfrage kann es passieren, dass die zugrundeliegende Stichprobe das aktuelle Stimmungsbild nicht korrekt abbildet. Es stellt sich außerdem die Frage welche der Umfragen man für seine Aussagen heranzieht. Selbiges gilt für die Frage, den Umfragen welcher Institute man vertrauen soll. In beiden Fällen besteht die Gefahr der Rosinenpickerei und, damit verbunden, falscher Schlüsse.</p>
+</div>
+</div>
+<div id="wie-geht-koala-mit-diesen-problemen-um" class="section level2">
+<h2>Wie geht KOALA mit diesen Problemen um?</h2>
+<p>Unser Ansatz beginnt damit, dass wir die Stichprobenunsicherheit sowie die Unterschiede zwischen den Umfragen verschiedener Institute anerkennen. Neben den Umfragen der einzelnen Institute betrachten wir deshalb auch eine sog. <em>gepoolte</em> Stichprobe, die eine Art Durchschnitt über die Umfragen aller Institute innerhalb eines Fensters von 14 Tagen darstellt. Dadurch wird der Einfluss potentieller Ausreißer gemildert und die Stichprobenunsicherheit reduziert.</p>
+<p>Basierend auf dieser <em>gepoolten</em> Umfrage generieren wir dann viele verschiedene Wahlausgänge, die manchmal mehr, manchmal weniger von den Umfragewerten abweichen. In jedem dieser hypothetischen Wahlausgänge führen wir die Umverteilung der Anteile durch und berechnen für jede Partei die Anzahl an Sitzen nach der Umverteilung. Gegeben die Sitze kann dann für eine Koalition von Interesse berechnet werden, ob genügend Sitze für eine Mehrheit zu Stande gekommen sind.</p>
+<p>Wiederholt man das Ganze mehrere Tausend mal lässt sich die Wahrscheinlichkeit berechnen, dass für die Koalition von Interesse eine rechnerische Mehrheit zu Stande kommen würde. Im vorherigen Beispiel ergeben sich z.B. folgende Wahrscheinlichkeiten:</p>
+<?xml version="1.0" encoding="UTF-8"?>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-3">Table 3: </span>Auf der Forsa-Umfrage basierende Koalitionswahrscheinlichkeiten laut unserer KOALA
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Koalition
+</th>
+<th style="text-align:right;">
+Wahrscheinlichkeit
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Union
+</td>
+<td style="text-align:right;">
+0.31 %
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Union - FDP
+</td>
+<td style="text-align:right;">
+25.88 %
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cdu_gruene
+</td>
+<td style="text-align:right;">
+99.62 %
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cdu_fdp_gruene
+</td>
+<td style="text-align:right;">
+0.07 %
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SPD
+</td>
+<td style="text-align:right;">
+0 %
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+linke_spd
+</td>
+<td style="text-align:right;">
+0 %
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gruene_linke_spd
+</td>
+<td style="text-align:right;">
+66.77 %
+</td>
+</tr>
+</tbody>
+</table>
+<p>Obwohl also die Union und FDP laut Umfrage nur 45% der Stimmanteile hatten, betrug die Wahrscheinlichkeit dafür, dass Schwarz-Gelb eine rechnerische Sitzemehrheit erhält etwa 27%.</p>
+<p>Zum Vergleich: Die Wahrscheinlichkeit, dass Donald Trump die Präsidentschaft gewinnt, lag laut letzter Vorhersage von <a href="https://projects.fivethirtyeight.com/2016-election-forecast/">FiveThirtyEight</a> bei 28.6%.</p>
+<p>Bei der Bundestagswahl 2013 ist letztendlich das Ereignis mit der höheren Wahrscheinlichkeit (keine Sitzemehrheit für Schwarz-Gelb) eingetreten, da die FDP es trotz 5% in den Umfragen nicht in den Bundestag geschafft hat.</p>
+</div>
