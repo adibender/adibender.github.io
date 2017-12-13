@@ -7,7 +7,7 @@ thumbnailImage: "/img/koala17.jpg"
 date: "`r Sys.Date()`"
 output: blogdown::html_page
 categories: ["election", "coalition analysis"]
-tags: ["Koalitionsanalyse", "Bundestagswahl", "#BTW17", "#rstats"]
+tags: ["Koalitionsanalyse", "Bundestagswahl"]
 ---
 
 ```{r setup, include=FALSE, message=FALSE}
