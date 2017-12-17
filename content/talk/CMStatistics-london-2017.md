@@ -11,7 +11,7 @@ selected = true
 math = true
 
 url_pdf = ""
-url_slides = ""
+url_slides = "slides/london12_2017/ercim-pamm.html"
 url_video = ""
 
 # Optional featured image (relative to `static/img/` folder).
