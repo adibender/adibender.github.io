@@ -151,8 +151,7 @@ values of the exposure/TDC `\(\mathbf{z}= (z(t_{e,1}), z(t_{e,2}), ..., z(t_ {e,
 
 ---
 # Terminology
-**A general cumulative effect/Exposure-Lag-Response Association (ELRA)** can be
-defined as
+**A general cumulative effect/Exposure-Lag-Response Association (ELRA)** can be defined as
 
 .font110[
 `$$g(\mathbf{z}, t) = \int_{\te: \te \leq t}h(t, \te, z(\te))\mathrm{d}\te$$`
@@ -171,16 +170,17 @@ The integration borders can be defined *more* general, such that
 `$$g(\mathbf{z}, t) = \int_{t-\tlag - \tlead}^{t-\tlag}h(t, \te, z(\te)) \mathrm{d}\te$$`
 - **Lag time `\(\tlag\)`**: The length of the delay until the TDC recorded at
 exposure time `\(\te\)` starts to affect the hazard (often `\(\tlag=0\)`)
-- **Lead time `\(\tlead\)`**: The duration of the effect of the TDC at time `\(\te\)`
+- **Lead time `\(\tlead\)`**: The duration of the effect of the TDC observed at exposure time `\(\te\)`
 - `\(\tlag\)` and `\(\tlead\)` define the set of exposures that contribute to the
 cumulative effect at time `\(t\)` as `\(\{z(\te): \te \in [t-\tlag - \tlead, t-\tlag]\}\)`
+- Minimal requirement: `\(\int_{\te:\te\leq t}\)`
+- Special case `\(\int_0^t\)` follows with `\(\tlag=0\)` and `\(\tlead=t\)`
 - Example ( `\(\tlag = 4\)`, `\(\tlead = 3\)`):
   - The last nutrition that will enter the cumulative effect at
   time `\(t=10\)` is nutrition at `\(\te \leq t - \tlag = 10-4=6\)`, i.e. `\(z(t_{e}=6)\)`
   - The earliest nutrition that will contribute to the cumulative effect at time
   `\(t=10\)` is nutrition at `\(\te \geq t - \tlag - \tlead = 10 - 4 - 3 = 3\)`
-- [Minimal requirement (never condition on the future)](http://onlinelibrary.wiley.com/doi/10.1002/sim.4385/abstract): `\(\int_{\te:\te\leq t}\)`
-- Special case `\(\int_0^t\)` follows with `\(\tlag=0\)` and `\(\tlead=t\)`
+
 
 ---
 # Lag-Lead-Window
@@ -219,11 +219,9 @@ with
 Some models known from the literature follow as special cases of the general
 specification
 `$$g(\mathbf{z}, t) = \int_{\mathcal{T}_e(t)}h(t, t_e, z(t_e))$$`
-
 when we assume that partial effects `\(h\)` only depend on *latency* `\(t-\te\)`
 instead of concrete combination of `\(t\)` and `\(\te\)`, i.e.,
-`\(h(t=30, \te=3)\stackrel{!}{=}h(t=40,\te=13)\stackrel{!}{=}\tilde{h}(t-\te=27)\)`
-
+`\(h(t=30, \te=3, z(\te))\stackrel{!}{=}h(t=40,\te=13, z(\te))\stackrel{!}{=}\tilde{h} (t-\te=27, z(\te))\)`
 - DLNM: Distributed Lag Non-linear Models (Gasparrini et al,
 [2014](http://onlinelibrary.wiley.com/doi/10.1002/sim.5963/abstract),
 [2017](http://onlinelibrary.wiley.com/doi/10.1111/biom.12645/abstract)):
@@ -234,7 +232,7 @@ instead of concrete combination of `\(t\)` and `\(\te\)`, i.e.,
 `\(g(\mathbf{z}, t) = \int_{\mathcal{T}_e(t)}h(t - t_e)z(t_e)\)`
 
 - Also possible within general framework:
-  - time-varying WCE (TV WCE):
+  - more flexible (TV WCE):
   `\(g(\mathbf{z}, t) = \int_{\mathcal{T}_e(t)}h(t, t_e)z(t_e)\)`
   - time-varying DLNM (TV DLNM):
   `\(g(\mathbf{z}, t) = \int_{\mathcal{T}_e(t)}h (t, t - t_e, z(t_e))\)`
@@ -272,17 +270,17 @@ with
 
   - penalty `\(S = \nu_{z(\te)}\mbf{I}_{d_{R}}\otimes\mbf{I}_{d_L}\otimes\mbf{S}_{z(\te)} + \nu_{\te}\mbf {I}_{d_L}\otimes \mbf{S}_{\te}\otimes\mbf{I}_{d_M} + \nu_{t}\mbf{S}_{t}\otimes\mbf{I}_ {d_R}\otimes\mbf{I}_{d_M}\)`
 
-`\(\ra\)` Estimate parameter `\(\bsgamma\)` by optimizing
+`\(\ra\)` Estimate parameters `\(\bsgamma\)` by optimizing
 `\(D(\bsgamma) + \sum_{k}\nu_k\bsgamma'\mbf{S}_k \bsgamma\)` (Wood, 2011), where
 - `\(D(\bsgamma)\)` is the model deviance (of the Poisson GAMM)
-- `\(\bsgamma\)` contains all spline basis coefficients and random effects
+- `\(\bsgamma\)` contains all Spline basis coefficients and random effects
 - `\(\nu_k\)` and `\(S_k, k=1,\ldots,K\)` are the smoothing parameters and penalty
 matrices for the `\(k\)`-th smooth term, respectively
 
 
 
 ---
-# Exposure-Lag Response Association (2)
+# Exposure-Lag Response Association
 - If we restrict the ELRA to be linear in the exposure, i.e.,
 `\(h(z_i(\te), \te, t) = \tilde h(\te, t)\cdot z_i(\te)\)` we can simplify to
 `$$g(\bfz_i, t) \approx \sum^Q_{q=1} \tilde\Delta_{i,q} \tilde h(t_{e,q}, t)$$`
@@ -293,13 +291,14 @@ with
 
 
 ---
-# Exposure-Lag Response Association (3)
-- spline bases for the bivariate functions `\(\tilde h(\te, t)\)` are set up
+# Exposure-Lag Response Association
+- Spline bases for the bivariate functions `\(\tilde h(\te, t)\)` are set up
 via tensor product B-spline basis with marginal bases
 `\(B_{m}(\te), m=1,\dots,M\)` and `\(B_{k}(t), k=1,\dots,K\)` defined over the exposure and
-hazard time domains, respectively.
-- `\(M\)` and `\(K\)` delimit the maximal complexity of the ELRA over `\(\te\)` and `\(t\)`,
-respectively
+hazard time domains, respectively
+
+- `\(M\)` and `\(K\)` delimit the maximal complexity of the ELRA
+
 - `\(\tilde h(\te, t) =  \sum_{m=1}^{M}\sum_{k=1}^{K} \gamma_{m,k}B_{m}(\te)B_{k}(t)\)`
 
 - Combining above equations yields:
@@ -323,14 +322,14 @@ where  `\(\tilde B_{i, m}(\te, t) = \sum^Q_{q=1} \tilde\Delta_{i, q} B_{m}(\te)\
 
 
 &lt;a href="image/fit-vs-truth-ped.gif" align="middle"&gt;
-  &lt;img class="center" height = "500"
+  &lt;img class="center" height = "480"
   src="image/pam_dlnm_tvdlnm_tvdlnm_horiz.jpg"
   align="middle"&gt;
 &lt;/a&gt;
 
 ---
 # Application
-In the application example, we fit the below model
+In the application example ([categorical nutrition](#30)), we estimate
 `\begin{align}
   \log\left(\lambda_i(t|\bfx_i, \bfz_i, \ell_i)\right)
     &amp; = f_0(t) +
@@ -403,8 +402,6 @@ Example:
   &lt;img class="center" height = "350" src="image/elra_heat_ex.jpg"
   align="middle"&gt;
 &lt;/a&gt;
-
-
 
 
 ---
@@ -542,6 +539,24 @@ Journal of the Royal Statistical Society: Series B (Statistical Methodology) 73,
 - Hadley Wickham, Romain Francois, Lionel Henry and Kirill Müller
   (2017). dplyr: A Grammar of Data Manipulation. R package version
   0.7.4. https://CRAN.R-project.org/package=dplyr
+
+
+---
+# Caloric Adequacy
+
+- **caloric intake** = calories from EN + PN + PF
+
+- **caloric adequacy (CA)**:&lt;br&gt;
+`\(CA (\%) = \text{caloric intake} / \text{prescribed calories} \cdot 100\)`
+
+- **discretized caloric adequacy (in 3 categories)**:
+  - `\(\CI\)`: `\(0\% \leq CA &lt; 30\%\)` and no OI
+  - `\(\CII\)`:
+      - `\(30\% \leq CA &lt; 70\%\)` and no OI *or*
+      - `\(0\% \leq CA &lt; 30\%\)` and additional OI
+  - `\(\CIII\)`:
+      - `\(CA \geq 70\%\)` *or*
+      - `\(30\% \leq CA &lt; 70\%\)` and additional OI
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
