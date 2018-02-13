@@ -468,7 +468,7 @@ background-size: 150px
 set.seed(123)
 pooled_survey %>%
 	nest(party:votes, .key="survey") %>%
-	get_probabilities(seed=123) %>%
+	get_probabilities(seed=123, nsim=1e4) %>%
 	unnest()
 ```
 
@@ -991,4 +991,3 @@ Keep in mind:
 ###  So, stay tuned...
 <br/>
 ... and <a href='https://twitter.com/KOALA_LMU' target='_blank'>follow us on Twitter</a> :-)
-
