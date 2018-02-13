@@ -6,12 +6,12 @@ image_preview = "fit-vs-truth-ped.gif"
 publication_types = ["2"]
 publication = "In *Biostatistics*."
 title = "Penalized estimation of complex, non-linear exposure-lag-response associations"
+selected = true
 [[url_custom]]
 name = "DOI: 10.1093/biostatistics/kxy003"
 url = "https://doi.org/10.1093/biostatistics/kxy003"
 [[url_pdf]]
 url_pdf = "https://academic.oup.com/biostatistics/advance-article-pdf/doi/10.1093/biostatistics/kxy003/23893542/kxy003.pdf"
-selected = true
 
 
 
