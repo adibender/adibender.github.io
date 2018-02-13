@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="author" content="Alexander Bauer | Andreas Bender" />
     <meta name="author" content="StaBLab, LMU München" />
-    <link href="libs/remark-css/example.css" rel="stylesheet" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
   <body>
@@ -339,13 +339,13 @@ surveys
 ## # A tibble: 7 x 2
 ##   pollster   surveys           
 ##   &lt;chr&gt;      &lt;list&gt;            
-## 1 allensbach &lt;tibble [36 x 5]&gt; 
-## 2 emnid      &lt;tibble [202 x 5]&gt;
-## 3 forsa      &lt;tibble [207 x 5]&gt;
-## 4 fgw        &lt;tibble [74 x 5]&gt; 
-## 5 gms        &lt;tibble [91 x 5]&gt; 
-## 6 infratest  &lt;tibble [97 x 5]&gt; 
-## 7 insa       &lt;tibble [278 x 5]&gt;
+## 1 allensbach &lt;tibble [41 × 5]&gt; 
+## 2 emnid      &lt;tibble [222 × 5]&gt;
+## 3 forsa      &lt;tibble [231 × 5]&gt;
+## 4 fgw        &lt;tibble [82 × 5]&gt; 
+## 5 gms        &lt;tibble [96 × 5]&gt; 
+## 6 infratest  &lt;tibble [107 × 5]&gt;
+## 7 insa       &lt;tibble [301 × 5]&gt;
 ```
 
 ---
@@ -363,20 +363,20 @@ surveys %&gt;%
 ```
 
 ```
-## # A tibble: 985 x 4
+## # A tibble: 1,080 x 4
 ##    pollster   date       respondents survey          
 ##    &lt;chr&gt;      &lt;date&gt;           &lt;dbl&gt; &lt;list&gt;          
-##  1 allensbach 2017-09-19        1083 &lt;tibble [7 x 3]&gt;
-##  2 allensbach 2017-09-06        1043 &lt;tibble [7 x 3]&gt;
-##  3 allensbach 2017-08-22        1421 &lt;tibble [7 x 3]&gt;
-##  4 allensbach 2017-07-18        1403 &lt;tibble [7 x 3]&gt;
-##  5 allensbach 2017-06-20        1437 &lt;tibble [7 x 3]&gt;
-##  6 allensbach 2017-05-26        1457 &lt;tibble [7 x 3]&gt;
-##  7 allensbach 2017-04-25        1407 &lt;tibble [7 x 3]&gt;
-##  8 allensbach 2017-03-28        1397 &lt;tibble [7 x 3]&gt;
-##  9 allensbach 2017-02-22        1542 &lt;tibble [7 x 3]&gt;
-## 10 allensbach 2017-01-26        1441 &lt;tibble [7 x 3]&gt;
-## # ... with 975 more rows
+##  1 allensbach 2018-01-25        1221 &lt;tibble [7 × 3]&gt;
+##  2 allensbach 2017-12-21        1443 &lt;tibble [7 × 3]&gt;
+##  3 allensbach 2017-11-30        1299 &lt;tibble [7 × 3]&gt;
+##  4 allensbach 2017-10-25        1454 &lt;tibble [7 × 3]&gt;
+##  5 allensbach 2017-09-22        1074 &lt;tibble [7 × 3]&gt;
+##  6 allensbach 2017-09-19        1083 &lt;tibble [7 × 3]&gt;
+##  7 allensbach 2017-09-06        1043 &lt;tibble [7 × 3]&gt;
+##  8 allensbach 2017-08-22        1421 &lt;tibble [7 × 3]&gt;
+##  9 allensbach 2017-07-18        1403 &lt;tibble [7 × 3]&gt;
+## 10 allensbach 2017-06-20        1437 &lt;tibble [7 × 3]&gt;
+## # ... with 1,070 more rows
 ```
 
 ---
@@ -399,13 +399,13 @@ surveys %&gt;%
 ## # A tibble: 7 x 6
 ##   pollster   date       respondents party  percent votes
 ##   &lt;chr&gt;      &lt;date&gt;           &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1 allensbach 2017-09-19        1083 cdu      36.5  395  
-## 2 allensbach 2017-09-19        1083 spd      22.0  238  
-## 3 allensbach 2017-09-19        1083 greens    8.00  86.6
-## 4 allensbach 2017-09-19        1083 fdp      11.0  119  
-## 5 allensbach 2017-09-19        1083 left      9.00  97.5
-## 6 allensbach 2017-09-19        1083 afd      10.0  108  
-## 7 allensbach 2017-09-19        1083 others    3.50  37.9
+## 1 allensbach 2018-01-25        1221 cdu      34.0  415  
+## 2 allensbach 2018-01-25        1221 spd      21.0  256  
+## 3 allensbach 2018-01-25        1221 greens   10.5  128  
+## 4 allensbach 2018-01-25        1221 fdp      10.0  122  
+## 5 allensbach 2018-01-25        1221 left      8.50 104  
+## 6 allensbach 2018-01-25        1221 afd      12.0  147  
+## 7 allensbach 2018-01-25        1221 others    4.00  48.8
 ```
 
 ---
@@ -426,13 +426,13 @@ pooled_survey %&gt;% select(-start, -end)
 ## # A tibble: 7 x 6
 ##   pollster date       respondents party  percent votes
 ##   &lt;chr&gt;    &lt;date&gt;           &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1 pooled   2017-09-21        2911 afd      10.2    297
-## 2 pooled   2017-09-21        2911 cdu      36.4   1058
-## 3 pooled   2017-09-21        2911 fdp       9.47   276
-## 4 pooled   2017-09-21        2911 greens    7.84   228
-## 5 pooled   2017-09-21        2911 left      9.74   284
-## 6 pooled   2017-09-21        2911 others    4.30   125
-## 7 pooled   2017-09-21        2911 spd      22.1    643
+## 1 pooled   2018-02-13        2533 afd      13.9    352
+## 2 pooled   2018-02-13        2533 cdu      31.4    796
+## 3 pooled   2018-02-13        2533 fdp       9.44   239
+## 4 pooled   2018-02-13        2533 greens   12.5    317
+## 5 pooled   2018-02-13        2533 left     10.5    266
+## 6 pooled   2018-02-13        2533 others    4.20   106
+## 7 pooled   2018-02-13        2533 spd      18.0    455
 ```
 
 ---
@@ -451,14 +451,14 @@ draws[1:6, ]
 
 ```
 ## # A tibble: 6 x 7
-##      afd   cdu    fdp greens   left others   spd
-##    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1 0.0986 0.376 0.0851 0.0789 0.107  0.0447 0.209
-## 2 0.0905 0.371 0.0950 0.0791 0.0963 0.0402 0.228
-## 3 0.109  0.370 0.0939 0.0789 0.0935 0.0436 0.211
-## 4 0.0967 0.356 0.0942 0.0780 0.0981 0.0469 0.230
-## 5 0.105  0.360 0.0956 0.0717 0.0956 0.0421 0.230
-## 6 0.0963 0.371 0.0904 0.0786 0.0957 0.0432 0.225
+##     afd   cdu    fdp greens  left others   spd
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.135 0.327 0.0841  0.126 0.116 0.0438 0.169
+## 2 0.125 0.323 0.0951  0.126 0.104 0.0392 0.188
+## 3 0.148 0.320 0.0934  0.126 0.101 0.0425 0.169
+## 4 0.133 0.307 0.0940  0.125 0.106 0.0462 0.189
+## 5 0.142 0.312 0.0957  0.116 0.103 0.0411 0.189
+## 6 0.132 0.322 0.0900  0.126 0.103 0.0423 0.184
 ```
 
 ```r
@@ -470,7 +470,7 @@ draws %&gt;% summarize_all(funs(mean(.&gt;0.05)))
 ## # A tibble: 1 x 7
 ##     afd   cdu   fdp greens  left others   spd
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1  1.00  1.00  1.00   1.00  1.00 0.0371  1.00
+## 1  1.00  1.00  1.00   1.00  1.00 0.0274  1.00
 ```
 
 ---
@@ -490,16 +490,16 @@ seats
 ## # A tibble: 60,000 x 3
 ##      sim party  seats
 ##    &lt;int&gt; &lt;chr&gt;  &lt;int&gt;
-##  1     1 afd       61
-##  2     1 cdu      227
-##  3     1 fdp       60
-##  4     1 greens    50
-##  5     1 left      65
-##  6     1 spd      135
-##  7     2 afd       65
-##  8     2 cdu      230
-##  9     2 fdp       60
-## 10     2 greens    41
+##  1     1 afd       84
+##  2     1 cdu      204
+##  3     1 fdp       53
+##  4     1 greens    79
+##  5     1 left      73
+##  6     1 spd      105
+##  7     2 afd       78
+##  8     2 cdu      201
+##  9     2 fdp       59
+## 10     2 greens    78
 ## # ... with 59,990 more rows
 ```
 
@@ -521,8 +521,8 @@ probs
 ## # A tibble: 2 x 2
 ##   coalition      probability
 ##   &lt;chr&gt;                &lt;dbl&gt;
-## 1 cdu_fdp               1.01
-## 2 cdu_fdp_greens       99.0
+## 1 cdu_fdp                  0
+## 2 cdu_fdp_greens         100
 ```
 
 ---
@@ -537,7 +537,7 @@ background-size: 150px
 set.seed(123)
 pooled_survey %&gt;%
 	nest(party:votes, .key="survey") %&gt;%
-	get_probabilities(seed=123) %&gt;%
+	get_probabilities(seed=123, nsim=1e4) %&gt;%
 	unnest()
 ```
 
@@ -545,12 +545,12 @@ pooled_survey %&gt;%
 ## # A tibble: 6 x 4
 ##   pollster date       coalition       probability
 ##   &lt;chr&gt;    &lt;date&gt;     &lt;chr&gt;                 &lt;dbl&gt;
-## 1 pooled   2017-09-20 cdu                   0    
-## 2 pooled   2017-09-20 cdu_fdp               0.962
-## 3 pooled   2017-09-20 cdu_fdp_greens       99.0  
-## 4 pooled   2017-09-20 spd                   0    
-## 5 pooled   2017-09-20 left_spd              0    
-## 6 pooled   2017-09-20 greens_left_spd       0
+## 1 pooled   2018-02-13 cdu                       0
+## 2 pooled   2018-02-13 cdu_fdp                   0
+## 3 pooled   2018-02-13 cdu_fdp_greens          100
+## 4 pooled   2018-02-13 spd                       0
+## 5 pooled   2018-02-13 left_spd                  0
+## 6 pooled   2018-02-13 greens_left_spd           0
 ```
 
 ---
@@ -1083,8 +1083,15 @@ Keep in mind:
 "highlightLines": true,
 "countIncrementalSlides": false
 });
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {window.dispatchEvent(new Event('resize'));});
-(function() {var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler"); if (!r) return; s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }"; d.head.appendChild(s);})();</script>
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
