@@ -12,8 +12,9 @@ weight = 1
 # List your academic interests.
 [interests]
   interests = [
-    "Life-time Data Analysis",
-    "Election Analysis"
+    "Time-to-event Data Analysis",
+    "Election Analysis",
+    "R Programming"
   ]
 
 # List your qualifications (such as academic degrees).
@@ -31,5 +32,5 @@ weight = 1
 
 # Biography
 
-I'm a PhD Candidate at the Department of Statistics at LMU Munich. My research focuses on Life-Time Data Analysis. I also work at the [Statistical Consulting Unit (StaBLab)](http://www.stablab.stat.uni-muenchen.de/index.html) and co-organize the
+I'm a PhD Candidate at the Department of Statistics at LMU Munich. My research focuses on Life-Time Data Analysis. I work at the [Statistical Consulting Unit (StaBLab)](http://www.stablab.stat.uni-muenchen.de/index.html) and co-organize the
 [AppliedR MeetUp](https://www.meetup.com/de-DE/Applied-R-Munich/) in Munich.
