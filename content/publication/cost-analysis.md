@@ -3,12 +3,11 @@ abstract = "Background: The German 'Hospital Structure Act' intends to align the
 authors = ["T Maierhofer", "F Pfisterer", "A Bender", "H Kuechenhoff", "O Moerer", "H Burchardi", "WH Hartl"]
 date = "2017-06-16"
 image_preview = ""
-math = true
 publication_types = ["2"]
 publication = "In *Medizinische Klinik - Intensivmedizin und Notfallmedizin*."
 title = "Cost analysis as a tool for assessing the efficacy of intensive care units"
 url_pdf = "https://www.researchgate.net/publication/317660404_Cost_analysis_as_a_tool_for_assessing_the_efficacy_of_intensive_care_units"
-selected = true
+selected = false
 [[url_custom]]
 name = "DOI: 10.1007/s00063-017-0315-8"
 url = "https://link.springer.com/article/10.1007/s00063-017-0315-8"
