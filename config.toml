@@ -108,7 +108,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "sandbox/"]
     'Work in progress',  # 3
     'Technical report',  # 4
     'Book',  # 5
-    'Book chapter'  # 6
+    'Book chapter',  # 6
+    'Software', #7
   ]
 
   # Social/Academic Networking
@@ -149,21 +150,25 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "sandbox/"]
     icon_pack = "ai"
     link = "https://www.researchgate.net/profile/Andreas_Bender4"
 
-  # [[params.social]]
-  #   icon = "google-scholar"
-  #   icon_pack = "ai"
-  #   link = "https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ"
+  [[params.social]]
+    icon = "google-scholar"
+    icon_pack = "ai"
+    link = "https://scholar.google.de/citations?user=pYXcdVQAAAAJ&hl=de"
 
+  [[params.social]]
+    icon = "orcid"
+    icon_pack = "ai"
+    link = "https://orcid.org/0000-0001-5628-8611"
 
   [[params.social]]
     icon = "stack-overflow"
     icon_pack = "fa"
     link = "https://stackoverflow.com/users/1895521/adibender"
 
-  [[params.social]]
-    icon = "meetup"
-    icon_pack = "fa"
-    link = "https://www.meetup.com/de-DE/Applied-R-Munich/"
+  # [[params.social]]
+  #   icon = "meetup"
+  #   icon_pack = "fa"
+  #   link = "https://www.meetup.com/de-DE/Applied-R-Munich/"
 
 
 # Navigation Links
@@ -196,10 +201,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "sandbox/"]
   url = "#projects"
   weight = 5
 
-# [[menu.main]]
-#   name = "Teaching"
-#   url = "#teaching"
-#   weight = 5
+[[menu.main]]
+  name = "Teaching"
+  url = "#teaching"
+  weight = 5
 
 # [[menu.main]]
 #   name = "Contact"
