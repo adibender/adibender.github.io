@@ -6,7 +6,7 @@ image_preview = "shares_animated.gif"
 publication_types = ["7"]
 publication = "In *Journal of Open Source Software*."
 title = "coalitions: Coalition probabilities in multi-party democracies"
-selected = true
+selected = false
 url_pdf = "https://www.theoj.org/joss-papers/joss.00606/10.21105.joss.00606.pdf"
 [[url_custom]]
 name = "DOI: doi.org/10.21105/joss.00606"
