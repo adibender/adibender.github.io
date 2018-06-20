@@ -1,0 +1,148 @@
+.danger {
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
+}
+
+.success {
+    background-color: #ddffdd;
+    border-left: 6px solid #4CAF50;
+}
+
+.info {
+    background-color: #e7f3fe;
+    border-left: 6px solid #2196F3;
+}
+
+
+.warning {
+    background-color: #ffffcc;
+    border-left: 6px solid #ffeb3b;
+}
+
+.remark-slide-content {
+  background-color: white;
+  border-top: 80px solid #005500;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em
+}
+
+
+img.center {
+    display: block;
+    margin: 0 auto;
+}
+
+.title-slide {
+  margin-top: 0px;
+  background-image: url("image/LMU_hintergrund1.png");
+  background-size: cover;
+  background-color: #FAFAFA;
+  border-top: 0px;
+}
+
+img {
+  max.width: 80%;
+}
+
+.title-slide h1 {
+  font-family: serif;
+  color: #000000;
+  text-shadow: none;
+}
+
+/*.title-slide h1:after{
+    border:0px solid white;
+}
+*/
+.title-slide h2, .title-slide h3 {
+  color: #000000;
+  line-height: 1.5em;
+  text-shadow: none;
+}
+
+/*.headline {
+  font-family: san-serif;
+  line-height: 2.3em;
+  font-size: 20px;
+}*/
+
+/*h1 {
+  margin-top: 10px;
+}
+h1:after
+{
+  content:' ';
+  display:block;
+  border:2px solid darkgrey;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+*/
+/*h2 {
+  margin-top: 5px;
+  font-family: serif;
+}
+
+h2:after
+{
+  content: ' ';
+  display: block;
+  margin-bottom: 5px;
+  border-bottom: 1px solid darkgrey;
+}*/
+
+body {
+  background-color: whitesmoke
+  font-family:  'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;
+}
+
+.large { font-size: 130% }
+.small { font-size: 70% }
+
+a, a > code {
+  color: darkblue;
+  text-decoration: none;
+}
+
+.remark-inline-code {
+  /* background: #F5F5F5; /* lighter */
+  font-size: 90%;
+  background: #FAFAFA;; /* darker */
+  border-radius: 2px;
+  padding: 1px;
+}
+
+.pull-left30 {
+  float: left;
+  width: 30%;
+}
+.pull-right70 {
+  float: right;
+  width: 70%;
+}
+
+
+/* Two-column layout */
+.left-column {
+  color: #000;
+  width: 20%;
+  height: 92%;
+  float: left;
+  padding-top: 1em;
+}
+.left-column h2:last-of-type, .left-column h3:last-child {
+  color: #000;
+}
+.right-column {
+  width: 75%;
+  float: right;
+  padding-top: 1em;
+}
+
+
+/* center text*/
+div.a {
+    text-align: center;
+}
