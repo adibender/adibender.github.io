@@ -7,7 +7,7 @@ image_preview = "tveffects-pamm.png"
 publication_types = ["2"]
 publication = "In *Statistical Modelling*."
 title = "A generalized additive model approach to time-to-event analysis"
-selected = true
+selected = false
 url_pdf = "http://journals.sagepub.com/doi/pdf/10.1177/1471082X17748083"
 [[url_custom]]
 name = "DOI: doi.org/10.1177/1471082X17748083"

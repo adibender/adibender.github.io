@@ -6,14 +6,14 @@
 */
 
 .home-section {
-  background-color: #FFFFF8;
+  background-color: white;
   padding: 110px 0 110px 0;
   animation: intro 0.3s both;
   animation-delay: 0.15s;
 }
 
 .home-section:nth-of-type(even) {
-  background-color: #EEEEE6;
+  background-color: whitesmoke;
 }
 
 
@@ -85,4 +85,3 @@ nav#navbar-main li {
 .others {
   background: #808080;
 }
-

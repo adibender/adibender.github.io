@@ -13,24 +13,21 @@ weight = 1
 [interests]
   interests = [
     "Time-to-event Data Analysis",
+    "Spatio-temporal Disease Mapping",
     "Election Analysis",
     "R Programming"
   ]
 
 # List your qualifications (such as academic degrees).
 [[education.courses]]
-  course = "MSc in Statistics"
+  course = "PhD in Statistics"
   institution = "LMU Munich"
-  year = 2013
-
-[[education.courses]]
-  course = "BSc in Statistics"
-  institution = "LMU Munich"
-  year = 2010
+  year = 2018
 
 +++
 
 # Biography
 
-I'm a PhD Candidate at the Department of Statistics at LMU Munich. My research focuses on Life-Time Data Analysis. I work at the [Statistical Consulting Unit (StaBLab)](http://www.stablab.stat.uni-muenchen.de/index.html) and co-organize the
-[AppliedR MeetUp](https://www.meetup.com/de-DE/Applied-R-Munich/) in Munich.
+I obtained a PhD at the Department of Statistics at LMU Munich. My thesis
+focused on Life-Time Data Analysis. Currently, I'm working as Post-Doc on
+spatio-temporal disease mapping at the Big Data Institute, University of Oxford.
