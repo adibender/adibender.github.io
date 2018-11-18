@@ -11,7 +11,7 @@ summary = "Flexible Hazard Rate Estimation including Cumulative Effects using Ge
 draft = false
 
 # Optional image to display on homepage (relative to `static/img/` folder).
-image_preview = "employment_mod.png"
+image_preview = "tveffects-pamm.png"
 
 # Tags: can be used for filtering projects.
 # Example: `tags = ["machine-learning", "deep-learning"]`

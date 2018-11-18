@@ -26,11 +26,11 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "sandbox/"]
 
 [params]
   name = "Andreas Bender"
-  role = "PhD Candidate Statistics"
-  organization = "LMU Munich"
-  organization_url = "http://www.en.statistik.uni-muenchen.de/index.html"
+  # role = "Statistics"
+  # organization = "Big Data Institute, University of Oxford"
+  # organization_url = "http://www.en.statistik.uni-muenchen.de/index.html"
   gravatar = false  # Get your avatar from Gravatar.com? (true/false)
-  avatar = "me.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
+  # avatar = ""  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
   email = "bender.at.R@gmail.com"
   # address = ""
   # office_hours = "Monday 10:00 to 13:00 or email for appointment"
@@ -130,10 +130,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "sandbox/"]
   #
   #   Full list: https://jpswalsh.github.io/academicons/
 
-  [[params.social]]
-    icon = "envelope"
-    icon_pack = "fa"
-    link = "mailto:bender.at.R@gmail.com"
+  # [[params.social]]
+  #   icon = "envelope"
+  #   icon_pack = "fa"
+  #   link = "mailto:bender.at.R@gmail.com"
 
   [[params.social]]
     icon = "twitter"
@@ -160,10 +160,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "sandbox/"]
     icon_pack = "ai"
     link = "https://orcid.org/0000-0001-5628-8611"
 
-  [[params.social]]
-    icon = "stack-overflow"
-    icon_pack = "fa"
-    link = "https://stackoverflow.com/users/1895521/adibender"
+  # [[params.social]]
+  #   icon = "stack-overflow"
+  #   icon_pack = "fa"
+  #   link = "https://stackoverflow.com/users/1895521/adibender"
 
   # [[params.social]]
   #   icon = "meetup"
