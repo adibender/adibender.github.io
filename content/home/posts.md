@@ -3,7 +3,7 @@
 # This widget displays recent posts from `content/post/`.
 
 date = "2017-08-19T00:00:00"
-draft = false
+draft = true
 
 title = "Recent Posts"
 subtitle = ""
@@ -20,4 +20,3 @@ count = 5
 
 detailed_list = false
 +++
-
