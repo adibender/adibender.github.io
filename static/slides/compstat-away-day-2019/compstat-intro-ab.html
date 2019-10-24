@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>CompStat Away Day</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andreas Bender" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+class: inverse, center, title-slide, middle
+&lt;style&gt;
+.title-slide .remark-slide-number {
+  display: none;
+}
+&lt;/style&gt;
+
+# CompStat Away Day
+### Andreas Bender &lt;a class="fa fa-github" href="https://github.com/adibender" style="color:black"&gt;&lt;/a&gt;, &lt;a class="fa fa-twitter" href="https://twitter.com/adiBender" style="color:black"&gt;&lt;/a&gt;
+### 2019/10/25
+
+---
+class: center, middle
+
+
+&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"&gt;
+
+.font120[
+ B. Sc., M. Sc. Statistics
+
+`$$\downarrow$$`
+
+PhD Statistics
+
+`$$\downarrow$$`
+
+PostDoc at BDI, Uni Oxford
+
+`$$\downarrow$$`
+
+"Sabbatical"
+
+`\(\downarrow\)`.font50[(?)]
+
+PostDoc at StaBLab/CompStat AG
+]
+
+---
+class: middle, center
+
+.font120[Student Assistant at IBE] &lt;br&gt;
+`\(\cdot\)` Programming
+`\(\cdot\)` Random Forrest and other ML stuff &lt;br&gt;
+`\(\cdot\)` Publication on RF &lt;br&gt;
+--
+`\(\downarrow\)`
+
+.font120[Student Assistant at StaBLab] &lt;br&gt;
+`\(\cdot\)` Mostly data analysis for applied projects, mostly in medicine `\(\rightarrow\)` couple of publications &lt;br&gt;
+
+--
+`\(\downarrow\)`
+
+.font120[PhD/StaBLab] &lt;br&gt;
+`\(\cdot\)` Flexible modeling in survival analysis, especially cumulative effects &lt;br&gt;
+`\(\cdot\)` Statistical Consulting &lt;br&gt;
+`\(\cdot\)` Some industry projects &lt;br&gt;
+`\(\cdot\)` 2 CRAN packages, **`coalitions`** and **`pammtools`**&lt;br&gt;
+
+--
+`\(\downarrow\)`
+
+.font120[PostDoc at BDI] &lt;br&gt;
+`\(\cdot\)` Spatial Modeling
+`\(\cdot\)` Infectious Disease Mapping
+
+
+---
+
+**.font120[Survival Analysis/Time-to-event data analysis]**
+
+- **It takes time to observe the outcome, in the meantime things change/stuff happens**
+
+--
+
+- All covariates could have time-varying effects: `\(f(x_1)\)`, `\(f(x_1)\cdot t\)`, `\(f(x_1, t)\)`
+
+--
+- Covariates can change over time: `\(x_1(t)\beta\)`, `\(x_1(t)\beta(t)\)`, `\(g(\mathbf{x}_1, t)=\int_{\mathcal{T}(t)} f(x_1(t_e),t, t_e)\mathrm{d}t_e\)`
+
+--
+- Outcome not fully observed: right-censoring, left-censoring, interval-censoring,
+right truncation, left-truncation, combination of the above
+
+--
+- Competing events, potentially not absorbing:
+&lt;img src="multistate-model.png" height=150px class="center"&gt;
+
+--
+- Performance measures for survival analysis: time-dependent, depend on censoring distribution
+
+
+---
+class: middle
+
+**.font120[Current projects]**
+
+- Continue Development of PAMM/**`pammtools`**
+  + e.g., Competing Risks (Philipp, Fabian), Multistate Models
+
+- Extension to high dimensional settings
+  + e.g., parameterization of PAMMs through **`xgboost`**
+
+- Finish (publication of) papers from time in Oxford
+  + Modeling infection prevalence of Chagas disease in South America
+  + Spatio-temporal short-term prediction of terrorism attacks
+
+
+
+---
+**.font120[Future/ PostDoc at StaBLab + CompStat Group]**
+
+- Start on November 15th
+
+- applied ML/AI in Medicine (application and applied research)
+
+- Contribution to **`mlr3`** (especially survival branch) and mlr3 book
+
+- Teaching:
+  - WS: Lifetime Data Analysis
+  - SS: (?)
+
+- Contribute to development of PhD program for MCML
+
+- Research
+
+
+
+
+---
+class: middle
+**.font120[Future Research]**
+- Continue research on survival analysis
+  + Deep Learning and other ML techniques
+  + IML for survival analysis
+
+- Scalable estimation of any survival process
+  + i.e., AI/ML techniques for Competing Risks, Multistate Models, Recurrent events
+
+- Causality/Causal effects (in observational data)
+
+**.font120[Potential collaborators/projects]**
+- CompStat Group
+- Andy Groll (Boosting techniques for Survival Analysis, Sports Analytics, Grants, ...)
+- Fabian, Helmut et. al. (Survival, PAMM + extensions, ...)
+- StaBLab projects
+- Nick Golding (**`greta`**, Bayesian Stats, Spatial Analyses)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "zenburn",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "<div class=\"progress-bar-container\">   <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">   </div> </div> "
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
