@@ -57,7 +57,7 @@ body {
 
 .remark-slide-content {
   background-color: #FAFAFA;
-  border-top: 80px solid #FAFAFA;
+  border-top: 0px solid #FAFAFA;
   font-size: 20px;
   font-weight: 300;
   line-height: 1.5;
