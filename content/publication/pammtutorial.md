@@ -8,7 +8,7 @@ publication_types = ["2"]
 publication = "In *Statistical Modelling*."
 title = "A generalized additive model approach to time-to-event analysis"
 selected = false
-url_pdf = "files/pammtutorial.pdf"
+url_pdf = "files/pamtutorial.pdf"
 [[url_custom]]
 name = "DOI: doi.org/10.1177/1471082X17748083"
 url = "https://doi.org/10.1177/1471082X17748083"
