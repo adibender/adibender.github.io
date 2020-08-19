@@ -1,225 +1,72 @@
-baseurl = "/"  # End your URL with a `/` trailing slash.
-title = ""
-copyright = "&copy; 2017 Andreas Bender"
+# Configuration of Academic
+# Documentation: https://sourcethemes.com/academic/
+#
+# This file is formatted using TOML syntax - learn more at https://learnxinyminutes.com/docs/toml/
+# Each configuration section is defined by a name in square brackets (e.g. `[outputs]`).
+
+# Title of your site
+title = "Andreas Bender"
+
+# The URL of your site.
+# End your URL with a `/` trailing slash, e.g. `https://example.com/`.
+baseurl = "https://adibender.netlify.app/"
+
+# Enter a copyright notice to display in the site footer.
+# To display a copyright symbol, type `&copy;`. For current year, type `{year}`.
+copyright = "&copy; Andreas Bender 2020"
+
+############################
+## Advanced options below ##
+############################
+
+# Name of Academic theme folder in `themes/`.
 theme = "hugo-academic"
-enableEmoji = true
-footnotereturnlinkcontents = "<sup>^</sup>"
 
-# Enable comments by entering your Disqus shortname
-disqusShortname = ""
-
-# Enable analytics by entering your Google Analytics tracking ID
-googleAnalytics = "UA-44545040-1"
+# Get last modified date for content from Git?
+enableGitInfo = false
 
 # Default language to use (if you setup multilingual support)
 defaultContentLanguage = "en"
+hasCJKLanguage = false  # Set `true` for Chinese/Japanese/Korean languages.
 defaultContentLanguageInSubdir = false
+removePathAccents = true  # Workaround for https://github.com/gohugoio/hugo/issues/5687
 
-# ignore files
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "sandbox/"]
+summaryLength = 30  # Listing summary length in words. Also, see `abstract_length` in `params.toml`.
+paginate = 10  # Number of items per page in paginated lists.
+enableEmoji = true
+footnotereturnlinkcontents = "<sup>^</sup>"
+ignoreFiles = ["\\.ipynb$", ".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
-[blackfriday]
-  hrefTargetBlank = true
+[outputs]
+  home = [ "HTML", "RSS", "JSON", "WebAppManifest" ]
+  section = [ "HTML", "RSS" ]
 
-[permalinks]
-    post = "/:year/:month/:day/:slug/"
+[mediaTypes."application/manifest+json"]
+  suffixes = ["webmanifest"]
 
-[params]
-  name = "Andreas Bender"
-  # role = "Statistics"
-  # organization = "Big Data Institute, University of Oxford"
-  # organization_url = "http://www.en.statistik.uni-muenchen.de/index.html"
-  gravatar = false  # Get your avatar from Gravatar.com? (true/false)
-  # avatar = ""  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
-  email = "bender.at.R@gmail.com"
-  # address = ""
-  # office_hours = "Monday 10:00 to 13:00 or email for appointment"
-  # phone = "888 888 88 88"
-  # skype = "echo123"
-  # telegram = ""
+[outputFormats.WebAppManifest]
+  mediaType = "application/manifest+json"
+  rel = "manifest"
 
-  # Enable Keybase in Contact section by entering your keybase.io username.
-  keybase = ""
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark.renderer]
+    unsafe = true  # Enable user to embed HTML snippets in Markdown content.
+  [markup.highlight]
+    style = "pygments"
+    codeFences = false  # Disable Hugo's code highlighter as it conflicts with Academic's highligher.
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
 
-  # Date format (refer to Go's date format: http://flippinggodateformat.com )
-  #   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
-  date_format = "Mon, Jan 2, 2006"
-
-  # Enable global LaTeX math rendering?
-  #   If false, you can enable it locally on a per page basis.
-  math = true
-
-  # Highlight.js options
-  #   highlight
-  #     Enable global source code highlighting?  If false, you can
-  #     override it for a particular page in that page's preamble.
-  #
-  #     Example: highlight = true
-  #
-  #   highlight_languages
-  #     Add support for highlighting additional languages. Support for
-  #     languages mentioned here will be included in all pages. You
-  #     can also set this variable for a particular page in that
-  #     page's preamble.
-  #
-  #     Example: highlight_languages = ["go", "lisp", "ocaml"]
-  #
-  #   highlight_style
-  #     Choose a different CSS style for highlighting source
-  #     code. Setting this option in a page's preamble has no
-  #     effect.
-  #
-  #     Example: highlight_style = "github-gist"
-  #
-  #   highlight_version
-  #     Choose the version of highlight.js you want. Setting this
-  #     option in a page's preamble has no effect.
-  #
-  #     Example: highlight_version = "9.9.0"
-  #
-  #   For the list of supported languages, styles, and versions, see:
-  #   https://cdnjs.com/libraries/highlight.js/
-  #
-  #   For more info on the highlighting options, see:
-  #   https://gcushen.github.io/hugo-academic-demo/post/writing-markdown-latex/#highlighting-options
-  highlight = true
-  highlight_languages = ["R", "html", "md", "latex"]
-  highlight_style = "github"
-  # highlight_version = "9.9.0"
-
-  # Enable native social sharing buttons?
-  sharing = true
-
-  # Link custom CSS and JS assets
-  #   (relative to /static/css and /static/js respectively)
-  custom_css = ["sepia.css"]
-  custom_js  = []
-
-  # Publication types.
-  #   Used to categorize publications.
-  #   The index of the publication type in the list is used as its unique numerical identifier.
-  #   The numeric ID is used in a publication's frontmatter to categorize it.
-  #   The language can be edited below.
-  #   For multi-lingual sites, copy this block to each language section at the end of this file.
-  publication_types = [
-    'Uncategorized',  # 0
-    'Conference proceedings',  # 1
-    'Journal',  # 2
-    'Work in progress',  # 3
-    'Technical report',  # 4
-    'Book',  # 5
-    'Book chapter',  # 6
-    'Software', #7
-  ]
-
-  # Social/Academic Networking
-  #
-  # Icon pack "fa" includes the following social network icons:
-  #
-  #   twitter, weibo, linkedin, github, facebook, pinterest, google-plus,
-  #   youtube, instagram, soundcloud
-  #
-  #   For email icon, use "fa" icon pack, "envelope" icon, and
-  #   "mailto:your@email.com" as the link.
-  #
-  #   Full list: https://fortawesome.github.io/Font-Awesome/icons/
-  #
-  # Icon pack "ai" includes the following academic network icons:
-  #
-  #   google-scholar, arxiv, orcid, researchgate, mendeley
-  #
-  #   Full list: https://jpswalsh.github.io/academicons/
-
-  # [[params.social]]
-  #   icon = "envelope"
-  #   icon_pack = "fa"
-  #   link = "mailto:bender.at.R@gmail.com"
-
-  [[params.social]]
-    icon = "twitter"
-    icon_pack = "fa"
-    link = "//twitter.com/adiBender"
-
-  [[params.social]]
-    icon = "github"
-    icon_pack = "fa"
-    link = "//github.com/adibender"
-
-  [[params.social]]
-    icon = "researchgate"
-    icon_pack = "ai"
-    link = "https://www.researchgate.net/profile/Andreas_Bender4"
-
-  [[params.social]]
-    icon = "google-scholar"
-    icon_pack = "ai"
-    link = "https://scholar.google.de/citations?user=pYXcdVQAAAAJ&hl=de"
-
-  [[params.social]]
-    icon = "orcid"
-    icon_pack = "ai"
-    link = "https://orcid.org/0000-0001-5628-8611"
-
-  # [[params.social]]
-  #   icon = "stack-overflow"
-  #   icon_pack = "fa"
-  #   link = "https://stackoverflow.com/users/1895521/adibender"
-
-  # [[params.social]]
-  #   icon = "meetup"
-  #   icon_pack = "fa"
-  #   link = "https://www.meetup.com/de-DE/Applied-R-Munich/"
-
-
-# Navigation Links
-#   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
-#     desired widget in your `content/home/` folder.
-#   The weight parameter defines the order that the links will appear in.
-
-[[menu.main]]
-  name = "Home"
-  url = "#about"
-  weight = 1
-
-[[menu.main]]
-  name = "Posts"
-  url = "#posts"
-  weight = 2
-
-[[menu.main]]
-  name = "Publications"
-  url = "#publications_selected"
-  weight = 3
-
-[[menu.main]]
-  name = "Talks"
-  url = "#talks"
-  weight=4
-
-[[menu.main]]
-  name = "Projects"
-  url = "#projects"
-  weight = 5
-
-[[menu.main]]
-  name = "Teaching"
-  url = "#teaching"
-  weight = 5
-
-# [[menu.main]]
-#   name = "Contact"
-#   url = "#contact"
-#   weight = 6
+[imaging]
+  resampleFilter = "lanczos"
+  quality = 90
+  anchor = "smart"  # Anchor for cropping. Options include Smart and Center.
 
 # Taxonomies.
 [taxonomies]
   tag = "tags"
   category = "categories"
   publication_type = "publication_types"
-
-# Languages
-#   Create a [languages.X] block for each language you want, where X is the language ID.
-
-# Configure the English version of the website.
-[languages.en]
-  languageCode = "en-us"
+  author = "authors"
