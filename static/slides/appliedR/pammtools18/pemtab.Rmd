@@ -1,0 +1,23 @@
+---
+title: "pem tab"
+output: html_document
+---
+
+
+$$
+\begin{center}
+\begin{tabular}{rrrrrrrcr}
+  \hline
+id & tstart & tend & interval &  offset & ped\_status & trt & $\ldots$ & prior \\
+  \hline
+1 & 0 & 1 & (0,1] & 0   & 0 & 1 & $\ldots$ & 1 \\
+1 & 1 & 2 & (1,2] & 0   & 0 & 1 & $\ldots$ & 1 \\
+1 & 2 & 3 & (2,3] & 0   & 0 & 1 & $\ldots$ & 1 \\
+1 & 3 & 4 & (3,4] & 0   & 0 & 1 & $\ldots$ & 1 \\
+1 & 4 & 7 & (4,7] & 1.1 & 0 & 1 & $\ldots$ & 1 \\
+1 & 7 & 8 & (7,8] & 0   & 0 & 1 & $\ldots$ & 1 \\
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
+$$
