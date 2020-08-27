@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>A General Machine Learning   Framework for Survival Analysis</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andreas Bender (@adibender),  David Rügamer, Fabian Scheipl, Bernd Bischl" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="ecml2020.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# A General Machine Learning <br> Framework for Survival Analysis
+## ECML PKDD 2020
+<div style='float:left'>
+<hr color='#005500' size=1px width=720px>
+</div>
+### <strong>Andreas Bender (<i class='fa fa-twitter'><span class="citation">@adibender</span></i>)</strong>, <br>David Rügamer, Fabian Scheipl, Bernd Bischl
+### <br>Department of Statistics, LMU Munich
+
+---
+
+layout: true
+background-image: url(mcml-background-slide.svg)
+background-size: cover
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"&gt;
+&lt;div class="my-footer"&gt;&lt;span&gt;&lt;i class="fa fa-twitter"&gt;@adibender&lt;/i&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&lt;/span&gt;&lt;/div&gt;
+
+
+
+---
+
+### The framework is *general* in the sense that
+
+.font120[
+
+
+1. It supports different Survival Tasks
+  - right-censoring, left-truncation
+  - time-varying effects, time-varying features
+  - competing risks, multi-state models
+
+2. Does not require specialized Software, can be applied across programming languages and using any algorithm that supports optimization of the Poisson Likelihood
+
+
+]
+
+---
+
+&lt;br&gt;
+.center[
+&lt;img src="ml-for-survival-graph.svg", width = "900px"&gt;
+]
+
+
+
+???
+
+`$$\usepackage{amsmath,amssymb,bm}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\tn}[1]{\textnormal{#1}}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\bfx}{\mathbf{x}}
+\newcommand{\bfX}{\mathbf{X}}
+\newcommand{\bfB}{\mathbf{B}}
+\newcommand{\bff}{\mathbf{f}}
+\newcommand{\bsbeta}{\boldsymbol{\beta}}$$`
+
+
+
+---
+layout:false
+class: inverse, middle, center
+
+
+&lt;h1 style="color:#005500;"&gt;Survival Task as Poisson Task&lt;/h1&gt;
+
+&lt;html&gt;
+  &lt;div style='float:left'&gt;&lt;/div&gt;
+  &lt;hr color='#005500' size=1px width=720px&gt;
+&lt;/html&gt;
+
+---
+layout: true
+background-image: url(mcml-background-slide.svg)
+background-size: cover
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"&gt;
+&lt;div class="my-footer"&gt;&lt;span&gt;&lt;i class="fa fa-twitter"&gt;@adibender&lt;/i&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&lt;/span&gt;&lt;/div&gt;
+
+
+---
+
+&lt;!-- General Idea goes back to e.g. [Friedman (1982)](http://www.jstor.org/stable/2240502): "Piecewise Exponential Model for Survival Data with Covariates" --&gt;
+
+Consider setting with right-censored data:
+  - we observe `\((t_i, \delta_i), i = 1,\ldots, n\)`, where
+    - `\(t_i = \min(T_i, C_i)\)`; `\(T_i \sim F \perp C_i \sim G; T_i,C_i &gt; 0\)`
+    - `\(\delta_i = I(T_i \leq C_i) \in \{0,1\}\)`
+
+To approximate
+`$$\lambda(t; \bfx_i) = \exp(g(\bfx_i(t), t)) \stackrel{PH}{=}\lambda_0(t)\exp(\bfx_i'\bsbeta)$$`
+
+--
+
+- split the follow-up in `\(J\)` intervals `\((\kappa_{j-1}, \kappa_j], j = 1,\ldots, J\)`
+
+--
+
+- assume piece-wise constant hazards:
+`$$\begin{align}
+\lambda(t| \bfx_i(t))
+  &amp; \equiv \exp(g(\bfx_{ij}, t_j)):=\lambda_{ij},\ \ \forall t \in (\kappa_{j-1}, \kappa_j],\\
+\end{align}$$`
+
+
+--
+
+- Estimation using Piece-wise Exponential Model (e.g. [Friedman (1982)](http://www.jstor.org/stable/2240502)) &lt;br&gt;
+( `\(\ra\)` Poisson regression with transformed data)
+
+---
+
+&lt;div class="row"&gt;
+&lt;div class = "column", align = "center"&gt;
+Data in "standard" time-to-event format &lt;br&gt;
+&lt;/div&gt;
+&lt;div class = "column", align = "center"&gt;
+Data in PED format &lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class = "row" align = "middle"&gt;
+&lt;div class = "column", align = "middle"&gt;
+.middle[
+&lt;img src="tab-standard.svg", width = "200px" align="middle"&gt;&lt;br&gt;
+`\(\ra\)` transform to PED using `\(\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3\)`
+]
+&lt;/div&gt;
+
+&lt;div class = "column" align ="middle"&gt;
+&lt;img src="tab-ped.svg", width = "300px" align="middle" &gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+---
+count: false
+
+&lt;div class="row"&gt;
+&lt;div class = "column", align = "center"&gt;
+Data in "standard" time-to-event format &lt;br&gt;
+&lt;/div&gt;
+&lt;div class = "column", align = "center"&gt;
+Data in PED format &lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class = "row" align = "middle"&gt;
+&lt;div class = "column", align = "middle"&gt;
+.middle[
+&lt;img src="tab-standard.svg", width = "200px" align="middle"&gt;&lt;br&gt;
+`\(\ra\)` transform to PED using `\(\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3\)`
+]
+&lt;/div&gt;
+
+&lt;div class = "column" align ="middle"&gt;
+&lt;img src="tab-ped1.svg", width = "300px" align="middle" &gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+---
+count: false
+
+&lt;div class="row"&gt;
+&lt;div class = "column", align = "center"&gt;
+Data in "standard" time-to-event format &lt;br&gt;
+&lt;/div&gt;
+&lt;div class = "column", align = "center"&gt;
+Data in PED format &lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class = "row" align = "middle"&gt;
+&lt;div class = "column", align = "middle"&gt;
+.middle[
+&lt;img src="tab-standard.svg", width = "200px" align="middle"&gt;&lt;br&gt;
+`\(\ra\)` transform to PED using `\(\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3\)`
+]
+&lt;/div&gt;
+
+&lt;div class = "column" align ="middle"&gt;
+&lt;img src="tab-ped2.svg", width = "300px" align="middle" &gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+- define: `\(\delta_{ij} = \begin{cases}1 &amp; t_i \in (\kappa_{j-1}, \kappa_j] \wedge \delta_i = 1\\0 &amp; \text{else}\end{cases}\)`
+
+---
+count: false
+
+&lt;div class="row"&gt;
+&lt;div class = "column", align = "center"&gt;
+Data in "standard" time-to-event format &lt;br&gt;
+&lt;/div&gt;
+&lt;div class = "column", align = "center"&gt;
+Data in PED format &lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class = "row" align = "middle"&gt;
+&lt;div class = "column", align = "middle"&gt;
+.middle[
+&lt;img src="tab-standard.svg", width = "200px" align="middle"&gt;&lt;br&gt;
+`\(\ra\)` transform to PED using `\(\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3\)`
+]
+&lt;/div&gt;
+
+&lt;div class = "column" align ="middle"&gt;
+&lt;img src="tab-ped3.svg", width = "300px" align="middle" &gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+- define: `\(\delta_{ij} = \begin{cases}1 &amp; t_i \in (\kappa_{j-1}, \kappa_j] \wedge \delta_i = 1\\0 &amp; \text{else}\end{cases}\)`,
+  `\(t_{ij} = \begin{cases}t_{i}-\kappa_{j-1} &amp; \delta_{ij}=1\\ \kappa_{j}-\kappa_{j-1}&amp; \text{else}\end{cases}\)`
+
+
+
+---
+count: false
+
+&lt;div class="row"&gt;
+&lt;div class = "column", align = "center"&gt;
+Data in "standard" time-to-event format &lt;br&gt;
+&lt;/div&gt;
+&lt;div class = "column", align = "center"&gt;
+Data in PED format &lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class = "row" align = "middle"&gt;
+&lt;div class = "column", align = "middle"&gt;
+.middle[
+&lt;img src="tab-standard.svg", width = "200px" align="middle"&gt;&lt;br&gt;
+`\(\ra\)` transform to PED using `\(\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3\)`
+]
+&lt;/div&gt;
+
+&lt;div class = "column" align ="middle"&gt;
+&lt;img src="tab-ped4.svg", width = "300px" align="middle" &gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+- define: `\(\delta_{ij} = \begin{cases}1 &amp; t_i \in (\kappa_{j-1}, \kappa_j] \wedge \delta_i = 1\\0 &amp; \text{else}\end{cases}\)`,
+  `\(t_{ij} = \begin{cases}t_{i}-\kappa_{j-1} &amp; \delta_{ij}=1\\ \kappa_{j}-\kappa_{j-1}&amp; \text{else}\end{cases}\)`, `\(t_j := \kappa_j\)`
+
+
+---
+count: false
+
+&lt;div class="row"&gt;
+&lt;div class = "column", align = "center"&gt;
+Data in "standard" time-to-event format &lt;br&gt;
+&lt;/div&gt;
+&lt;div class = "column", align = "center"&gt;
+Data in PED format &lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class = "row" align = "middle"&gt;
+&lt;div class = "column", align = "middle"&gt;
+.middle[
+&lt;img src="tab-standard.svg", width = "200px" align="middle"&gt;&lt;br&gt;
+`\(\ra\)` transform to PED using `\(\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3\)`
+]
+&lt;/div&gt;
+
+&lt;div class = "column" align ="middle"&gt;
+&lt;img src="tab-ped.svg", width = "300px" align="middle" &gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+- define: `\(\delta_{ij} = \begin{cases}1 &amp; t_i \in (\kappa_{j-1}, \kappa_j] \wedge \delta_i = 1\\0 &amp; \text{else}\end{cases}\)`,
+  `\(t_{ij} = \begin{cases}t_{i}-\kappa_{j-1} &amp; \delta_{ij}=1\\ \kappa_{j}-\kappa_{j-1}&amp; \text{else}\end{cases}\)`, `\(t_j := \kappa_j\)`
+
+.font80[
+.pull-left[
+.boxed_grey[
+
+General log-likelihood contribution:
+
+
+`$$\begin{align}\ell_i
+  &amp; = \log(\lambda(t_i;\bfx_i)^{\delta_i}S(t_i;\bfx_i))\\
+  % &amp; = \delta_i\log(\lambda_{iJ_i}) - \sum_{j=1}^{J_i}\lambda_{ij}t_{ij}\\
+  &amp; = \sum_{j=1}^{J_i}\left(\delta_{ij}\log\lambda_{ij} -  \lambda_{ij}t_{ij}\right)
+\end{align}$$`
+]
+]
+
+
+.pull-right[
+.boxed_grey[
+Working Assumption  `\(\delta_{ij}\stackrel{iid}{\sim} Po(\mu_{ij} = \lambda_{ij}t_{ij})\)`:
+
+`$$\begin{align}
+\ell_i
+  &amp; = \log\left(\prod_{j=1}^{J_i} f(\delta_{ij})\right)\\
+  % &amp;  = \sum_{j=1}^{J_i} \delta_{ij}\log(\mu_{ij}) - \mu_{ij}\nn\\
+  &amp; = \sum_{j=1}^{J_i} \delta_{ij}\log(\lambda_{ij}) + \delta_{ij}\log(t_{ij}) - \lambda_{ij}t_{ij}
+\end{align}$$`
+]
+]
+]
+
+
+---
+
+Consider 3 subjects in competing risks setting with event types `\(k \in \{1,2\}\)`
+
+- `\(i= 1\)`:  `\((t_1 = 1.3, \delta_1 = 2)\)`
+- `\(i = 2\)`: `\((t_2 = 0.5, \delta_2 = 0)\)`
+- `\(i = 3\)`: `\((t_3 = 2.7, \delta_3 = 1)\)`
+
+
+
+.center[
+Data in PED format &lt;br&gt;
+&lt;img src="tab-ped-cr.svg", width = "410px"&gt;
+]
+
+`\(\ra\)` estimate `\(\lambda(t|\bfx, k) = \exp(f(\bfx(t),t,k)),\ k \in \{1,2\}\)`
+
+
+
+---
+count: false
+
+Consider 3 subjects in competing risks setting with event types `\(k \in \{1,2\}\)`
+
+- `\(i= 1\)`:  `\((t_1 = 1.3, \delta_1 = 2)\)`
+- `\(i = 2\)`: `\((t_2 = 0.5, \delta_2 = 0)\)`
+- `\(i = 3\)`: `\((t_3 = 2.7, \delta_3 = 1)\)`
+
+
+
+.center[
+Data in PED format &lt;br&gt;
+&lt;img src="tab-cr1.svg", width = "410px"&gt;
+]
+
+`\(\ra\)` estimate `\(\lambda(t|\bfx, k) = \exp(f(\bfx(t),t,k)),\ k \in \{1,2\}\)`
+
+
+---
+count: false
+
+Consider 3 subjects in competing risks setting with event types `\(k \in \{1,2\}\)`
+
+- `\(i= 1\)`:  `\((t_1 = 1.3, \delta_1 = 2)\)`
+- `\(i = 2\)`: `\((t_2 = 0.5, \delta_2 = 0)\)`
+- `\(i = 3\)`: `\((t_3 = 2.7, \delta_3 = 1)\)`
+
+
+
+.center[
+Data in PED format &lt;br&gt;
+&lt;img src="tab-cr2.svg", width = "410px"&gt;
+]
+
+`\(\ra\)` estimate `\(\lambda(t|\bfx, k) = \exp(f(\bfx(t),t,k)),\ k \in \{1,2\}\)`
+
+
+---
+
+.column[Time-varying effects]
+.column[Shared vs. cause-specific effects (in CR)]
+
+
+.center[
+
+&lt;img src="splits-grey.svg", width = "800px"&gt;
+
+]
+
+
+
+---
+layout:false
+class: inverse, middle, center
+
+
+&lt;h1 style="color:#005500;"&gt;Experimental Results&lt;/h1&gt;
+
+&lt;html&gt;
+  &lt;div style='float:left'&gt;&lt;/div&gt;
+  &lt;hr color='#005500' size=1px width=720px&gt;
+&lt;/html&gt;
+
+---
+layout: true
+background-image: url(mcml-background-slide.svg)
+background-size: cover
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"&gt;
+&lt;div class="my-footer"&gt;&lt;span&gt;&lt;i class="fa fa-twitter"&gt;@adibender&lt;/i&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&lt;/span&gt;&lt;/div&gt;
+
+
+---
+class: middle
+
+We use gradient boosted trees (**GBT**) as computing engine for PEMs (more specifically XGBoost ([Chen and Guestrin, 2016](https://arxiv.org/abs/1603.02754))) and compare them to
+  + Oblique Random Survival Forest (**ORSF**; [Jaeger, Long, Long, et al. (2019)](https://doi.org/10.1214/19-AOAS1261))
+  + Deep Neural Net based Algorithm **DeepHit** ([Lee, Zame, Yoon, et al., 2018](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16160))
+
+Single Event and competing risks data sets
+  - Standard data sets (directly available)
+  - Synthetic data with time-varying effects (TVE)
+
+For each data set
+  - 20 subsamples, each split into train (70%) and test (30%) data
+  - tuning on the training data (random search with fixed budget)
+  - evaluation on test, performance measured by Brier Score at different time-points (25%, 50% and 75% quantiles of event times in the test data)
+
+---
+
+**Comparison with ORSF** (single-event, right-censoring) &lt;br&gt;
+Evaluation w.r.t. Integrated Brier Score
+
+.center[
+&lt;img src="tab-orsf1.svg", width = "600px"&gt;
+]
+
+
+---
+
+**Comparison with DeepHit** (single-event and competing risks, right-censoring) &lt;br&gt;
+Evaluation w.r.t. weighted Brier Score
+
+
+.center[
+&lt;img src="tab-deephit.svg", width = "600px"&gt;
+]
+
+
+---
+
+**Choice of interval split points**
+
+- Number and placement of interval split points could potentially be a tuning parameter
+
+- In our experience setting split points at observed event times results in good performance `\(\ra\)` many split points where many events observed
+
+- For large data sets select subset of unique event times for split points
+
+.center[
+&lt;img src="tab-scalability.svg", width = "400px"&gt;
+]
+
+
+---
+layout:false
+class: inverse, middle, center
+
+
+&lt;h1 style="color:#005500;"&gt;Concluding Remarks&lt;/h1&gt;
+
+&lt;html&gt;
+  &lt;div style='float:left'&gt;&lt;/div&gt;
+  &lt;hr color='#005500' size=1px width=720px&gt;
+&lt;/html&gt;
+
+
+---
+layout: true
+background-image: url(mcml-background-slide.svg)
+background-size: cover
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"&gt;
+&lt;div class="my-footer"&gt;&lt;span&gt;&lt;i class="fa fa-twitter"&gt;@adibender&lt;/i&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&lt;/span&gt;&lt;/div&gt;
+
+
+---
+class: middle
+
+- **General ML Framework for Survival Analysis** ([Bender, Rügamer, Scheipl, et al., 2020](https://arxiv.org/abs/2006.15442))
+  + supports many survival task (TVE, TVF, CR, MSM)
+  + does not require specialized software/algorithms
+
+- **No assumptions w.r.t. distribution of event times** (Poisson assumption just a computational vehicle)
+
+- Framework for **continuous time** survival analysis (exact time enters via offset, prediction of hazards and survival probabilities possible for any time `\(t\)`)
+
+
+
+
+---
+layout: false
+
+## References
+&lt;a name=bib-bender_general_2020&gt;&lt;/a&gt;[Bender, A, D. Rügamer, F. Scheipl,
+et al.](#cite-bender_general_2020) (2020). "A General Machine Learning
+Framework for Survival Analysis". In: _arXiv:2006.15442 [cs, stat]_.
+arXiv: [2006.15442](https://arxiv.org/abs/2006.15442).
+
+&lt;a name=bib-chen_xgboost_2016&gt;&lt;/a&gt;[Chen, T. and C.
+Guestrin](#cite-chen_xgboost_2016) (2016). "XGBoost: A Scalable Tree
+Boosting System". In: _Proceedings of the 22nd ACM SIGKDD International
+Conference on Knowledge Discovery and Data Mining - KDD '16_, pp.
+785-794. DOI:
+[10.1145/2939672.2939785](https://doi.org/10.1145%2F2939672.2939785).
+arXiv: [1603.02754](https://arxiv.org/abs/1603.02754).
+
+&lt;a name=bib-friedman_piecewise_1982&gt;&lt;/a&gt;[Friedman,
+M.](#cite-friedman_piecewise_1982) (1982). "Piecewise Exponential
+Models for Survival Data with Covariates". In: _The Annals of
+Statistics_ 10.1, pp. 101-113. ISSN: 00905364. URL:
+[http://www.jstor.org/stable/2240502](http://www.jstor.org/stable/2240502).
+
+&lt;a name=bib-jaeger_oblique_2019&gt;&lt;/a&gt;[Jaeger, B. C, D. L. Long, D. M.
+Long, et al.](#cite-jaeger_oblique_2019) (2019). "Oblique random
+survival forests". In: _The Annals of Applied Statistics_ 13.3, pp.
+1847-1883. ISSN: 1932-6157, 1941-7330. DOI:
+[10.1214/19-AOAS1261](https://doi.org/10.1214%2F19-AOAS1261).
+
+&lt;a name=bib-lee_deephit_2018&gt;&lt;/a&gt;[Lee, C., W. R. Zame, J. Yoon, et
+al.](#cite-lee_deephit_2018) (2018). "DeepHit: A Deep Learning Approach
+to Survival Analysis With Competing Risks". In: _Thirty-Second AAAI
+Conference on Artificial Intelligence_. Thirty-Second AAAI Conference
+on Artificial Intelligence. URL:
+[https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16160](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16160).
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "zenburn",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

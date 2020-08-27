@@ -1,0 +1,154 @@
+```{r, results = "hide", echo = FALSE, message = FALSE}
+library(knitr)
+opts_chunk$set(
+  dev        = "png",
+  dpi        = 500,
+  fig.align  = "center",
+  out.width  = "400px",
+  fig.width  = 5,
+  fig.height = 5,
+  collapse   = TRUE,
+  warning    = FALSE,
+  echo       = TRUE,
+  message    = FALSE,
+  cache      = TRUE)
+
+### control output lines
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+   lines <- options$output.lines
+   if (is.null(lines)) {
+     return(hook_output(x, options))  # pass to default hook
+   }
+   x <- unlist(strsplit(x, "\n"))
+   more <- "..."
+   if (length(lines)==1) {        # first n lines
+     if (length(x) > lines) {
+       # truncate the output, but add ....
+       x <- c(head(x, lines), more)
+     }
+   } else {
+     x <- c(if (abs(lines[1])>1) more else NULL,
+            x[lines],
+            if (length(x)>lines[abs(length(lines))]) more else NULL
+           )
+   }
+   # paste these lines together
+   x <- paste(c(x, ""), collapse = "\n")
+   hook_output(x, options)
+ })
+
+### define ggplot theme
+library(ggplot2)
+library(patchwork)
+theme_set(
+  theme_bw()  +
+  theme(
+    axis.text         = element_text(size = rel(1.2)),
+    axis.title        = element_text(size = rel(1.5)),
+    legend.text       = element_text(size = rel(1.2)),
+    legend.title      = element_text(size = rel(1.5)),
+    strip.text        = element_text(size = rel(1.3)),
+    plot.background   = element_rect(fill = "#FAFAFA"),
+    panel.background  = element_rect(fill = "#FAFAFA"),
+    legend.background = element_rect(fill = "#FAFAFA")
+  )
+)
+
+
+### Bibliography
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE, bib.style = "authoryear", style = "markdown",
+  dashed = TRUE, max.names = 1L)
+bib <- ReadBib("iscb2020.bib")
+
+
+##
+library(pammtools)
+data(tumor)
+tumor <- tumor %>% select(-charlson_score, -transfusion, -resection, -metastases)
+```
+
+```{r, cache = TRUE, echo = FALSE, results = "hide"}
+# Weibull hazard function
+hweibull <- function(t, alpha, lambda) {
+  dweibull(t, alpha, lambda)/pweibull(t, alpha, lambda, lower.tail=FALSE)
+}
+
+# plot hazard and survival probability:
+alpha <- 1.5
+lambda <- 10
+t <- seq(0, 10, by=.01)
+wb_df <- data.frame(t = t) %>%
+  mutate(
+    hazard   = hweibull(t, alpha, lambda),
+    survival = pweibull(t, alpha, lambda, lower.tail = FALSE))
+p_wb_hazard <- ggplot(wb_df, aes(x=t, y=hazard)) +
+  geom_line(col="red") + ylab(expression(lambda(t))) + xlab("time") +
+  geom_vline(xintercept = seq(0, 10, by = 1), lty = 3)
+p_wb_surv <- p_wb_hazard + aes(y = survival) + ylab(expression(S(t))) + ylim(c(0,1))
+
+# set number of simulated survival times
+n <- 1000
+# set seed for RNG
+set.seed(24032018)
+sim_df_weibull <- data.frame(
+  time = rweibull(n, 1.5, 10),
+  status = 1)
+
+ped <- as_ped(Surv(time, status)~., cut=seq(0, 10, by = 1), data=sim_df_weibull)
+pem <- glm(ped_status ~ interval, data = ped, family=poisson(), offset=offset)
+pem_haz_df <- int_info(ped) %>%
+  mutate(
+    hazard = predict(object=pem, ., type="response"),
+    survival = exp(-cumsum(hazard * intlen)))
+
+p_pem_base <- ggplot(pem_haz_df, aes(x = tend)) + xlab("time")
+p_pem_haz <- p_pem_base + aes(y = hazard) +
+  geom_line(data=data.frame(tend = t, hazard=hweibull(t, 1.5, 10)), col=2) +
+  geom_stephazard() + ylab(expression(lambda(t)))
+p_pem_surv <- p_pem_base + aes(y = survival) +
+  geom_line(data = data.frame(tend = t, survival=pweibull(t, 1.5, 10, lower.tail=FALSE)), col = 2) +
+  geom_surv() +
+  ylim(c(0,1)) + ylab(expression(S(t)))
+
+ped2 <- as_ped(Surv(time, status)~., cut = seq(0,10, by=.1), data=sim_df_weibull)
+pem2 <- glm(ped_status ~ interval, data = ped2, family=poisson(), offset=offset)
+pem_haz_df2 <- int_info(ped2) %>%
+  mutate(
+    hazard = predict(object=pem2, ., type="response"),
+    survival = exp(-cumsum(hazard * intlen)))
+
+pam2 <- mgcv::gam(ped_status ~ s(tend, k = 10), data = ped2, family = poisson(),
+  offset = offset, method = "REML")
+
+pam_haz_df <- int_info(ped2) %>%
+  add_hazard(pam2) %>%
+  add_surv_prob(pam2)
+p_pam_haz <- ggplot(pam_haz_df, aes(x = tend, y = hazard)) +
+  geom_line(data=data.frame(tend = t, hazard=hweibull(t, 1.5, 10)), col=2) +
+  geom_stephazard() +
+  geom_stepribbon(aes(ymin = ci_lower, ymax = ci_upper), alpha = 0.2) +
+  ylab(expression(lambda(t))) + ggtitle("PAM")
+p_pam_surv <-  ggplot(pam_haz_df, aes(x = tend, y = surv_prob)) +
+  geom_line(data=data.frame(tend = t, surv_prob=pweibull(t, 1.5, 10, lower.tail=FALSE)), col=2) +
+  geom_surv() +
+  geom_ribbon(aes(ymin = surv_lower, ymax = surv_upper), alpha = 0.2) +
+  ylab(expression(S(t))) + ylim(c(0,1))
+p_pem_haz2 <- p_pem_haz %+% pem_haz_df2 + ggtitle("PEM")
+```
+
+???
+
+$$\usepackage{amsmath,amssymb,bm}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\tn}[1]{\textnormal{#1}}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\bfx}{\mathbf{x}}
+\newcommand{\bfX}{\mathbf{X}}
+\newcommand{\bfB}{\mathbf{B}}
+\newcommand{\bff}{\mathbf{f}}
+\newcommand{\bsbeta}{\boldsymbol{\beta}}$$

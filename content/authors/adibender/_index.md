@@ -45,6 +45,6 @@ superuser: true
 
 &nbsp;
 
-I am a Researcher and Lecturer at the Department of Statistics, LMU Munich, Postdoc at the [Chair of Statistical Learning and Data Science](https://www.slds.stat.uni-muenchen.de/) and Senior Consultant at the [Statistical Consulting Unit](https://www.en.stablab.stat.uni-muenchen.de/index.html). I am affiliated with the [Munich Center for Machine Learning](https://mcml.ai/) and member of the [LMU Open Science Center](https://www.osc.uni-muenchen.de/index.html).
+I am a researcher and lecturer at the Department of Statistics. I am part  of the [Chair of Statistical Learning and Data Science](https://www.slds.stat.uni-muenchen.de/) and senior consultant at the [Statistical Consulting Unit](https://www.en.stablab.stat.uni-muenchen.de/index.html). I am affiliated with the [Munich Center for Machine Learning](https://mcml.ai/) and member of the [LMU Open Science Center](https://www.osc.uni-muenchen.de/index.html).
 
 I'm interested in methodological research, research software enginieering and application of statistcis and machine learning, particularly in the field of Survival Analysis, Biostatistics, Epidemiology and Biomedicine.

@@ -3,7 +3,7 @@
   <head>
     <title>Mapping Trypanasoma cruzi Infection Prevalence</title>
     <meta charset="utf-8">
-    <meta name="author" content="Andreas Bender (andreas.bender@bdi.ox.ac.uk)" />
+    <meta name="author" content="Andreas Bender" />
     <meta name="author" content="Nick Golding, Andre Python, Catherine Moyes" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
@@ -16,7 +16,7 @@
 class: center, middle, inverse, title-slide
 
 # Mapping <em>Trypanasoma cruzi</em> Infection Prevalence
-### Andreas Bender (<a href="mailto:andreas.bender@bdi.ox.ac.uk" class="email">andreas.bender@bdi.ox.ac.uk</a>)
+### Andreas Bender (<i class='fa fa-twitter'><span class="citation">@adibender</span></i>)
 ### Nick Golding, Andre Python, Catherine Moyes
 ### 2019/03/18
 
@@ -52,7 +52,7 @@ class: split-three
 &lt;img src="figures/p_presence_raw.png"&gt;
 
 - `\(\sim\)` 50 different species
-- presence only data 
+- presence only data
 - preferential sampling
 ]]
 .column.bg-main2[.content[
@@ -62,7 +62,7 @@ class: split-three
 &lt;img class="center", src="figures/p-spat-vect-inf-prev-1.png"&gt;
 - point- and &lt;br&gt; polygon-level data
 - spatial sparseness
- 
+
 ]]
 .column.bg-main3[.content.vmiddle[
 &lt;br&gt;
@@ -101,7 +101,7 @@ $$
 &lt;br&gt;&amp;nbsp;&lt;br&gt; &amp;nbsp;&lt;br&gt;&amp;nbsp;&lt;br&gt;&amp;nbsp;
 #### 1. Species distribution
 - `\(y(s) \in \{0,1\} \sim Bernoulli(p(s))\)`
-- **Target-group background** approach for sampling bias correction 
+- **Target-group background** approach for sampling bias correction
 - Stacked Generalization for combination of different methods (GAM, XGB, RF, ...)
 
 ]]
@@ -111,9 +111,9 @@ $$
 #### 2. Infection prevalence in vectors
 - `\(N_{positive}(s) \sim Binomial(N_{tested}(s), p(s))\)`
 - SDMs for **data augmentation** (combining point-level and
-polygon-level observations) 
+polygon-level observations)
 - Model evaluation based on **spatial block-wise cross-validation** to improve
-transferability 
+transferability
 ]]
 .row.bg-main3[.content[
 
@@ -145,14 +145,14 @@ class: split-three
 .center[
 &lt;img class = "center" src="figures/p-pans-meg-gam.png" height="350"&gt;
 ]
-- Preprint in preparation &lt;br&gt;( `\(\sim\)` End of March)
+
 ]]
 
 .column.bg-main2[.content[
 &lt;br&gt;&amp;nbsp;&lt;br&gt;
 #### 2. Infection prevalence in vectors
 &lt;img class="center", src="figures/iprev-vectors.png"&gt;
-- Preprint in preparation &lt;br&gt;( `\(\sim\)` End of April)
+
 ]]
 .column.bg-main3[.content.vmiddle[
 &lt;br&gt;

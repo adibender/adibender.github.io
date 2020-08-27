@@ -1,0 +1,449 @@
+.danger {
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
+}
+
+.success {
+    background-color: #ddffdd;
+    border-left: 6px solid #4CAF50;
+}
+
+.info {
+    background-color: #e7f3fe;
+    border-left: 6px solid #2196F3;
+}
+
+
+.warning {
+    background-color: #ffffcc;
+    border-left: 6px solid #ffeb3b;
+}
+
+.remark-slide-content {
+  background-color: white;
+/*  border-top: 80px solid transparent;*/
+/*  margin-top: 80px;*/
+  color: black;
+  font-size: 23px; /*mj*/
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em
+}
+
+.remark-slide-content h1 {
+  font-weight: normal;
+  margin-top: -95px;
+  margin-left: -00px;
+  font-size: 35px;
+  color: #170D0D;
+}
+
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
+
+.inverse {
+  background-color: whitesmoke;
+  text-shadow: none;
+  border-top: 0px;
+}
+
+.remark-slide-content > inverse {
+width: 112px;
+height: 47px;
+border-bottom: 1px solid black;
+position: absolute;
+}
+
+
+img.center {
+    display: block;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+.title-slide {
+  background-image: url("mcml-logo.svg");
+  margin-bottom: 50px;
+  background-size: cover;
+  background-color: white;
+/*  border-top: 1px;*/
+}
+
+img {
+  max.width: 80%;
+  vertical-align: middle;
+}
+
+.title-slide h1 {
+  font-family: serif;
+  color: #000000;
+  text-shadow: none;
+  font-size: 50px;
+}
+
+/*.title-slide h1:after{
+    border:0px solid white;
+}
+*/
+.title-slide h2, .title-slide h3 {
+  color: #000000;
+  line-height: 1.5em;
+  text-shadow: none;
+}
+
+a, a > code {
+  color: darkblue;
+  text-decoration: none;
+}
+
+.remark-inline-code {
+  background: #e7e8e2; /* lighter */
+  font-size: 80%;
+ /* background: #C5D4D9; /* darker */
+  border-radius: 2px;
+  padding: 1px;
+}
+
+.remark-code {
+  font-size: 75%;
+}
+
+.pull-left30 {
+  float: left;
+  width: 30%;
+}
+.pull-right70 {
+  float: right;
+  width: 70%;
+}
+
+.boxed_yellow {
+  border: 1px solid black ;
+  border-radius: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 6px;
+  padding-right: 6px;
+  background: #fffdd0;
+  margin-bottom: 3px;
+}
+
+.boxed_blue {
+  border: 1px solid black ;
+  border-radius: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 6px;
+  padding-right: 6px;
+  background: #d8f8f3;
+  margin-bottom: 3px;
+}
+
+.boxed_green {
+  border: 1px solid black ;
+  border-radius: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 6px;
+  padding-right: 6px;
+  background: #edf8d8;
+  margin-bottom: 3px;
+}
+.boxed_grey {
+  border: 1px solid black ;
+  border-radius: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 6px;
+  padding-right: 6px;
+  background: whitesmoke;
+  margin-bottom: 3px;
+}
+.boxed {
+  border: 1px solid black ;
+  border-radius: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 6px;
+  padding-right: 6px;
+  background: white;
+  margin-bottom: 3px;
+}
+
+
+/* fix math scaling issues*/
+.mjx-chtml{ font-size: 100% !important; }
+
+
+.column {
+    float: left;
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.remark-slide-content {
+  background-color: #FAFAFA;
+  border-top: 80px solid white|transparent;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 3.5em 2em 1em 2em
+}
+
+.title-slide .inverse .remark-slide-content {
+  background-color: #FAFAFA;
+}
+
+.inverse {
+  background-color: whitesmoke;
+  text-shadow: none;
+}
+
+.remark-slide-content > h1 {
+  font-family: 'Fira Sans';
+  font-weight: normal;
+  font-size: 45px;
+  margin-top: -95px;
+  margin-left: -00px;
+  color: #FAFAFA;
+}
+
+.remark-slide-content > inverse {
+width: 112px;
+height: 47px;
+border-bottom: 1px solid black;
+position: absolute;
+}
+
+/* Removes colored bar from top of the slide resulting in a clear slide */
+.clear{
+  border-top: 0px solid #FAFAFA;
+}
+
+.remark-slide-content > h2, h3, h4 {
+  padding-top: -15px;
+  padding-bottom: 00px;
+  color: #1A292C;
+  text-shadow: none;
+  font-weight: 400;
+  text-align: left;
+  margin-left: 00px;
+  margin-bottom: -10px;
+}
+
+.remark-slide-content > h2, .pull-left > h2, .pull-right > h2 {
+  font-size: 35px;
+}
+
+.remark-slide-content > h3, .remark-slide-content > h4,
+.pull-left > h3, .pull-left > h4, .pull-right > h3, .pull-right > h4 {
+  font-size: 30px;
+}
+
+
+.title-slide > h1  {
+  color: #1A292C;
+  font-size: 40px;
+  text-shadow: none;
+  font-weight: 400;
+  text-align: left;
+  margin-left: 15px;
+  padding-top: 80px;
+}
+.title-slide > h2  {
+  margin-top: -25px;
+  padding-bottom: -20px;
+  color: #1A292C;
+  text-shadow: none;
+  font-weight: 300;
+  font-size: 35px;
+  text-align: left;
+  margin-left: 15px;
+}
+.title-slide > h3  {
+  color: #1A292C;
+  text-shadow: none;
+  font-weight: 300;
+  font-size: 25px;
+  text-align: left;
+  margin-left: 15px;
+  margin-bottom: -30px;
+}
+
+.remark-slide-number {
+  font-size: 13pt;
+  font-family: 'Fira Sans';
+  color: #272822;
+  opacity: 1;
+}
+.inverse .remark-slide-number {
+  font-size: 13pt;
+  font-family: 'Fira Sans';
+  color: #FAFAFA;
+  opacity: 1;
+}
+
+/* turns off slide numbers for title page: https://github.com/gnab/remark/issues/298 */
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+.remark-inline-code {
+  /* background: #F5F5F5; /* lighter */
+  background: #e7e8e2; /* darker */
+  border-radius: 3px;
+  padding: 4px;
+}
+
+.code10 .remark-code {
+  font-size: 10%;
+}
+
+.code20 .remark-code {
+  font-size: 20%;
+}
+
+.code30 .remark-code {
+  font-size: 30%;
+}
+
+.code40 .remark-code {
+  font-size: 40%;
+}
+
+.code50 .remark-code {
+  font-size: 50%;
+}
+
+.code60 .remark-code {
+  font-size: 60%;
+}
+
+.code70 .remark-code {
+  font-size: 70%;
+}
+
+.code80 .remark-code {
+  font-size: 80%;
+}
+
+.code90 .remark-code {
+  font-size: 90%;
+}
+
+.code100 .remark-code {
+  font-size: 100%;
+}
+
+.font10 {
+  font-size: 10%;
+}
+
+.font20 {
+  font-size: 20%;
+}
+
+.font30 {
+  font-size: 30%;
+}
+
+.font40 {
+  font-size: 40%;
+}
+
+.font50 {
+  font-size: 50%;
+}
+
+.font60 {
+  font-size: 60%;
+}
+
+.font70 {
+  font-size: 70%;
+}
+
+.font80 {
+  font-size: 80%;
+}
+
+.font90 {
+  font-size: 90%;
+}
+
+.font100 {
+  font-size: 100%;
+}
+
+.font110 {
+  font-size: 110%;
+}
+
+.font120 {
+  font-size: 120%;
+}
+
+.font130 {
+  font-size: 130%;
+}
+
+.font140 {
+  font-size: 140%;
+}
+
+.font150 {
+  font-size: 150%;
+}
+
+.font160 {
+  font-size: 160%;
+}
+.font170 {
+  font-size: 170%;
+}
+.font180 {
+  font-size: 180%;
+}
+.font190 {
+  font-size: 190%;
+}
+.font200 {
+  font-size: 200%;
+}
+
+div.my-header {
+    background-color: #F77A00;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffb76b), color-stop(0%,#ffa73d), color-stop(0%,#ffffff), color-stop(10%,#ffffff), color-stop(25%,#F77A00), color-stop(100%,#F77A00));
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 30px;
+    width: 100%;
+    text-align: left;
+}
+
+div.my-footer {
+    background-color: whitesmoke|transparent;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 20px;
+    width: 100%;
+}
+div.my-footer span {
+  font-size: 13pt;
+  font-family: 'Fira Sans';
+  color: #272822;
+  opacity: 1;
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+}

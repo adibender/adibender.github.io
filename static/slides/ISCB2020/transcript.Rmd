@@ -1,0 +1,111 @@
+Transcript
+
+
+# Title Slide
+
+Hello, my name is Andreas Bender. I'm a PostDoc at the Department of Statistics at LMU Munich, and affiliated with the Munich Center of Machine Learning.
+
+In this Talk, I will present **A General Machine Learning Framework for Survival Analysis**, which is joint work with David Rügamer, Fabian Scheipl and Bernd Bischl
+
+For those of you not familiar with survival analysis, it is a branch of Statistics and Machine Learning that, due to the nature of the data, requires specialised methods and that has important applications in medicine, insurance, marketing and many more...
+
+
+# Slide 2
+
+## The Framework is general in the sense that
+
+(in contrast to many current algorithms available for Survival Analysis)
+
+
+1. It supports Survival Tasks with
+    - right-censoring and left-truncation,
+    - time-varying effects and time-varying covariates
+    - competing risks and multistate models
+
+2. Can be applied in any (programming Language), Algorithm or Implementation that supports optimization of the Poisson Likelihood
+
+
+# Slide 3
+
+This Framework can be summarized by this Figure:
+
+The key in this Figure is that all the different Survival Tasks that I mentioned earlier can be transformed into a standard Poisson Regression Task using specific data augmentation strategies, depending on the taks at hand, which is shown in the block on the left-hand side of the Figure. For example:
+
+- the data transformation required for the estimation of left-truncated data will be different than the transformation required for competing risks data, but the data-transformation is always similar and yields what I denote by PED - piece-wise exponential data. This data transformation essentially transform the Survival Task into a (standard) Poisson Regression Task.
+
+Thus, once the data transformation has been performed, any method depicted in the middle part of the graph, capable of optimizing the Poisson Likelihood, for example gradient boosting, deep learning and many more, can be used to perform survival analysis, without any additional modification of the algorithm, except for maybe setting some parameters, which could be algorithm and implementation specific.
+
+Parameters of interest like hazard ratios or survival probabilities can than be
+estimated and visualized in a Post-processing step, which again, doesn't require any specific implementation beyond a predict function.
+
+
+--
+
+In the remainder of this talk I will
+
+- briefly illustrate how the Survival Task can be transformed into a Poisson Regression Task (for right censored data and competing risks data; details about left-truncation and multistate models are given in the paper)
+
+- show that the proposed framework is competitive with the current state of the
+art, using Gradient Boosted Trees for computation
+
+- provide some algorithmic details and practical recommendations
+
+
+# Slide 4: Survival Task as Poisson Regression Task
+
+The general Idea of transforming the survival task into a Poisson regression
+Task goes back to the 1980s...
+
+# Slide 5:
+... Friedman called the resulting model the "Piecewise Exponential Model".
+
+
+One way of estimating the conditional distribution of event times is to estimate the hazard rate here given by lambda(t;x), which in the general case can be written as a function of time-dependent covariates with time-varying effects, g(x(t), t).
+Under the more restrictive assumption of proportional hazards (PH), this has the more familiar for (e.g. model originaly proposed by Cox (in 1972)).
+
+Assume we want to approximate this continuous function using a step function.
+To this end, we split the follow-up in capital J intervals with interval borders kappa(j minus 1) kappa(j). Assuming piece-wise constant hazards within each interval,
+we can write the hazard of individual i in interval j as a function of the current value of the features and a representation of time in the j-th interval, here denoted by t_j, which could be for exapmle the interval end-point. We
+denote this piece-wise hazard by lambda(i,j)
+
+
+# Slide 6:
+
+To estimate this hazard consider the data in standard time-to-event format
+on the left hand side for 3 subjects. We transform this data to a PED format on the right hand by partitioning the follow up into 3 intervals with split points at
+t=1, t=1.5, and t=3.
+In the PED data on the right hand side, each subject now has as many rows as
+the number of intervals in which they were under Risk at the begining of the interval. For example, subject 3 experienced an event at time 2.7 and thus in interval 3, therefore subject 3 has 3 rows in the new data set. Subject 2 was censored in the first interval and thus has only one row.
+
+--
+
+Using this data format, we define new pseudo observations, denoted by delta(i,j), which is 0, if subject i survived the interval j, and 1 if subject i experienced
+an event in interval j. Further, it is important to track the time under risk,
+denoted by t(i,j), which is equivalent to the time subject i spent in interval j.
+
+--
+
+Now, given these two data formats, when we look at the contribution of one subject
+to the log-likelihood,
+the general form of the contribution of one subject based on the standard data format on the left hand side is -- up to a constant -- equivalent to the log-liklihood contribution
+of one subject based on the pseudo data, assuming identically and independently Poisson distributed pseudo observations delta (i,j).
+
+This means that the conditional hazard and therefore the conditional distribution
+of the event times can be estimated by optimizing the Poisson Likelihood using the data in PED format with the status column as target variable.
+
+
+# Slide 7
+
+To show another example, consider the same setting as before, except that subject 1 now experiences a competing event of type 2 instead of being censored.
+We perform the data transformation once for each competing event. The status variable is coded 1 for an event of the respective cause and 0 for censored observations and events of other causes. The resulting data sets are then stacked
+upon each other and a column added to indicate w.r.t. which cause the data was
+transformed.
+
+We can now use this data set to estimate cause specific hazards, either with shared effects, by using the complete data set and column cause (k) as a feature or
+without shared effects, by fiting one model for each cause.
+Note how using this data transformation, the (pseudo) status in each interval becomes the target and everything else is a potential feature.
+
+# Slide 8
+This is particularly intuitiv for tree based methods. For example, consider the
+tree grown on the left hand side. Once a split has been selected w.r.t. to the feature "time", feature effects be different in different intervals. Similarly,
+in a competing risks (or multistate) setting. Feature effects before the first split w.r.t. feature k are common for all causes (i.e. shared effects), and cause specific after the split w.r.t. to k
