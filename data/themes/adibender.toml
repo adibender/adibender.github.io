@@ -1,0 +1,25 @@
+# Theme metadata
+name = "adibender"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary = "#373737" # links + icons
+
+# links
+link = "#C06014"
+link_hover = "#373737"
+
+# Menu
+menu_primary = "#F4F4F4"# Menu Background
+menu_text = "#C06014"
+menu_text_active = "#373737"
+menu_title = "#373737"
+menu_link = "#373737"
+menu_link_hover = "#373737"
+
+# Backgrounds
+background = "#F4F4F4"
+home_section_odd = "#F4F4F4"
+home_section_even = "#F4F4F4"

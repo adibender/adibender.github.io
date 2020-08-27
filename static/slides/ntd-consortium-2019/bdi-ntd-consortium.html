@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mapping Trypanasoma cruzi Infection Prevalence</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Andreas Bender" />
+    <meta name="author" content="Nick Golding, Andre Python, Catherine Moyes" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Mapping <em>Trypanasoma cruzi</em> Infection Prevalence
+### Andreas Bender (<i class='fa fa-twitter'><span class="citation">@adibender</span></i>)
+### Nick Golding, Andre Python, Catherine Moyes
+### 2019/03/18
+
+---
+
+
+
+
+# *Trypanosoma cruzi* and Chagas
+American trypanosomiasis, or **Chagas disease is a leading cause of heart disease in Latin America**
+- It is **one of the 10 neglected diseases addressed by the London Declaration**
+which calls for **control and elimination of these devastating diseases by 2020**, based on the World Health Organization (WHO) Road map for overcoming the global impact of neglected tropical diseases.
+
+- Caused by infection with the *Trypanosoma cruzi* parasite
+
+- Transmitted to humans by triatomine vectors (100 species from 18 different genera)
+
+&lt;br&gt;
+.boxed_grey[
+The primary aim of this project is to **map the prevalence of** ***T. cruzi***
+**infections in vector species**, in order to investigate spatial heterogeneity
+in vectorial transmission, to **target vector control**, and to
+**quantify the population at risk**.
+]
+
+
+---
+layout: true
+class: split-three
+.column.bg-main1[.content.vmiddle[
+&lt;br&gt;
+#### 1. Species distribution
+&lt;img src="figures/p_presence_raw.png"&gt;
+
+- `\(\sim\)` 50 different species
+- presence only data
+- preferential sampling
+]]
+.column.bg-main2[.content[
+&lt;br&gt;&amp;nbsp;&lt;br&gt;
+
+#### 2. Infection prevalence in vectors
+&lt;img class="center", src="figures/p-spat-vect-inf-prev-1.png"&gt;
+- point- and &lt;br&gt; polygon-level data
+- spatial sparseness
+
+]]
+.column.bg-main3[.content.vmiddle[
+&lt;br&gt;
+#### 3. Infection prevalence in humans
+.img.fill[![](figures/p_hiprev_raw.png)]
+- additional data set of &lt;br&gt; acute cases
+]]
+
+# Data base
+
+---
+class: show-100
+
+
+---
+class: show-110
+count: false
+
+
+---
+class: show-111
+count: false
+
+---
+layout: true
+class: split-three
+# Road map
+
+$$
+`\begin{equation}
+\eta(s) = \sum_{p=1}^{P} f_{p}(x_p(s)) + GP(s);\ p(s) = (1-\exp(\eta(s)))^{-1}
+\end{equation}`
+$$
+
+.row.bg-main1[.content[
+&lt;br&gt;&amp;nbsp;&lt;br&gt; &amp;nbsp;&lt;br&gt;&amp;nbsp;&lt;br&gt;&amp;nbsp;
+#### 1. Species distribution
+- `\(y(s) \in \{0,1\} \sim Bernoulli(p(s))\)`
+- **Target-group background** approach for sampling bias correction
+- Stacked Generalization for combination of different methods (GAM, XGB, RF, ...)
+
+]]
+.row.bg-main2[.content[
+&lt;br&gt;&amp;nbsp;&lt;br&gt;
+
+#### 2. Infection prevalence in vectors
+- `\(N_{positive}(s) \sim Binomial(N_{tested}(s), p(s))\)`
+- SDMs for **data augmentation** (combining point-level and
+polygon-level observations)
+- Model evaluation based on **spatial block-wise cross-validation** to improve
+transferability
+]]
+.row.bg-main3[.content[
+
+#### 3. Infection prevalence in humans
+- `\(N_{positive}(s) \sim Binomial(N_{tested}(s), p(s))\)`
+- Additional **uncertainty w.r.t. location of infection** &lt;br&gt;
+( `\(\rightarrow\)` children under-10; integration of "acute cases" data base)
+]]
+
+
+---
+class: show-100
+
+---
+class: show-110
+count: false
+
+---
+class: show-111
+count: false
+
+
+---
+layout: true
+class: split-three
+.column.bg-main1[.content.vmiddle[
+&lt;br&gt;
+#### 1. Species distribution
+.center[
+&lt;img class = "center" src="figures/p-pans-meg-gam.png" height="350"&gt;
+]
+
+]]
+
+.column.bg-main2[.content[
+&lt;br&gt;&amp;nbsp;&lt;br&gt;
+#### 2. Infection prevalence in vectors
+&lt;img class="center", src="figures/iprev-vectors.png"&gt;
+
+]]
+.column.bg-main3[.content.vmiddle[
+&lt;br&gt;
+#### 3. Infection prevalence in humans
+&lt;img src="figures/page_blank.jpeg"&gt;
+]]
+
+# Current progress
+
+---
+class: show-100
+
+
+---
+class: show-110
+count: false
+
+
+---
+class: show-111
+count: false
+
+
+---
+layout:false
+class:
+# Open Questions and Discussion
+
+- How much does outdoor biting contribute to transmission?
+
+- How much does contamination of food/drink by vectors contribute to transmission?
+
+- How long after the elimination of vectors from homes (through insecticide spraying) will re-infestation occur?
+
+- Does insecticide resistance have the potential to derail the elimination of vectors from homes?
+
+- Does the effect of improved housing change if all houses are improved, compared to the situation where there is a mosaic of poor-quality and higher-quality housing?
+
+
+---
+layout: false
+# References
+.font80[
+&lt;a name=bib-bhatt_improved_2017&gt;&lt;/a&gt;[Bhatt, S, E. Cameron, S. R.
+Flaxman, et al.](#cite-bhatt_improved_2017) (2017). "Improved
+prediction accuracy for disease risk mapping using Gaussian
+process stacked generalization". En. In: _Journal of The Royal
+Society Interface_ 14.134, p. 20170520. DOI:
+[10.1098/rsif.2017.0520](https://doi.org/10.1098/rsif.2017.0520).
+
+&lt;a name=bib-browne_contemporary_2017&gt;&lt;/a&gt;[Browne, A. J, C. A.
+Guerra, R. V. Alves, et al.](#cite-browne_contemporary_2017)
+(2017). "The contemporary distribution of Trypanosoma cruzi
+infection in humans, alternative hosts and vectors". En. In:
+_Scientific Data_ 4, p. 170050. DOI:
+[10.1038/sdata.2017.50](https://doi.org/10.1038/sdata.2017.50).
+
+&lt;a name=bib-ceccarelli_datatri_2018&gt;&lt;/a&gt;[Ceccarelli, S, A.
+Balsalobre, P. Medone, et al.](#cite-ceccarelli_datatri_2018)
+(2018). "DataTri, a database of American triatomine species
+occurrence". En. In: _Scientific Data_ 5, p. 180071. DOI:
+[10.1038/sdata.2018.71](https://doi.org/10.1038/sdata.2018.71).
+
+&lt;a name=bib-miller_recent_2019&gt;&lt;/a&gt;[Miller, D. A. W, K. Pacifici,
+J. S. Sanderlin, et al.](#cite-miller_recent_2019) (2019). "The
+recent past and promising future for data integration methods to
+estimate species’ distributions". En. In: _Methods in Ecology and
+Evolution_ 10.1, pp. 22-37. DOI:
+[10.1111/2041-210X.13110](https://doi.org/10.1111/2041-210X.13110).
+
+&lt;a name=bib-phillips_sample_2009&gt;&lt;/a&gt;[Phillips, S. J, M. Dudík, J.
+Elith, et al.](#cite-phillips_sample_2009) (2009). "Sample
+selection bias and presence-only distribution models: implications
+for background and pseudo-absence data". En. In: _Ecological
+Applications_ 19.1, pp. 181-197. DOI:
+[10.1890/07-2153.1](https://doi.org/10.1890/07-2153.1).
+
+&lt;a name=bib-roberts_cross-validation_2017&gt;&lt;/a&gt;[Roberts, D. R, V.
+Bahn, S. Ciuti, et al.](#cite-roberts_cross-validation_2017)
+(2017). "Cross-validation strategies for data with temporal,
+spatial, hierarchical, or phylogenetic structure". En. In:
+_Ecography_ 40.8, pp. 913-929. DOI:
+[10.1111/ecog.02881](https://doi.org/10.1111/ecog.02881).
+
+&lt;a name=bib-valavi_blockcv_2018&gt;&lt;/a&gt;[Valavi, R, J. Elith, J. J.
+Lahoz-Monfort, et al.](#cite-valavi_blockcv_2018) (2018).
+"blockCV: An r package for generating spatially or environmentally
+separated folds for k-fold cross-validation of species
+distribution models". In: _Methods in Ecology and Evolution_ 0.0.
+DOI:
+[10.1111/2041-210X.13107](https://doi.org/10.1111/2041-210X.13107).
+]
+
+---
+class: inverse center middle
+# Appendix
+&lt;html&gt;
+  &lt;div style='float:left'&gt;&lt;/div&gt;
+  &lt;hr color='#EB811B' size=1px width=720px&gt;
+&lt;/html&gt;
+
+
+---
+# Target-group background approach
+&lt;img src="figures/block-generation-sdm-1.png"&gt;
+
+1. Convex hull around species presence locations
+
+2. Extended convex hull
+
+3. Define absences as reported presence locations of all other species
+
+4. Set up spatial block-wise cross-validation (each fold 1-5 `\(\sim\)` same
+  proportion of presences and absences)
+
+---
+# GAM vs. XGB
+.center[
+&lt;img src="figures/p-pans-meg-gam-xgb.png" height="500px"&gt;
+]
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "zenburn",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

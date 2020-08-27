@@ -1,12 +1,7 @@
-+++
-title = "Posts"
-date = "2017-01-01T00:00:00Z"
-math = false
-highlight = false
-
-# Optional featured image (relative to `static/img/` folder).
-[header]
-image = "img/koala17.jpg"
-caption = ""
-
-+++
+---
+header:
+  caption: ""
+  image: ""
+title: "News/Blog"
+view: 2
+---

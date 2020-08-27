@@ -1,0 +1,603 @@
+---
+background-color: whitesmoke
+title: "Piece-wise exponential (Additive Mixed) Modeling Tools"
+subtitle: "ISCB41, 2020<div style='float:left'><hr color='#005500' size=1px width=1000px></div>"
+author: "<br><br>**Andreas Bender (<i class='fa fa-twitter'>@adibender</i>)**, <br> Fabian Scheipl, David Rügamer, Philipp Kopper, Bernd Bischl, Helmut Küchenhoff"
+date: "<br><br>Department of Statistics, LMU Munich"
+output:
+  xaringan::moon_reader:
+    # mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+    lib_dir: libs
+    seal: true
+    nature:
+      beforeInit: "macros.js"
+      ratio: '16:9'
+      highlightStyle: zenburn
+      highlightLines: true
+      countIncrementalSlides: false
+      slideNumberFormat: "%current%"
+    css: ["default", "metropolis-fonts", "iscb2020.css"]
+---
+layout: true
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="my-footer"><span><i class="fa fa-twitter">@adibender</i>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span></div>
+
+```{r, child = "iscb2020-setup.Rmd", cache = FALSE}
+```
+
+---
+
+### The framework is *general* in the sense that
+
+<br><br>
+.font120[
+
+
+1. it supports different Survival Tasks
+  - right-censoring, left-truncation
+  - time-varying effects, time-varying features
+  - cumulative effects (weighted cumulative exposure, distributed lag models)
+  - competing risks, multi-state models
+
+2. does not require specialized Software, can be applied
+  - across programming languages and
+  - using any algorithm that supports optimization of the Poisson Likelihood
+
+]
+
+---
+
+.center[
+<img src="/img/pem-framework.svg", width = "800px">
+]
+
+(source: `r Citet(bib, "bender_general_2020")`)
+
+
+
+
+
+```{r, results = "hide", echo = FALSE}
+library(knitr)
+opts_chunk$set(
+  fig.align  = "center",
+  message    = FALSE,
+  out.height = "300px",
+  dpi        = 1200,
+  cache      = TRUE)
+library(RefManageR)
+BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown",
+           dashed = TRUE,
+           max.names = 1)
+bib <- ReadBib("iscb2020.bib")
+```
+
+
+
+---
+layout:false
+class: inverse, middle, center
+
+
+.font200[Survival Analysis as Poisson Regression]
+
+<html>
+  <div style='float:left'></div>
+  <hr color='#005500' size=1px width=1000px>
+</html>
+
+
+---
+layout: true
+layout: true
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="my-footer"><span><i class="fa fa-twitter">@adibender</i>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span></div>
+
+
+
+---
+
+Consider setting with right-censored data:
+  - we observe $(t_i, \delta_i), i = 1,\ldots, n$, where
+    - $t_i = \min(T_i, C_i)$; $T_i \sim F \perp C_i \sim G; T_i,C_i > 0$
+    - $\delta_i = I(T_i \leq C_i) \in \{0,1\}$
+
+To approximate
+$$\lambda(t; \bfx_i) = \exp(g(\bfx_i(t), t)) \stackrel{PH}{=}\lambda_0(t)\exp(\bfx_i'\bsbeta)$$
+
+--
+
+- split the follow-up in $J$ intervals $(\kappa_{j-1}, \kappa_j], j = 1,\ldots, J$
+
+--
+
+- assume piece-wise constant hazards:
+$$\begin{align}
+\lambda(t| \bfx_i(t))
+  & \equiv \exp(g(\bfx_{ij}, t_j)):=\lambda_{ij},\ \ \forall t \in (\kappa_{j-1}, \kappa_j],\\
+\end{align}$$
+
+
+--
+
+- Estimation using
+  - Piece-wise Exponential Model (PEM; e.g.: `r Citet(bib, c("laird_covariance_1981", "friedman_piecewise_1982", "carstensen_using_2011"))`)
+  - Piece-wise exponential Additive Mixed Models (PAMM, e.g.: `r Citet(bib, c("cai_mixed_2002", "kauermann_penalized_2005", "argyropoulos_analysis_2015", "bender_generalized_2018"))`)
+
+
+---
+
+<div class="row">
+<div class = "column", align = "center">
+Data in "standard" time-to-event format <br>
+</div>
+<div class = "column", align = "center">
+Data in PED format <br>
+</div>
+</div>
+
+<div class = "row" align = "middle">
+<div class = "column", align = "middle">
+.middle[
+<img src="/img/tab-standard.svg", width = "300px" align="middle"><br>
+$\ra$ transform to PED using $\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3$
+]
+</div>
+
+<div class = "column" align ="middle">
+<img src="/img/tab-ped.svg", width = "400px" align="middle" >
+</div>
+</div>
+
+
+---
+count: false
+
+<div class="row">
+<div class = "column", align = "center">
+Data in "standard" time-to-event format <br>
+</div>
+<div class = "column", align = "center">
+Data in PED format <br>
+</div>
+</div>
+
+<div class = "row" align = "middle">
+<div class = "column", align = "middle">
+.middle[
+<img src="/img/tab-standard.svg", width = "300px" align="middle"><br>
+$\ra$ transform to PED using $\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3$
+]
+</div>
+
+<div class = "column" align ="middle">
+<img src="/img/tab-ped1.svg", width = "400px" align="middle" >
+</div>
+</div>
+
+
+
+---
+count: false
+
+<div class="row">
+<div class = "column", align = "center">
+Data in "standard" time-to-event format <br>
+</div>
+<div class = "column", align = "center">
+Data in PED format <br>
+</div>
+</div>
+
+<div class = "row" align = "middle">
+<div class = "column", align = "middle">
+.middle[
+
+<img src="/img/tab-standard.svg", width = "300px" align="middle"><br>
+$\ra$ transform to PED using $\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3$
+
+]
+</div>
+
+<div class = "column" align ="middle">
+<img src="/img/tab-ped2.svg", width = "400px" align="middle" >
+</div>
+</div>
+
+- define: $\delta_{ij} = \begin{cases}1 & t_i \in (\kappa_{j-1}, \kappa_j] \wedge \delta_i = 1\\0 & \text{else}\end{cases}$
+
+---
+count: false
+
+<div class="row">
+<div class = "column", align = "center">
+Data in "standard" time-to-event format <br>
+</div>
+<div class = "column", align = "center">
+Data in PED format <br>
+</div>
+</div>
+
+<div class = "row" align = "middle">
+<div class = "column", align = "middle">
+.middle[
+<img src="/img/tab-standard.svg", width = "300px" align="middle"><br>
+$\ra$ transform to PED using $\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3$
+]
+</div>
+
+<div class = "column" align ="middle">
+<img src="/img/tab-ped3.svg", width = "400px" align="middle" >
+</div>
+</div>
+
+- define: $\delta_{ij} = \begin{cases}1 & t_i \in (\kappa_{j-1}, \kappa_j] \wedge \delta_i = 1\\0 & \text{else}\end{cases}$,
+  $t_{ij} = \begin{cases}t_{i}-\kappa_{j-1} & \delta_{ij}=1\\ \kappa_{j}-\kappa_{j-1}& \text{else}\end{cases}$
+
+
+
+---
+count: false
+
+<div class="row">
+<div class = "column", align = "center">
+Data in "standard" time-to-event format <br>
+</div>
+<div class = "column", align = "center">
+Data in PED format <br>
+</div>
+</div>
+
+<div class = "row" align = "middle">
+<div class = "column", align = "middle">
+.middle[
+<img src="/img/tab-standard.svg", width = "300px" align="middle"><br>
+$\ra$ transform to PED using $\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3$
+]
+</div>
+
+<div class = "column" align ="middle">
+<img src="/img/tab-ped4.svg", width = "400px" align="middle" >
+</div>
+</div>
+
+- define: $\delta_{ij} = \begin{cases}1 & t_i \in (\kappa_{j-1}, \kappa_j] \wedge \delta_i = 1\\0 & \text{else}\end{cases}$,
+  $t_{ij} = \begin{cases}t_{i}-\kappa_{j-1} & \delta_{ij}=1\\ \kappa_{j}-\kappa_{j-1}& \text{else}\end{cases}$, $t_j := \kappa_j$
+
+
+---
+count: false
+
+<div class="row">
+<div class = "column", align = "center">
+Data in "standard" time-to-event format <br>
+</div>
+<div class = "column", align = "center">
+Data in PED format <br>
+</div>
+</div>
+
+<div class = "row" align = "middle">
+<div class = "column", align = "middle">
+.middle[
+<img src="/img/tab-standard.svg", width = "200px" align="middle"><br>
+$\ra$ transform to PED using $\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3$
+]
+</div>
+
+<div class = "column" align ="middle">
+<img src="/img/tab-ped.svg", width = "300px" align="middle" >
+</div>
+</div>
+
+- define: $\delta_{ij} = \begin{cases}1 & t_i \in (\kappa_{j-1}, \kappa_j] \wedge \delta_i = 1\\0 & \text{else}\end{cases}$,
+  $t_{ij} = \begin{cases}t_{i}-\kappa_{j-1} & \delta_{ij}=1\\ \kappa_{j}-\kappa_{j-1}& \text{else}\end{cases}$, $t_j := \kappa_j$
+
+.font80[
+.pull-left[
+.boxed_grey[
+
+General log-likelihood contribution:
+
+
+$$\begin{align}\ell_i
+  & = \log(\lambda(t_i;\bfx_i)^{\delta_i}S(t_i;\bfx_i))\\
+  % & = \delta_i\log(\lambda_{iJ_i}) - \sum_{j=1}^{J_i}\lambda_{ij}t_{ij}\\
+  & = \sum_{j=1}^{J_i}\left(\delta_{ij}\log\lambda_{ij} -  \lambda_{ij}t_{ij}\right)
+\end{align}$$
+]
+]
+
+
+.pull-right[
+.boxed_grey[
+Working Assumption  $\delta_{ij}\stackrel{iid}{\sim} Po(\mu_{ij} = \lambda_{ij}t_{ij})$:
+
+$$\begin{align}
+\ell_i
+  & = \log\left(\prod_{j=1}^{J_i} f(\delta_{ij})\right)\\
+  % &  = \sum_{j=1}^{J_i} \delta_{ij}\log(\mu_{ij}) - \mu_{ij}\nn\\
+  & = \sum_{j=1}^{J_i} \delta_{ij}\log(\lambda_{ij}) + \delta_{ij}\log(t_{ij}) - \lambda_{ij}t_{ij}
+\end{align}$$
+]
+]
+]
+
+
+---
+
+**Competing risks** setting with event types $k \in \{1,2\}$
+
+<div class="row">
+<div class = "column", align = "center">
+Data in "standard" format <br>
+</div>
+<div class = "column", align = "center">
+Data in PED format <br>
+</div>
+</div>
+
+<div class = "row" align = "middle">
+<div class = "column", align = "middle">
+.middle[
+<img src="/img/tab-standard-cr.svg", width = "300px" align="middle"><br>
+$\ra$ transform to PED using $\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3$
+
+]
+</div>
+
+<div class = "column" align ="middle">
+<img src="/img/tab-cr1.svg", width = "400px" align="middle" >
+</div>
+</div>
+
+$\ra$ estimate $\lambda(t|\bfx, k) = \exp(f(\bfx(t),t,k)),\ k \in \{1,2\}$
+
+
+
+---
+count: false
+
+**Competing risks** setting with event types $k \in \{1,2\}$
+
+<div class="row">
+<div class = "column", align = "center">
+Data in "standard" format <br>
+</div>
+<div class = "column", align = "center">
+Data in PED format <br>
+</div>
+</div>
+
+<div class = "row" align = "middle">
+<div class = "column", align = "middle">
+.middle[
+<img src="/img/tab-standard-cr.svg", width = "300px" align="middle"><br>
+$\ra$ transform to PED using $\kappa_0=0, \kappa_1 = 1, \kappa_2=1.5, \kappa_3=3$
+]
+</div>
+
+<div class = "column" align ="middle">
+<img src="/img/tab-cr2.svg", width = "400px" align="middle" >
+</div>
+</div>
+
+
+$\ra$ estimate $\lambda(t|\bfx, k) = \exp(f(\bfx(t_j),t_j,k)),\ \forall t\in(\kappa_{j-1}, \kappa_j],\ \ k \in \{1,2\}$
+
+
+---
+
+
+**PEM/GLM**: $\lambda(t) = \lambda_{0j} = \exp(\beta_{0j}), \forall t\in (\kappa_{j-1}, \kappa_j], j = 1,\ldots,J$
+
+```{r fig.width = 8, fig.height = 4, out.width = "600px", echo = FALSE}
+p_pem_haz + ylim(c(0, .3)) + p_pem_haz2
+```
+
+- trade of w.r.t. to number of split points (less flexible/more robust vs. more flexible/less robust)
+
+- computationally inefficient (one parameter for each interval), especially when considering time-varying effects
+
+- results sensitive to number and placement of interval cut points
+
+
+---
+
+**PAMM/GAMM**: $\lambda(t) = \lambda_{0j} = \exp(f_0(t_j)), \forall t\in (\kappa_{j-1}, \kappa_j], j = 1,\ldots,J;\ f_0(t_j) = \sum_{q=1}^{Q}\beta_{0q}B_{0q}(t_j)$
+
+
+```{r, echo = FALSE, fig.width = 4, fig.height = 4, out.width = "300px"}
+p_pam_haz + xlab("time")
+```
+
+- large differences between neighboring coefficients/baseline hazards of neighboring intervals are penalized
+
+- insensitive to number and placement of split points
+
+- number of parameters to estimate determined by basis dimension $Q$, not number of intervals $J$
+
+
+---
+
+## Time-varying effects
+In the PEM/PAMM framework, time-varying effects are simply interactions of
+time $t_j$ and other covariates. <br>
+$$\log(\lambda(t|x)) = f_{01}(t_j)I(complications = yes) + f_{02}(t_j)I(complications = no)$$
+
+```{r, echo = FALSE}
+ped_tumor <- tumor %>% as_ped(Surv(days, status) ~ .)
+```
+
+```{r}
+pam_tumor <- mgcv::gam(formula=ped_status~s(tend, by=complications), data=ped_tumor, family=poisson(), offset=offset)
+```
+
+```{r, echo = FALSE, fig.width = 13, fig.height = 5, out.width = "800px"}
+p_haz <- gg_slice(ped_tumor, pam_tumor, term = "tend",
+  tend = seq(0,1000, by = 10), complications = unique(complications)) +
+  ylab("log-hazard") + xlab("time") + theme(legend.position = NULL)
+surv_prob <- ped_tumor %>%
+  make_newdata(tend = unique(tend), complications = unique(complications)) %>%
+  group_by(complications) %>% # important !!
+  add_surv_prob(pam_tumor)
+p_surv <- ggplot(surv_prob, aes(x = tend, y = surv_prob)) +
+  geom_line(aes(col = complications)) +
+  geom_ribbon(aes(ymin = surv_lower, ymax = surv_upper, fill = complications), alpha = .3) +
+  ylab("S(t)") + xlab("time") + xlim(c(0, 1000))
+p_haz + p_surv
+```
+
+
+---
+
+```{r eval = FALSE}
+# "Regular" GAM
+mgcv::gam(formula=ped_status~s(tend, by=complications), data=ped_tumor, family=poisson(), offset=offset)
+
+# GAM with monotinicity constraints
+scam::scam(formula=ped_status~s(tend, by=complications, bs = "mpd"), data=ped_tumor, family=poisson(), offset=offset)
+
+# Bayesian GAM
+brms::brm(formula=ped_status~s(tend, by=complications) + offset(offset), data=ped_tumor, family=poisson())
+```
+
+---
+## Competing Risks
+
+$$\log(\lambda(t|x)) = f_{01}(t_j)I(k = 1) + f_{01}(t_j)I(k = 2)$$
+Cause specific hazards are time-varying effects of time $t_j$ and covariate "event type" $k$
+
+```{r eval = FALSE}
+pam_cr <- mgcv::gam(formula = ped_status ~ s(tend, by = cause), data = ped_stacked, family = poisson(), offset = offset)
+```
+
+```{r echo = FALSE, fig.width = 6, fig.height = 5, out.width = "400px"}
+data("fourD", package = "etm")
+cut <- sample(fourD$time)
+ped_stacked <- fourD %>%
+  select(-medication, - treated) %>%
+  as_ped(Surv(time, status)~., id = "id", cut = cut) %>%
+  mutate(cause = as.factor(cause))
+pam_cr <- pamm(
+  formula = ped_status ~ s(tend, by = cause) + sex + sex:cause + age + age:cause,
+  data = ped_stacked)
+ndf <- ped_stacked %>%
+  make_newdata(tend = unique(tend), cause = unique(cause)) %>%
+  group_by(cause) %>%
+  add_cif(pam_cr)
+p_cr <- ggplot(ndf, aes(x = tend, y = cif)) +
+  geom_line(aes(col = cause)) +
+  geom_ribbon(
+    aes(ymin = cif_lower, ymax = cif_upper, fill = cause),
+    alpha = .3)
+p_cr + ylab("cumulative incidence function") + xlab("time")
+```
+
+
+---
+## Tree based methods
+
+
+
+.column[Time-varying effects]
+.column[Shared vs. cause-specific effects (in CR)]
+
+
+.center[
+
+<img src="/img/splits-grey.svg", width = "800px">
+
+]
+
+(source: `r Citet(bib, "bender_general_2020")`)
+
+
+---
+layout:false
+class: inverse, middle, center
+
+
+.font200[The **`pammtools`** package]
+
+<html>
+  <div style='float:left'></div>
+  <hr color='#005500' size=1px width=1000px>
+</html>
+
+
+---
+layout: true
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="my-footer"><span><i class="fa fa-twitter">@adibender</i>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span></div>
+
+---
+
+.font120[
+
+PEMs/PAMMs powerfull framework for survival analysis, but cumbersome to work with
+
+**`pammtools`** facilitates
+
+- data transformation (`as_ped`):
+  + right-censoring
+  + cumulative effects
+  + competing risks
+
+- post-processing:
+  + prediction (`add_hazard`, `add_surv_prob`, `add_cif`),
+  + model evaluation (integrated brier score via **`pec`**)
+
+- convenience functions for visualisation, ...
+
+]
+
+---
+background-image: url(img/screenshot-hp.png)
+background-size: contain
+
+https://adibender.github.io/pammtools/index.html
+
+---
+## Outlook
+
+<br><br><br>
+
+
+- support for multi-state models
+
+- facilitate extensions: S3 functions for calculation of hazard for other packages (e.g. **`mbooost`**, **`brms`**)
+
+- Prototype for PEMs using **`xgboost`** available: https://github.com/adibender/pem.xgb
+
+- However, ML algorithms need a different infrastructure (resampling, tuning, benchmarking) <br>
+$\ra$ Development will probably continue in **`mlr3`** and **`mlr3proba`**
+(`r Citet(bib, c("mlr3", "sonabend_mlr3proba_2020"))`)
+
+
+---
+layout: false
+
+## References
+
+```{r, results = "asis", echo=FALSE, eval=TRUE, cache=FALSE}
+PrintBibliography(bib, start = 1, end = 6)
+```
+
+---
+layout: false
+
+## References
+
+```{r, results = "asis", echo=FALSE, eval=TRUE, cache=FALSE}
+PrintBibliography(bib, start = 7, end = 12)
+```
