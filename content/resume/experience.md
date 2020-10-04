@@ -28,31 +28,49 @@ date_format = "January 2006"
 #   """
 
 [[experience]]
-  title = "Interim Professor"
-  company = "Ulm University, Department of Statistics"
-  company_url = "https://www.uni-ulm.de/mawi/statistics/"
-  location = "Ulm"
-  date_start = "2020-04-15"
+  title = "Postdoctoral Lecturer and Research Associate"
+  company = "LMU Munich, Department of Statistics"
+  company_url = "https://www.statistik.uni-muenchen.de/index.html"
+  location = "Munich"
+  date_start = "2020-10-01"
   # date_end = "2020-09-30"
   description = """ """
 
 [[experience]]
-  title = "Research Associate"
+  title = "Interim Professor"
+  company = "Ulm University, Department of Statistics"
+  company_url = "https://www.uni-ulm.de/mawi/statistics/"
+  location = "Ulm"
+  date_start = "2020-04-16"
+  date_end = "2020-09-30"
+  description = """ """
+
+[[experience]]
+  title = "Postdoctoral Research Associate"
   company = "LMU Munich, Department of Statistics"
   company_url = "https://www.statistik.uni-muenchen.de/index.html"
   location = "Munich"
   date_start = "2019-11-15"
-  date_end = "2020-04-14"
+  date_end = "2020-04-15"
   description = """
   """
 
 [[experience]]
-  title = "Research Associate"
+  title = "Postdoctoral Research Associate"
   company = "University of Oxford, Big Data Institute"
   company_url = "https://www.bdi.ox.ac.uk/"
   location = "Oxford, UK"
   date_start = "2018-10-01"
   date_end = "2019-07-30"
+  description = """ """
+
+[[experience]]
+  title = "Research Associate"
+  company = "University Hospital Regensburg"
+  company_url = "https://www.uni-regensburg.de/medizin/epidemiologie-praeventivmedizin/genetische-epidemiologie/index.html"
+  location = "Regensburg"
+  date_start = "2018-01-01"
+  date_end = "2018-09-30"
   description = """ """
 
 
