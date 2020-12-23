@@ -7,6 +7,7 @@ date: '2020-08-10'
 tags: [news, open-science, membership]
 categories:
   - open-science
+  - membership
 summary: "I joined the LMU Open Science Center"
 image:
   caption: ''
