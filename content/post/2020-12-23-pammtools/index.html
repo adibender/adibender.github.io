@@ -1,0 +1,33 @@
+---
+aliases: [pammtools]
+projects: [pammtools]
+title: 'New release: pammtools v0.5.4'
+authors: [adibender]
+date: '2020-12-23'
+tags: [R, survival analysis, RSE, recurrent events, competing risks, left-truncation]
+categories:
+  - survival analysis
+  - R
+  - RSE
+summary: "New release. Support for left-truncation, recurrent events and competing risks."
+image:
+  caption: 'Cumulative Incidence Function (CIF)'
+  focal_point: ''
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 1
+---
+
+<script src="index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>A big new update of <strong>R</strong> package <strong><code>pammtools</code></strong> has been released on CRAN shortly before the holidays. In addition to some smaller fixes and updates, the main new features are implemented in the <code>as_ped</code> function. The new updates facilitate
+survival analysis in the context of</p>
+<ul>
+<li><a href="https://adibender.github.io/pammtools/articles/left-truncation.html">Left-truncation</a>,</li>
+<li><a href="https://adibender.github.io/pammtools/articles/competing-risks.html">Competing risks</a> and</li>
+<li><a href="https://adibender.github.io/pammtools/articles/recurrent-events.html">Recurrent events</a></li>
+</ul>
+<p>The links below provide example applications to get started. The ability to provide <code>Surv(start, stop, event)</code> type objects to <code>as_ped</code> is also the first step to support more general multi-state models, which will be implemented in the next step.</p>

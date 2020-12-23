@@ -12,3 +12,5 @@ static/slides/appliedR/pammtools18/
 ## dropbox
 *.dropbox.attr
 static/slides/appliedR-slides/.git
+*_files/
+*_gen/

@@ -1,14 +1,15 @@
 ---
 aliases: [mlr3proba]
 projects: []
-title: 'New paper: "mlr3proba: Machine Learning Survival Analysis in R"'
+title: 'New preprint: "mlr3proba: Machine Learning Survival Analysis in R"'
 authors: [adibender]
 date: '2020-08-18'
-tags: [papers, machine learning, survival analysis, RSE]
+tags: [preprint, machine learning, survival analysis, RSE]
 categories:
-  - papers,
+  - paper
   - survival analysis
   - R
+  - RSE
 summary: 'mlr3proba: Machine Learning Survival Analysis in R'
 image:
   caption: ''

@@ -21,3 +21,5 @@ output:
 
 
 Updated preprint, ["Nowcasting the COVID-19 Pandemic in Bavaria"](https://www.medrxiv.org/content/10.1101/2020.06.26.20140210v2) is now available at medRxiv.
+
+Current updates of the nowcast are available via shiny app here: https://corona.stat.uni-muenchen.de/nowcast/
