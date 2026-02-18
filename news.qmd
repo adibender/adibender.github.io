@@ -1,0 +1,9 @@
+---
+title: "News"
+listing:
+  contents: news
+  sort: "date desc"
+  type: default
+  max-items: 20
+  categories: false
+---

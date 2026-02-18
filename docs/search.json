@@ -1,0 +1,170 @@
+[
+  {
+    "objectID": "news/2026-02-18-mlsa-book.html",
+    "href": "news/2026-02-18-mlsa-book.html",
+    "title": "New book: Machine Learning in Survival Analysis",
+    "section": "",
+    "text": "My online textbook Machine Learning in Survival Analysis, co-authored with Raphael Sonabend, is now available at mlsabook.com. The book is a work in progress — feedback and suggestions, issues and PRs are very welcome in our open GitHub repository"
+  },
+  {
+    "objectID": "news/2025-10-01-menstrual-blood-ai-project.html",
+    "href": "news/2025-10-01-menstrual-blood-ai-project.html",
+    "title": "New project: Menstrual Blood Analysis with AI",
+    "section": "",
+    "text": "We started the Menstrual Blood AI project, exploring menstrual blood as a non-invasive diagnostic tool using AI. The project targets early detection of endometriosis, diabetes, and cancer biomarkers — aiming to reduce the 7–10 year diagnostic delay for endometriosis.\nProject page"
+  },
+  {
+    "objectID": "news/2025-03-01-flexible-modelling-recurrent-events.html",
+    "href": "news/2025-03-01-flexible-modelling-recurrent-events.html",
+    "title": "New publication: Flexible modelling of time-varying exposures and recurrent events",
+    "section": "",
+    "text": "Journal of the Royal Statistical Society Series C: Applied Statistics\nA flexible modelling approach to analyse time-varying exposures and recurrent events in team sports injuries, based on the piece-wise exponential additive mixed model. The effects of past high-intensity training loads may accumulate over time, and a penalty approach is proposed to identify the relevant time window at which past exposures impact current risk.\nFind paper on Google Scholar"
+  },
+  {
+    "objectID": "talks.html",
+    "href": "talks.html",
+    "title": "Talks & Workshops",
+    "section": "",
+    "text": "2020\nA General Machine Learning Framework for Survival Analysis ECML PKDD 2020 — Gent, Belgium (Virtual) — September 19, 2020\nPiece-wise exponential (Additive Mixed) Modelling Tools for Survival Analysis ISCB41 — Krakow, Poland (Virtual) — August 25, 2020\npammtools: Survival Analysis using Generalized Additive Mixed Models R/Medicine 2020 — Virtual — August 29, 2020\n\n\n2019\nMapping Trypanasoma cruzi Infection Prevalence NTD Modelling Consortium Technical Meeting — Oxford, UK — March 18, 2019\n\n\n2017\nPenalized Estimation of Cumulative Effects 10th International Conference of the ERCIM WG (CMStatistics 2017) — London — December 17, 2017\nCoalition Analysis (KOALA) appliedR MeetUp — Munich, Germany — September 20, 2017"
+  },
+  {
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Publications",
+    "section": "",
+    "text": "Full list and citation counts on Google Scholar."
+  },
+  {
+    "objectID": "publications.html#section",
+    "href": "publications.html#section",
+    "title": "Publications",
+    "section": "2026",
+    "text": "2026\n\nDeep generative models in digital subtraction angiography (DSA)"
+  },
+  {
+    "objectID": "publications.html#section-1",
+    "href": "publications.html#section-1",
+    "title": "Publications",
+    "section": "2025",
+    "text": "2025\n\nPredictive modeling for step II therapy response in periodontitis patients\nFlexible modelling of time-varying exposures and recurrent events\nReduction Techniques for Survival Analysis\nMulti-state Models For Modeling Disease Histories Based On Left-Truncated Data\nMachine learning-based forecasting of daily acute ischemic stroke admissions using weather data\nHigh-Dimensional Variable Selection With Competing Events Using Cooperative Penalized Estimation\nmlr3extralearners: Expanding the mlr3 Ecosystem with Community-Driven Learner Integration\nEnhancing Traffic Accident Classifications: Application of NLP and Graph Neural Network Approaches\nOn Training Survival Models with Scoring Rules"
+  },
+  {
+    "objectID": "publications.html#section-2",
+    "href": "publications.html#section-2",
+    "title": "Publications",
+    "section": "2024",
+    "text": "2024\n\nDeep learning for survival analysis: a review\nRecurrent events analysis with piece-wise exponential additive mixed models\nHeterogeneous treatment effect estimation for observational data using model-based forests\nTime-varying determinants of graft failure in pediatric kidney transplantation\nIntroducing recurrent event analyses to assess species interactions in parasite communities\nA Large-Scale Neutral Comparison Study of Survival Models on Low-Dimensional Data\nRelevance of protein intake for weaning in the mechanically ventilated critically ill\nFlexible additive models for multi-event survival analysis"
+  },
+  {
+    "objectID": "publications.html#section-3",
+    "href": "publications.html#section-3",
+    "title": "Publications",
+    "section": "2023",
+    "text": "2023\n\nA comprehensive machine learning benchmark study for radiomics-based survival analysis of CT imaging data in patients with hepatic metastases of CRC\nEvaluating machine learning models in non-standard settings: An overview and new findings\nChallenges in interpreting epidemiological surveillance data: the example of COVID-19 incidence in Germany\nOn the Connection Between Language Change and Language Processing"
+  },
+  {
+    "objectID": "publications.html#section-4",
+    "href": "publications.html#section-4",
+    "title": "Publications",
+    "section": "2022",
+    "text": "2022\n\nProtein intake and outcome of critically ill patients: analysis of a large international database using piece-wise exponential additive mixed models\nA comparative analysis of pediatric mental health-related emergency department visits during the COVID-19 pandemic\nDeepPAMM: Deep piecewise exponential additive mixed models for complex hazard structures in survival analysis\nAvoiding C-hacking when evaluating survival distribution predictions with discrimination measures\nA downscaling approach to compare COVID-19 count data from databases with different spatial resolutions\nMundus vult decipi, ergo decipiatur: Visual Communication of Anticancer Treatment Efficacy\nFactorized structured regression for large-scale varying coefficient models\nEMT-Related Genes Have No Prognostic Relevance in Metastatic Colorectal Cancer\nExamining properness in the external validation of survival models with squared and logarithmic losses"
+  },
+  {
+    "objectID": "publications.html#section-5",
+    "href": "publications.html#section-5",
+    "title": "Publications",
+    "section": "2021",
+    "text": "2021\n\nmlr3proba: an R package for machine learning in survival analysis\nNowcasting the COVID-19 pandemic in Bavaria\nPredicting non-state terrorism worldwide\nAnalysis of the early COVID-19 epidemic curve in Germany by regression models with change points\nSemi-structured deep piecewise exponential models\nBi-centric independent validation of outcome prediction after radioembolization of hepatic metastases"
+  },
+  {
+    "objectID": "publications.html#section-6",
+    "href": "publications.html#section-6",
+    "title": "Publications",
+    "section": "2020",
+    "text": "2020\n\nA general machine learning framework for survival analysis\nModelling geospatial distributions of the triatomine vectors of Trypanosoma cruzi\nAnalysis of the COVID-19 pandemic in Bavaria: adjusting for misclassification\nKOALA: a new paradigm for election coverage: An opinion poll-based election analysis and forecasting framework"
+  },
+  {
+    "objectID": "publications.html#section-7",
+    "href": "publications.html#section-7",
+    "title": "Publications",
+    "section": "2019",
+    "text": "2019\n\nPenalized estimation of complex, non-linear exposure-lag-response associations\nAssociation between donor age and risk of graft failure after liver transplantation\nCalorie intake and short-term survival of critically ill patients"
+  },
+  {
+    "objectID": "publications.html#section-8",
+    "href": "publications.html#section-8",
+    "title": "Publications",
+    "section": "2018",
+    "text": "2018\n\nA generalized additive model approach to time-to-event analysis\npammtools: Piece-wise exponential Additive Mixed Modeling tools\nFlexible modeling of time-to-event data and exposure-lag-response associations\ncoalitions: Coalition probabilities in multi-party democracies"
+  },
+  {
+    "objectID": "publications.html#section-9",
+    "href": "publications.html#section-9",
+    "title": "Publications",
+    "section": "2014",
+    "text": "2014\n\nPredictors of clinical effectiveness of Hymenoptera venom immunotherapy\nPossibilities and limitations of spatially explicit site index modelling for spruce based on national forest inventory data and digital maps of soil and climate in Bavaria"
+  },
+  {
+    "objectID": "publications.html#section-10",
+    "href": "publications.html#section-10",
+    "title": "Publications",
+    "section": "2013",
+    "text": "2013\n\nPrevalence and severity of foot pad alterations in German turkey flocks\nNutritional screening for risk prediction in patients scheduled for cardiac surgery\nEffects of the housing climate on the foot pad health of fattening turkeys\nIterative reconstruction of high-dimensional Gaussian graphical models based on a pseudo-likelihood estimator"
+  },
+  {
+    "objectID": "publications.html#section-11",
+    "href": "publications.html#section-11",
+    "title": "Publications",
+    "section": "2012",
+    "text": "2012\n\nRandom forest Gini importance favours SNPs with large minor allele frequency: Impact, sources and recommendations"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Andreas Bender",
+    "section": "",
+    "text": "Head Machine Learning Consulting Unit (MLCU) Munich Center for Machine Learning (MCML) LMU Munich\nI am the head of the Machine Learning Consulting Unit (MLCU) at the Munich Center for Machine Learning and Senior Lecturer at the Department of Statistics at LMU Munich.\nMy research focuses on statistical and machine learning methods for non-standard data with correlations (hierarchical, longitudinal, spatial) and complex temporal processes with sampling bias and partial observability (survival analysis).\nI’m passionate about scientific consulting and knowledge transfer into domain science and industry."
+  },
+  {
+    "objectID": "index.html#latest-news",
+    "href": "index.html#latest-news",
+    "title": "Andreas Bender",
+    "section": "Latest News",
+    "text": "Latest News\n\n\n\n\n\n\n\n\nNew book: Machine Learning in Survival Analysis\n\n\n\n\n\n\n\n\nFeb 18, 2026\n\n\n\n\n\n\n\n\n\n\nNew publication: Deep generative models in digital subtraction angiography (DSA)\n\n\n\n\n\n\n\n\nJan 15, 2026\n\n\n\n\n\n\n\n\n\n\nNew project: Menstrual Blood Analysis with AI\n\n\n\n\n\n\n\n\nOct 1, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html#highlight-projects",
+    "href": "index.html#highlight-projects",
+    "title": "Andreas Bender",
+    "section": "Highlight Projects",
+    "text": "Highlight Projects\n\n\n\n\n\n\n\n\n\n\npammtools\n\n\nR package for survival analysis using piece-wise exponential additive mixed models (PAMMs).\n\n\n\n\nhref\n\n\nhttps://adibender.github.io/pammtools/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMachine Learning in Survival Analysis\n\n\nOnline textbook co-authored with Raphael Sonabend covering ML methods for survival analysis.\n\n\n\n\nhref\n\n\nhttps://www.mlsabook.com\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmlr3proba\n\n\nR package extending mlr3 for probabilistic predictions and survival analysis.\n\n\n\n\nhref\n\n\nhttps://mlr3proba.mlr-org.com/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMenstrual Blood AI\n\n\nExploring menstrual blood as a non-invasive diagnostic tool using AI.\n\n\n\n\nhref\n\n\nhttps://menstrualbloodai.my.canva.site/mai\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "pammtools\nR package for fitting and analyzing piece-wise exponential additive mixed models (PAMMs) for survival analysis. Flexible modeling of time-varying effects, cumulative effects, and competing risks.\nDocumentation | CRAN | GitHub\n\n\n\n\n\nmlr3proba\nR package extending the mlr3 ecosystem for probabilistic predictions and survival analysis. Unified interface for survival learners, measures, and prediction types.\nDocumentation | GitHub\n\n\n\n\n\nMenstrual Blood AI\nExploring menstrual blood as a non-invasive diagnostic tool using AI. Targeting early detection of endometriosis, diabetes, and cancer biomarkers from an underutilized biological resource.\nProject page\n\n\n\n\n\nMachine Learning in Survival Analysis\nOnline textbook co-authored with Raphael Sonabend covering machine learning methods for survival analysis. Includes theory, worked examples in R, and practical guidance for practitioners.\nRead online\n\n\n\n\n\ncoalitions\nR package for Bayesian estimation of coalition probabilities in multi-party democracies. Combines survey data with MCMC sampling to estimate seat distributions and coalition scenarios.\nDocumentation | CRAN | GitHub\n\n\n\n\n\n\nCODAG — COVID-19 Data Analysis Group\nCollaborative research initiative at LMU Munich analyzing COVID-19 infection data, disease progression, and resource demand forecasting. Joint effort of the Institute for Statistics, the Institute for Medical Informatics, Biometrics and Epidemiology, and LMU’s Data Science Initiative.\nProject page"
+  },
+  {
+    "objectID": "news.html",
+    "href": "news.html",
+    "title": "News",
+    "section": "",
+    "text": "New book: Machine Learning in Survival Analysis\n\n\n\n\n\n\n\n\nFeb 18, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nNew publication: Deep generative models in digital subtraction angiography (DSA)\n\n\n\n\n\n\n\n\nJan 15, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nNew project: Menstrual Blood Analysis with AI\n\n\n\n\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nNew publication: Predictive modeling for step II therapy response in periodontitis\n\n\n\n\n\n\n\n\nJul 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nNew publication: Flexible modelling of time-varying exposures and recurrent events\n\n\n\n\n\n\n\n\nMar 1, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "news/2025-07-01-predictive-modeling-periodontitis.html",
+    "href": "news/2025-07-01-predictive-modeling-periodontitis.html",
+    "title": "New publication: Predictive modeling for step II therapy response in periodontitis",
+    "section": "",
+    "text": "npj Digital Medicine\nMachine learning models were developed to predict changes in periodontal probing depth after step II therapy using patient-, tooth-, and site-specific clinical covariates. While predictive performance based on routine clinical data remains limited, models can stratify periodontal sites into meaningful categories and estimate the probability of pocket improvement.\nFind paper on Google Scholar"
+  },
+  {
+    "objectID": "news/2026-01-15-deep-generative-models-dsa.html",
+    "href": "news/2026-01-15-deep-generative-models-dsa.html",
+    "title": "New publication: Deep generative models in digital subtraction angiography (DSA)",
+    "section": "",
+    "text": "Artificial Intelligence Review\nDeep generative models such as GANs, VAEs, and diffusion models have demonstrated remarkable success in static medical imaging tasks. This systematic review synthesizes 20 peer-reviewed studies published between 2018 and 2025, offering a comprehensive analysis of generative model usage in angiographic imaging, covering tasks such as image generation, vessel segmentation, and stenosis detection.\nFind paper on Google Scholar"
+  }
+]

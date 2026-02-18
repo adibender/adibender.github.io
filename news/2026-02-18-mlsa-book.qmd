@@ -1,0 +1,6 @@
+---
+title: "New book: Machine Learning in Survival Analysis"
+date: 2026-02-18
+---
+
+My online textbook *Machine Learning in Survival Analysis*, co-authored with Raphael Sonabend, is now available at [mlsabook.com](https://www.mlsabook.com). The book is a work in progress — feedback and suggestions, issues and PRs are very welcome in our open [GitHub repository](https://github.com/mlsa-book/MLSA)

@@ -1,0 +1,27 @@
+---
+title: "Talks & Workshops"
+---
+
+### 2020
+
+**A General Machine Learning Framework for Survival Analysis**
+ECML PKDD 2020 — Gent, Belgium (Virtual) — September 19, 2020
+
+**Piece-wise exponential (Additive Mixed) Modelling Tools for Survival Analysis**
+ISCB41 — Krakow, Poland (Virtual) — August 25, 2020
+
+**pammtools: Survival Analysis using Generalized Additive Mixed Models**
+R/Medicine 2020 — Virtual — August 29, 2020
+
+### 2019
+
+**Mapping Trypanasoma cruzi Infection Prevalence**
+NTD Modelling Consortium Technical Meeting — Oxford, UK — March 18, 2019
+
+### 2017
+
+**Penalized Estimation of Cumulative Effects**
+10th International Conference of the ERCIM WG (CMStatistics 2017) — London — December 17, 2017
+
+**Coalition Analysis (KOALA)**
+appliedR MeetUp — Munich, Germany — September 20, 2017

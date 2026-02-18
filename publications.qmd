@@ -1,0 +1,98 @@
+---
+title: "Publications"
+---
+
+Full list and citation counts on [Google Scholar](https://scholar.google.com/citations?user=pYXcdVQAAAAJ&hl=en).
+
+## 2026
+
+- [Deep generative models in digital subtraction angiography (DSA)](https://scholar.google.com/scholar?q=%22Deep%20generative%20models%20in%20digital%20subtraction%20angiography%20%28DSA%29%22)
+
+## 2025
+
+- [Predictive modeling for step II therapy response in periodontitis patients](https://scholar.google.com/scholar?q=%22Predictive%20modeling%20for%20step%20II%20therapy%20response%20in%20periodontitis%20patients%22)
+- [Flexible modelling of time-varying exposures and recurrent events](https://scholar.google.com/scholar?q=%22Flexible%20modelling%20of%20time-varying%20exposures%20and%20recurrent%20events%22)
+- [Reduction Techniques for Survival Analysis](https://scholar.google.com/scholar?q=%22Reduction%20Techniques%20for%20Survival%20Analysis%22)
+- [Multi-state Models For Modeling Disease Histories Based On Left-Truncated Data](https://scholar.google.com/scholar?q=%22Multi-state%20Models%20For%20Modeling%20Disease%20Histories%20Based%20On%20Left-Truncated%20Data%22)
+- [Machine learning-based forecasting of daily acute ischemic stroke admissions using weather data](https://scholar.google.com/scholar?q=%22Machine%20learning-based%20forecasting%20of%20daily%20acute%20ischemic%20stroke%20admissions%20using%20weather%20data%22)
+- [High-Dimensional Variable Selection With Competing Events Using Cooperative Penalized Estimation](https://scholar.google.com/scholar?q=%22High-Dimensional%20Variable%20Selection%20With%20Competing%20Events%20Using%20Cooperative%20Penalized%20Estimation%22)
+- [mlr3extralearners: Expanding the mlr3 Ecosystem with Community-Driven Learner Integration](https://scholar.google.com/scholar?q=%22mlr3extralearners%3A%20Expanding%20the%20mlr3%20Ecosystem%20with%20Community-Driven%20Learner%20Integration%22)
+- [Enhancing Traffic Accident Classifications: Application of NLP and Graph Neural Network Approaches](https://scholar.google.com/scholar?q=%22Enhancing%20Traffic%20Accident%20Classifications%3A%20Application%20of%20NLP%20and%20Graph%20Neural%20Network%20Approaches%22)
+- [On Training Survival Models with Scoring Rules](https://scholar.google.com/scholar?q=%22On%20Training%20Survival%20Models%20with%20Scoring%20Rules%22)
+
+## 2024
+
+- [Deep learning for survival analysis: a review](https://scholar.google.com/scholar?q=%22Deep%20learning%20for%20survival%20analysis%3A%20a%20review%22)
+- [Recurrent events analysis with piece-wise exponential additive mixed models](https://scholar.google.com/scholar?q=%22Recurrent%20events%20analysis%20with%20piece-wise%20exponential%20additive%20mixed%20models%22)
+- [Heterogeneous treatment effect estimation for observational data using model-based forests](https://scholar.google.com/scholar?q=%22Heterogeneous%20treatment%20effect%20estimation%20for%20observational%20data%20using%20model-based%20forests%22)
+- [Time-varying determinants of graft failure in pediatric kidney transplantation](https://scholar.google.com/scholar?q=%22Time-varying%20determinants%20of%20graft%20failure%20in%20pediatric%20kidney%20transplantation%22)
+- [Introducing recurrent event analyses to assess species interactions in parasite communities](https://scholar.google.com/scholar?q=%22Introducing%20recurrent%20event%20analyses%20to%20assess%20species%20interactions%20in%20parasite%20communities%22)
+- [A Large-Scale Neutral Comparison Study of Survival Models on Low-Dimensional Data](https://scholar.google.com/scholar?q=%22A%20Large-Scale%20Neutral%20Comparison%20Study%20of%20Survival%20Models%20on%20Low-Dimensional%20Data%22)
+- [Relevance of protein intake for weaning in the mechanically ventilated critically ill](https://scholar.google.com/scholar?q=%22Relevance%20of%20protein%20intake%20for%20weaning%20in%20the%20mechanically%20ventilated%20critically%20ill%22)
+- [Flexible additive models for multi-event survival analysis](https://scholar.google.com/scholar?q=%22Flexible%20additive%20models%20for%20multi-event%20survival%20analysis%22)
+
+## 2023
+
+- [A comprehensive machine learning benchmark study for radiomics-based survival analysis of CT imaging data in patients with hepatic metastases of CRC](https://scholar.google.com/scholar?q=%22A%20comprehensive%20machine%20learning%20benchmark%20study%20for%20radiomics-based%20survival%20analysis%20of%20CT%20imaging%20data%20in%20patients%20with%20hepatic%20metastases%20of%20CRC%22)
+- [Evaluating machine learning models in non-standard settings: An overview and new findings](https://scholar.google.com/scholar?q=%22Evaluating%20machine%20learning%20models%20in%20non-standard%20settings%3A%20An%20overview%20and%20new%20findings%22)
+- [Challenges in interpreting epidemiological surveillance data: the example of COVID-19 incidence in Germany](https://scholar.google.com/scholar?q=%22Challenges%20in%20interpreting%20epidemiological%20surveillance%20data%3A%20the%20example%20of%20COVID-19%20incidence%20in%20Germany%22)
+- [On the Connection Between Language Change and Language Processing](https://scholar.google.com/scholar?q=%22On%20the%20Connection%20Between%20Language%20Change%20and%20Language%20Processing%22)
+
+## 2022
+
+- [Protein intake and outcome of critically ill patients: analysis of a large international database using piece-wise exponential additive mixed models](https://scholar.google.com/scholar?q=%22Protein%20intake%20and%20outcome%20of%20critically%20ill%20patients%3A%20analysis%20of%20a%20large%20international%20database%20using%20piece-wise%20exponential%20additive%20mixed%20models%22)
+- [A comparative analysis of pediatric mental health-related emergency department visits during the COVID-19 pandemic](https://scholar.google.com/scholar?q=%22A%20comparative%20analysis%20of%20pediatric%20mental%20health-related%20emergency%20department%20visits%20during%20the%20COVID-19%20pandemic%22)
+- [DeepPAMM: Deep piecewise exponential additive mixed models for complex hazard structures in survival analysis](https://scholar.google.com/scholar?q=%22DeepPAMM%3A%20Deep%20piecewise%20exponential%20additive%20mixed%20models%20for%20complex%20hazard%20structures%20in%20survival%20analysis%22)
+- [Avoiding C-hacking when evaluating survival distribution predictions with discrimination measures](https://scholar.google.com/scholar?q=%22Avoiding%20C-hacking%20when%20evaluating%20survival%20distribution%20predictions%20with%20discrimination%20measures%22)
+- [A downscaling approach to compare COVID-19 count data from databases with different spatial resolutions](https://scholar.google.com/scholar?q=%22A%20downscaling%20approach%20to%20compare%20COVID-19%20count%20data%20from%20databases%20with%20different%20spatial%20resolutions%22)
+- [Mundus vult decipi, ergo decipiatur: Visual Communication of Anticancer Treatment Efficacy](https://scholar.google.com/scholar?q=%22Mundus%20vult%20decipi%2C%20ergo%20decipiatur%3A%20Visual%20Communication%20of%20Anticancer%20Treatment%20Efficacy%22)
+- [Factorized structured regression for large-scale varying coefficient models](https://scholar.google.com/scholar?q=%22Factorized%20structured%20regression%20for%20large-scale%20varying%20coefficient%20models%22)
+- [EMT-Related Genes Have No Prognostic Relevance in Metastatic Colorectal Cancer](https://scholar.google.com/scholar?q=%22EMT-Related%20Genes%20Have%20No%20Prognostic%20Relevance%20in%20Metastatic%20Colorectal%20Cancer%22)
+- [Examining properness in the external validation of survival models with squared and logarithmic losses](https://scholar.google.com/scholar?q=%22Examining%20properness%20in%20the%20external%20validation%20of%20survival%20models%20with%20squared%20and%20logarithmic%20losses%22)
+
+## 2021
+
+- [mlr3proba: an R package for machine learning in survival analysis](https://scholar.google.com/scholar?q=%22mlr3proba%3A%20an%20R%20package%20for%20machine%20learning%20in%20survival%20analysis%22)
+- [Nowcasting the COVID-19 pandemic in Bavaria](https://scholar.google.com/scholar?q=%22Nowcasting%20the%20COVID-19%20pandemic%20in%20Bavaria%22)
+- [Predicting non-state terrorism worldwide](https://scholar.google.com/scholar?q=%22Predicting%20non-state%20terrorism%20worldwide%22)
+- [Analysis of the early COVID-19 epidemic curve in Germany by regression models with change points](https://scholar.google.com/scholar?q=%22Analysis%20of%20the%20early%20COVID-19%20epidemic%20curve%20in%20Germany%20by%20regression%20models%20with%20change%20points%22)
+- [Semi-structured deep piecewise exponential models](https://scholar.google.com/scholar?q=%22Semi-structured%20deep%20piecewise%20exponential%20models%22)
+- [Bi-centric independent validation of outcome prediction after radioembolization of hepatic metastases](https://scholar.google.com/scholar?q=%22Bi-centric%20independent%20validation%20of%20outcome%20prediction%20after%20radioembolization%20of%20hepatic%20metastases%22)
+
+
+## 2020
+
+- [A general machine learning framework for survival analysis](https://scholar.google.com/scholar?q=%22A%20general%20machine%20learning%20framework%20for%20survival%20analysis%22)
+- [Modelling geospatial distributions of the triatomine vectors of Trypanosoma cruzi](https://scholar.google.com/scholar?q=%22Modelling%20geospatial%20distributions%20of%20the%20triatomine%20vectors%20of%20Trypanosoma%20cruzi%22)
+- [Analysis of the COVID-19 pandemic in Bavaria: adjusting for misclassification](https://scholar.google.com/scholar?q=%22Analysis%20of%20the%20COVID-19%20pandemic%20in%20Bavaria%3A%20adjusting%20for%20misclassification%22)
+- [KOALA: a new paradigm for election coverage: An opinion poll-based election analysis and forecasting framework](https://scholar.google.com/scholar?q=%22KOALA%3A%20a%20new%20paradigm%20for%20election%20coverage%3A%20An%20opinion%20poll-based%20election%20analysis%20and%20forecasting%20framework%22)
+
+
+## 2019
+
+- [Penalized estimation of complex, non-linear exposure-lag-response associations](https://scholar.google.com/scholar?q=%22Penalized%20estimation%20of%20complex%2C%20non-linear%20exposure-lag-response%20associations%22)
+- [Association between donor age and risk of graft failure after liver transplantation](https://scholar.google.com/scholar?q=%22Association%20between%20donor%20age%20and%20risk%20of%20graft%20failure%20after%20liver%20transplantation%22)
+- [Calorie intake and short-term survival of critically ill patients](https://scholar.google.com/scholar?q=%22Calorie%20intake%20and%20short-term%20survival%20of%20critically%20ill%20patients%22)
+
+## 2018
+
+- [A generalized additive model approach to time-to-event analysis](https://scholar.google.com/scholar?q=%22A%20generalized%20additive%20model%20approach%20to%20time-to-event%20analysis%22)
+- [pammtools: Piece-wise exponential Additive Mixed Modeling tools](https://scholar.google.com/scholar?q=%22pammtools%3A%20Piece-wise%20exponential%20Additive%20Mixed%20Modeling%20tools%22)
+- [Flexible modeling of time-to-event data and exposure-lag-response associations](https://scholar.google.com/scholar?q=%22Flexible%20modeling%20of%20time-to-event%20data%20and%20exposure-lag-response%20associations%22)
+- [coalitions: Coalition probabilities in multi-party democracies](https://scholar.google.com/scholar?q=%22coalitions%3A%20Coalition%20probabilities%20in%20multi-party%20democracies%22)
+
+## 2014
+
+- [Predictors of clinical effectiveness of Hymenoptera venom immunotherapy](https://scholar.google.com/scholar?q=%22Predictors%20of%20clinical%20effectiveness%20of%20Hymenoptera%20venom%20immunotherapy%22)
+- [Possibilities and limitations of spatially explicit site index modelling for spruce based on national forest inventory data and digital maps of soil and climate in Bavaria](https://scholar.google.com/scholar?q=%22Possibilities%20and%20limitations%20of%20spatially%20explicit%20site%20index%20modelling%20for%20spruce%20based%20on%20national%20forest%20inventory%20data%20and%20digital%20maps%20of%20soil%20and%20climate%20in%20Bavaria%22)
+
+## 2013
+
+- [Prevalence and severity of foot pad alterations in German turkey flocks](https://scholar.google.com/scholar?q=%22Prevalence%20and%20severity%20of%20foot%20pad%20alterations%20in%20German%20turkey%20flocks%22)
+- [Nutritional screening for risk prediction in patients scheduled for cardiac surgery](https://scholar.google.com/scholar?q=%22Nutritional%20screening%20for%20risk%20prediction%20in%20patients%20scheduled%20for%20cardiac%20surgery%22)
+- [Effects of the housing climate on the foot pad health of fattening turkeys](https://scholar.google.com/scholar?q=%22Effects%20of%20the%20housing%20climate%20on%20the%20foot%20pad%20health%20of%20fattening%20turkeys%22)
+- [Iterative reconstruction of high-dimensional Gaussian graphical models based on a pseudo-likelihood estimator](https://scholar.google.com/scholar?q=%22Iterative%20reconstruction%20of%20high-dimensional%20Gaussian%20graphical%20models%20based%20on%20a%20pseudo-likelihood%20estimator%22)
+
+## 2012
+
+- [Random forest Gini importance favours SNPs with large minor allele frequency: Impact, sources and recommendations](https://scholar.google.com/scholar?q=%22Random%20forest%20Gini%20importance%20favours%20SNPs%20with%20large%20minor%20allele%20frequency%3A%20Impact%2C%20sources%20and%20recommendations%22)

@@ -1,0 +1,79 @@
+---
+title: "Projects"
+---
+
+::: {.project-grid}
+
+::: {.project-card}
+[![](images/projects/pammtools.png){.project-img}](https://adibender.github.io/pammtools/)
+
+### [pammtools](https://adibender.github.io/pammtools/)
+
+R package for fitting and analyzing piece-wise exponential additive mixed models (PAMMs) for survival analysis. Flexible modeling of time-varying effects, cumulative effects, and competing risks.
+
+[Documentation](https://adibender.github.io/pammtools/) | [CRAN](https://cran.r-project.org/package=pammtools) | [GitHub](https://github.com/adibender/pammtools)
+:::
+
+::: {.project-card}
+[![](images/projects/mlr3proba.png){.project-img}](https://mlr3proba.mlr-org.com/)
+
+### [mlr3proba](https://mlr3proba.mlr-org.com/)
+
+R package extending the mlr3 ecosystem for probabilistic predictions and survival analysis. Unified interface for survival learners, measures, and prediction types.
+
+[Documentation](https://mlr3proba.mlr-org.com/) | [GitHub](https://github.com/mlr-org/mlr3proba)
+:::
+
+::: {.project-card}
+[![](images/projects/mai.png){.project-img}](https://menstrualbloodai.my.canva.site/mai)
+
+### [Menstrual Blood AI](https://menstrualbloodai.my.canva.site/mai)
+
+Exploring menstrual blood as a non-invasive diagnostic tool using AI. Targeting early detection of endometriosis, diabetes, and cancer biomarkers from an underutilized biological resource.
+
+[Project page](https://menstrualbloodai.my.canva.site/mai)
+:::
+
+::: {.project-card}
+[![](images/projects/mlsa.png){.project-img}](https://www.mlsabook.com)
+
+### [Machine Learning in Survival Analysis](https://www.mlsabook.com)
+
+Online textbook co-authored with Raphael Sonabend covering machine learning methods for survival analysis. Includes theory, worked examples in R, and practical guidance for practitioners.
+
+[Read online](https://www.mlsabook.com)
+:::
+
+::: {.project-card}
+[![](images/projects/coalitions.png){.project-img}](https://adibender.github.io/coalitions/)
+
+### [coalitions](https://adibender.github.io/coalitions/)
+
+R package for Bayesian estimation of coalition probabilities in multi-party democracies. Combines survey data with MCMC sampling to estimate seat distributions and coalition scenarios.
+
+[Documentation](https://adibender.github.io/coalitions/) | [CRAN](https://cran.r-project.org/package=coalitions) | [GitHub](https://github.com/adibender/coalitions)
+:::
+
+<!-- KOALA project — hidden for now
+::: {.project-card}
+[![](images/projects/koala.png){.project-img}](https://koala.stat.uni-muenchen.de/)
+
+### [KOALA](https://koala.stat.uni-muenchen.de/)
+
+Election analysis and forecasting framework for German federal and state elections. Opinion poll-based platform combining statistical modeling with interactive visualizations.
+
+[Project page](https://koala.stat.uni-muenchen.de/)
+:::
+-->
+
+::: {.project-card}
+[![](images/projects/nowcast.png){.project-img}](https://www.covid19.statistik.uni-muenchen.de/index.html)
+
+### [CODAG — COVID-19 Data Analysis Group](https://www.covid19.statistik.uni-muenchen.de/index.html)
+
+Collaborative research initiative at LMU Munich analyzing COVID-19 infection data, disease progression, and resource demand forecasting. Joint effort of the Institute for Statistics, the Institute for Medical Informatics, Biometrics and Epidemiology, and LMU's Data Science Initiative.
+
+[Project page](https://www.covid19.statistik.uni-muenchen.de/index.html)
+:::
+
+:::

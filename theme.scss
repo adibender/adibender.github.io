@@ -1,0 +1,38 @@
+/*-- scss:defaults --*/
+
+$link-color: #4a6fa5;
+$link-hover-color: #2d4a7a;
+
+$navbar-bg: #f5f5f5;
+$navbar-fg: #343a40;
+$navbar-hl: #2d4a7a;
+
+/*-- scss:rules --*/
+
+.navbar {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.navbar .navbar-brand {
+  color: #343a40 !important;
+  font-weight: 600;
+}
+
+.navbar .nav-link {
+  color: #555 !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #2d4a7a !important;
+}
+
+.quarto-about-jolla .about-link {
+  color: #4a6fa5;
+  border-color: #4a6fa5;
+}
+
+.quarto-about-jolla .about-link:hover {
+  color: #2d4a7a;
+  border-color: #2d4a7a;
+}

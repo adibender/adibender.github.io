@@ -1,0 +1,10 @@
+---
+title: "New publication: Predictive modeling for step II therapy response in periodontitis"
+date: 2025-07-01
+---
+
+*npj Digital Medicine*
+
+Machine learning models were developed to predict changes in periodontal probing depth after step II therapy using patient-, tooth-, and site-specific clinical covariates. While predictive performance based on routine clinical data remains limited, models can stratify periodontal sites into meaningful categories and estimate the probability of pocket improvement.
+
+[Find paper on Google Scholar](https://scholar.google.com/scholar?q=%22Predictive%20modeling%20for%20step%20II%20therapy%20response%20in%20periodontitis%20patients%22)

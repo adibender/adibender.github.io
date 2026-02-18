@@ -1,0 +1,10 @@
+---
+title: "New publication: Deep generative models in digital subtraction angiography (DSA)"
+date: 2026-01-15
+---
+
+*Artificial Intelligence Review*
+
+Deep generative models such as GANs, VAEs, and diffusion models have demonstrated remarkable success in static medical imaging tasks. This systematic review synthesizes 20 peer-reviewed studies published between 2018 and 2025, offering a comprehensive analysis of generative model usage in angiographic imaging, covering tasks such as image generation, vessel segmentation, and stenosis detection.
+
+[Find paper on Google Scholar](https://scholar.google.com/scholar?q=%22Deep%20generative%20models%20in%20digital%20subtraction%20angiography%20%28DSA%29%22)

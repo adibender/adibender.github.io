@@ -1,0 +1,234 @@
+.profile-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.hero h1 {
+  margin-bottom: 0.25rem;
+}
+
+.hero .subtitle {
+  color: #6c757d;
+  font-size: 1.15rem;
+  margin-bottom: 1.5rem;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.social-links a {
+  color: #495057;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.social-links a:hover {
+  color: #2c7be5;
+}
+
+.bio {
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Break the news section out of Jolla's centered flex column */
+.quarto-about-jolla .news-section {
+  background-color: #f0f2f5;
+  border-top: 1px solid #dde1e6;
+  margin-top: 2rem;
+  padding: 2rem 1.5rem;
+  text-align: left !important;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.quarto-about-jolla .news-section h2 {
+  text-align: left !important;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  font-size: 1.4rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quarto-about-jolla .news-section .quarto-listing {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quarto-about-jolla .news-section .listing-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.quarto-about-jolla .news-section .listing-description {
+  font-size: 0.85rem;
+  display: none;
+}
+
+.quarto-about-jolla .news-section .listing-date {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.quarto-about-jolla .news-section .quarto-post {
+  text-align: left;
+  gap: 1em;
+}
+
+/* Hide empty thumbnail placeholders so titles get full width */
+.quarto-about-jolla .news-section .quarto-post .thumbnail {
+  display: none;
+}
+
+.quarto-about-jolla .news-section .quarto-post .body {
+  flex-basis: auto;
+  flex-grow: 1;
+}
+
+.quarto-about-jolla .news-section .quarto-post .metadata {
+  flex-basis: 110px;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+/* Break the projects section out of Jolla's centered flex column */
+.quarto-about-jolla .projects-section {
+  background-color: #ffffff;
+  border-top: 1px solid #dde1e6;
+  padding: 2rem 1.5rem;
+  text-align: left !important;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.quarto-about-jolla .projects-section h2 {
+  text-align: left !important;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  font-size: 1.4rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quarto-about-jolla .projects-section .quarto-listing {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quarto-about-jolla .projects-section .list.grid {
+  gap: 1.5rem;
+}
+
+.quarto-about-jolla .projects-section .card {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.quarto-about-jolla .projects-section .card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.quarto-about-jolla .projects-section .card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.quarto-about-jolla .projects-section .card .card-body {
+  padding: 0 1.25rem 1.25rem;
+  text-align: left;
+}
+
+.quarto-about-jolla .projects-section .card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.quarto-about-jolla .projects-section .card-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Hide the raw href metadata shown by grid listings */
+.quarto-about-jolla .projects-section .card .card-attribution,
+.quarto-about-jolla .projects-section .card .card-other-values {
+  display: none;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.project-card {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.project-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.project-card .project-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  color: #2c3e50;
+  padding: 0 1.25rem;
+}
+
+.project-card h3 a {
+  text-decoration: none;
+}
+
+.project-card p {
+  padding: 0 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.project-card p:last-child {
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+}

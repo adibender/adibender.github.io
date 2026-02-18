@@ -1,0 +1,22 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/news/2026-02-18-mlsa-book.html",
+      "/news/2026-01-15-deep-generative-models-dsa.html",
+      "/news/2025-10-01-menstrual-blood-ai-project.html",
+      "/news/2025-07-01-predictive-modeling-periodontitis.html",
+      "/news/2025-03-01-flexible-modelling-recurrent-events.html"
+    ]
+  },
+  {
+    "listing": "/news.html",
+    "items": [
+      "/news/2026-02-18-mlsa-book.html",
+      "/news/2026-01-15-deep-generative-models-dsa.html",
+      "/news/2025-10-01-menstrual-blood-ai-project.html",
+      "/news/2025-07-01-predictive-modeling-periodontitis.html",
+      "/news/2025-03-01-flexible-modelling-recurrent-events.html"
+    ]
+  }
+]

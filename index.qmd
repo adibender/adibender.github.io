@@ -1,0 +1,57 @@
+---
+title: "Andreas Bender"
+about:
+  template: jolla
+  image: avatar.jpg
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/adibender
+    - icon: mortarboard-fill
+      text: Google Scholar
+      href: https://scholar.google.com/citations?user=pYXcdVQAAAAJ&hl=en
+    - icon: person-badge
+      text: ORCID
+      href: http://orcid.org/0000-0001-5628-8611
+    - icon: cloud
+      text: Bluesky
+      href: https://bsky.app/profile/adibender.bsky.social
+listing:
+  - id: latest-news
+    contents: news
+    sort: "date desc"
+    type: default
+    max-items: 3
+  - id: highlight-projects
+    contents: highlights.yml
+    type: grid
+    grid-columns: 2
+---
+
+Head Machine Learning Consulting Unit (MLCU)<br>
+Munich Center for Machine Learning (MCML)<br/>
+LMU Munich
+
+I am the head of the [Machine Learning Consulting Unit (MLCU)](https://mcml.ai/transfer/consulting/) at the [Munich Center for Machine Learning](https://mcml.ai/) and Senior Lecturer at the [Department of Statistics](https://www.statistik.uni-muenchen.de/index.html) at LMU Munich.
+
+My research focuses on statistical and machine learning methods for non-standard data with correlations (hierarchical, longitudinal, spatial) and complex temporal processes with sampling bias and partial observability (survival analysis).
+
+I'm passionate about scientific consulting and knowledge transfer into domain science and industry.
+
+::: {.news-section}
+
+## Latest News
+
+:::{#latest-news}
+:::
+
+:::
+
+::: {.projects-section}
+
+## Highlight Projects
+
+:::{#highlight-projects}
+:::
+
+:::

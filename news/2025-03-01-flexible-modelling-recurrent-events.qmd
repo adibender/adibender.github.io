@@ -1,0 +1,10 @@
+---
+title: "New publication: Flexible modelling of time-varying exposures and recurrent events"
+date: 2025-03-01
+---
+
+*Journal of the Royal Statistical Society Series C: Applied Statistics*
+
+A flexible modelling approach to analyse time-varying exposures and recurrent events in team sports injuries, based on the piece-wise exponential additive mixed model. The effects of past high-intensity training loads may accumulate over time, and a penalty approach is proposed to identify the relevant time window at which past exposures impact current risk.
+
+[Find paper on Google Scholar](https://scholar.google.com/scholar?q=%22Flexible%20modelling%20of%20time-varying%20exposures%20and%20recurrent%20events%22)

@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - publications.qmd
+    - projects.qmd
+    - talks.qmd
+    - news.qmd
+    - news/*.qmd
+
+website:
+  title: "Andreas Bender"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: projects.qmd
+        text: Projects
+      - href: news.qmd
+        text: News
+      #- href: talks.qmd
+      #  text: Talks
+      - href: publications.qmd
+        text: Publications
+
+format:
+  html:
+    theme:
+      - flatly
+      - theme.scss
+    css: styles.css

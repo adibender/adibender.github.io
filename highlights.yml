@@ -1,0 +1,23 @@
+# Featured projects shown on the landing page.
+# Edit this file to change which projects are highlighted.
+# Each entry needs: title, description, image, and href.
+
+- title: "pammtools"
+  description: "R package for survival analysis using piece-wise exponential additive mixed models (PAMMs)."
+  image: images/projects/pammtools.png
+  href: https://adibender.github.io/pammtools/
+
+- title: "Machine Learning in Survival Analysis"
+  description: "Online textbook co-authored with Raphael Sonabend covering ML methods for survival analysis."
+  image: images/projects/mlsa.png
+  href: https://www.mlsabook.com
+
+- title: "mlr3proba"
+  description: "R package extending mlr3 for probabilistic predictions and survival analysis."
+  image: images/projects/mlr3proba.png
+  href: https://mlr3proba.mlr-org.com/
+
+- title: "Menstrual Blood AI"
+  description: "Exploring menstrual blood as a non-invasive diagnostic tool using AI."
+  image: images/projects/mai.png
+  href: https://menstrualbloodai.my.canva.site/mai

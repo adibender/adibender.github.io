@@ -1,0 +1,8 @@
+---
+title: "New project: Menstrual Blood Analysis with AI"
+date: 2025-10-01
+---
+
+We started the **Menstrual Blood AI** project, exploring menstrual blood as a non-invasive diagnostic tool using AI. The project targets early detection of endometriosis, diabetes, and cancer biomarkers — aiming to reduce the 7–10 year diagnostic delay for endometriosis.
+
+[Project page](https://menstrualbloodai.my.canva.site/mai)
