@@ -59,13 +59,18 @@ def load_config():
 def load_known_pubs():
     if KNOWN_PUBS_PATH.exists():
         with open(KNOWN_PUBS_PATH) as f:
-            return set(json.load(f))
+            return set(t.lower() for t in json.load(f))
     return set()
 
 
 def save_known_pubs(titles):
     with open(KNOWN_PUBS_PATH, "w") as f:
         json.dump(sorted(titles), f, indent=2)
+
+
+def normalize_title(title):
+    """Lowercase for comparison."""
+    return title.strip().lower()
 
 
 # Titles to skip (e.g. internal reports, non-peer-reviewed)
@@ -369,7 +374,7 @@ def fetch_scholar_pubs(scholar_id):
             "title": title,
             "journal": journal,
             "abstract": abstract,
-            "year": bib.get("pub_year", str(date.today().year)),
+            "year": str(bib.get("pub_year", date.today().year)),
         })
 
     log.info(f"Found {len(pubs)} publications on Scholar")
@@ -527,15 +532,15 @@ def main():
 
     # --- Check Scholar ---
     new_pubs = []
+    current_pubs = []
     try:
         current_pubs = fetch_scholar_pubs(scholar_id)
-        current_titles = {p["title"] for p in current_pubs}
-        known_titles = load_known_pubs()
-        new_titles = current_titles - known_titles
+        known_titles = load_known_pubs()  # already lowercased
+        new_pubs = [p for p in current_pubs
+                    if normalize_title(p["title"]) not in known_titles]
 
-        if new_titles:
-            log.info(f"Found {len(new_titles)} new publication(s):")
-            new_pubs = [p for p in current_pubs if p["title"] in new_titles]
+        if new_pubs:
+            log.info(f"Found {len(new_pubs)} new publication(s):")
             for p in new_pubs:
                 log.info(f"  - {p['title']}")
             for pub in new_pubs:
@@ -546,7 +551,6 @@ def main():
             log.info("No new publications found")
     except Exception as e:
         log.error(f"Failed to fetch Scholar: {e}")
-        current_titles = set()
         known_titles = load_known_pubs()
 
     # --- Check package releases ---
@@ -577,7 +581,8 @@ def main():
     # Save state
     if not args.dry_run:
         if new_pubs:
-            save_known_pubs(current_titles | known_titles)
+            all_titles = {p["title"] for p in current_pubs}
+            save_known_pubs(all_titles)
             log.info("Updated known publications list")
         if new_releases:
             save_known_releases(known_releases)
@@ -590,7 +595,7 @@ def update_publications_page(pubs):
     """Regenerate publications.qmd from current Scholar data."""
     from collections import OrderedDict
 
-    pubs_sorted = sorted(pubs, key=lambda x: x.get("year", "0"), reverse=True)
+    pubs_sorted = sorted(pubs, key=lambda x: str(x.get("year", "0")), reverse=True)
     by_year = OrderedDict()
     for p in pubs_sorted:
         y = p.get("year", "Unknown")
