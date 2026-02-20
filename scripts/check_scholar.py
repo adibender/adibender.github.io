@@ -450,27 +450,42 @@ def run_cmd(cmd, cwd=None):
 
 
 def render_and_deploy(new_titles, dry_run=False):
-    """Render site, commit, push, deploy to GitHub Pages."""
+    """Render site, verify, commit, push. GitHub Pages serves from docs/."""
     if dry_run:
         log.info("[DRY RUN] Would render, commit, push, and deploy")
         return
 
-    run_cmd("quarto render")
+    # Render
+    result = run_cmd("quarto render")
+    if result.returncode != 0:
+        log.error("Render failed — aborting deploy")
+        return False
 
-    # Open in browser
+    # Verify index.html exists
     index_path = SITE_DIR / "docs" / "index.html"
-    run_cmd(f"xdg-open {index_path}")
+    if not index_path.exists():
+        log.error("docs/index.html not found after render — aborting deploy")
+        return False
 
-    # Git commit and push
+    # Commit
     run_cmd("git add -A")
-    title_summary = new_titles[0] if len(new_titles) == 1 else f"{len(new_titles)} new publications"
-    run_cmd(f'git commit -m "New publication: {title_summary}"')
-    run_cmd("git push")
+    if len(new_titles) == 1:
+        title_summary = new_titles[0][:80]
+    else:
+        title_summary = f"{len(new_titles)} updates"
+    result = run_cmd(f'git commit -m "Auto: {title_summary}"')
+    if result.returncode != 0:
+        log.error("Commit failed — aborting deploy")
+        return False
 
-    # Deploy to GitHub Pages
-    run_cmd("quarto publish gh-pages --no-prompt")
+    # Push (GitHub Pages auto-deploys from docs/ on master)
+    result = run_cmd("git push origin master")
+    if result.returncode != 0:
+        log.error("Push failed")
+        return False
 
-    log.info("Site deployed to GitHub Pages")
+    log.info("Site deployed successfully")
+    return True
 
 
 # ---------------------------------------------------------------------------
