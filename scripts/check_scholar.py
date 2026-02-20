@@ -345,36 +345,85 @@ def post_release_to_bluesky(config, release, dry_run=False):
 
 
 def fetch_scholar_pubs(scholar_id):
-    """Fetch publications from Google Scholar. Returns list of dicts."""
-    from scholarly import scholarly
+    """Fetch publications by scraping Google Scholar profile HTML directly."""
+    import urllib.request
+    from html.parser import HTMLParser
 
-    log.info(f"Fetching Scholar profile: {scholar_id}")
-    author = scholarly.search_author_id(scholar_id)
-    author = scholarly.fill(author, sections=["publications"])
+    url = f"https://scholar.google.com/citations?user={scholar_id}&hl=en&cstart=0&pagesize=100"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+
+    log.info(f"Fetching Scholar profile: {url}")
+    req = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        html = resp.read().decode("utf-8")
+
+    # Simple stateful HTML parser for the publications table
+    class ScholarParser(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.pubs = []
+            self.in_row = False
+            self.in_title = False
+            self.in_gray = False
+            self.in_year = False
+            self.current = {}
+            self.gray_count = 0  # first gray = authors, second = journal
+
+        def handle_starttag(self, tag, attrs):
+            attrs_d = dict(attrs)
+            cls = attrs_d.get("class", "")
+            if tag == "tr" and "gsc_a_tr" in cls:
+                self.in_row = True
+                self.current = {"title": "", "journal": "", "authors": "", "year": ""}
+                self.gray_count = 0
+            elif self.in_row:
+                if tag == "a" and "gsc_a_at" in cls:
+                    self.in_title = True
+                elif tag == "div" and "gs_gray" in cls:
+                    self.gray_count += 1
+                    self.in_gray = True
+                elif tag == "span" and "gsc_a_h" in cls:
+                    self.in_year = True
+
+        def handle_endtag(self, tag):
+            if tag == "a" and self.in_title:
+                self.in_title = False
+            elif tag == "div" and self.in_gray:
+                self.in_gray = False
+            elif tag == "span" and self.in_year:
+                self.in_year = False
+            elif tag == "tr" and self.in_row:
+                self.in_row = False
+                if self.current.get("title"):
+                    self.pubs.append(self.current)
+
+        def handle_data(self, data):
+            if self.in_title:
+                self.current["title"] += data
+            elif self.in_gray:
+                if self.gray_count == 1:
+                    self.current["authors"] += data
+                elif self.gray_count == 2:
+                    self.current["journal"] += data
+            elif self.in_year:
+                self.current["year"] = data.strip()
+
+    parser = ScholarParser()
+    parser.feed(html)
 
     pubs = []
-    for p in author["publications"]:
-        bib = p.get("bib", {})
-        title = bib.get("title", "")
+    for p in parser.pubs:
+        title = p["title"].strip()
         if not title or should_skip(title):
             continue
-
-        # Try to get more details (abstract, journal) — but don't fail on rate limit
-        journal = bib.get("journal", bib.get("venue", bib.get("citation", "")))
-        abstract = ""
-        try:
-            filled = scholarly.fill(p)
-            bib_filled = filled.get("bib", {})
-            abstract = bib_filled.get("abstract", "")
-            journal = bib_filled.get("journal", journal)
-        except Exception:
-            log.warning(f"Could not fetch details for: {title[:60]}...")
-
         pubs.append({
             "title": title,
-            "journal": journal,
-            "abstract": abstract,
-            "year": str(bib.get("pub_year", date.today().year)),
+            "journal": p.get("journal", "").strip(),
+            "abstract": "",  # not available from listing page
+            "year": p.get("year", str(date.today().year)),
         })
 
     log.info(f"Found {len(pubs)} publications on Scholar")
@@ -393,15 +442,10 @@ def slugify(text):
 
 
 def make_summary(pub):
-    """Create a short summary from abstract or fallback to title."""
-    abstract = pub.get("abstract", "")
-    if abstract:
-        # Take first two sentences
-        sentences = re.split(r"(?<=[.!?])\s+", abstract)
-        summary = " ".join(sentences[:2])
-        if len(summary) > 300:
-            summary = summary[:297] + "..."
-        return summary
+    """Create a short summary from journal or title."""
+    journal = pub.get("journal", "")
+    if journal:
+        return f"Published in {journal}."
     return pub["title"]
 
 
