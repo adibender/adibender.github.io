@@ -1,0 +1,10 @@
+---
+title: "New publication: Enhancing Traffic Accident Classifications: Application of NLP Methods for City Safety"
+date: 2026-02-22
+---
+
+*Joint European Conference on Machine Learning and Knowledge Discovery in …, 2025*
+
+Published in Joint European Conference on Machine Learning and Knowledge Discovery in …, 2025.
+
+[Find paper on Google Scholar](https://scholar.google.com/scholar?q=%22Enhancing%20Traffic%20Accident%20Classifications%3A%20Application%20of%20NLP%20Methods%20for%20City%20Safety%22)

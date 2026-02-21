@@ -1,0 +1,10 @@
+---
+title: "New publication: Deep generative models in digital subtraction angiography (DSA) and X-ray angiography: a systematic review"
+date: 2026-02-22
+---
+
+*Artificial Intelligence Review, 2026*
+
+Published in Artificial Intelligence Review, 2026.
+
+[Find paper on Google Scholar](https://scholar.google.com/scholar?q=%22Deep%20generative%20models%20in%20digital%20subtraction%20angiography%20%28DSA%29%20and%20X-ray%20angiography%3A%20a%20systematic%20review%22)

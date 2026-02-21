@@ -1,0 +1,10 @@
+---
+title: "New publication: Semantically Conditioned Diffusion Models for Cerebral DSA Synthesis"
+date: 2026-02-22
+---
+
+*arXiv preprint arXiv:2602.11703, 2026*
+
+Published in arXiv preprint arXiv:2602.11703, 2026.
+
+[Find paper on Google Scholar](https://scholar.google.com/scholar?q=%22Semantically%20Conditioned%20Diffusion%20Models%20for%20Cerebral%20DSA%20Synthesis%22)

@@ -1,0 +1,10 @@
+---
+title: "New publication: Multi-state Models For Modeling Disease Histories Based On Longitudinal Data"
+date: 2026-02-22
+---
+
+*arXiv preprint arXiv:2509.19956, 2025*
+
+Published in arXiv preprint arXiv:2509.19956, 2025.
+
+[Find paper on Google Scholar](https://scholar.google.com/scholar?q=%22Multi-state%20Models%20For%20Modeling%20Disease%20Histories%20Based%20On%20Longitudinal%20Data%22)

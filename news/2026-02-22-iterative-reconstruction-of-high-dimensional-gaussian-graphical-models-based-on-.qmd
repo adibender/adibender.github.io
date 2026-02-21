@@ -1,0 +1,10 @@
+---
+title: "New publication: Iterative reconstruction of high-dimensional Gaussian graphical models based on a new method to estimate partial correlations under constraints"
+date: 2026-02-22
+---
+
+*Plos one 8 (4), e60536, 2013*
+
+Published in Plos one 8 (4), e60536, 2013.
+
+[Find paper on Google Scholar](https://scholar.google.com/scholar?q=%22Iterative%20reconstruction%20of%20high-dimensional%20Gaussian%20graphical%20models%20based%20on%20a%20new%20method%20to%20estimate%20partial%20correlations%20under%20constraints%22)
