@@ -92,7 +92,12 @@
 
 .quarto-about-jolla .news-section .quarto-post {
   text-align: left;
-  gap: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #dde1e6;
 }
 
 /* Hide empty thumbnail placeholders so titles get full width */
@@ -100,15 +105,21 @@
   display: none;
 }
 
-.quarto-about-jolla .news-section .quarto-post .body {
-  flex-basis: auto;
-  flex-grow: 1;
+.quarto-about-jolla .news-section .quarto-post .metadata {
+  flex: 0 0 120px;
+  order: -1;
 }
 
-.quarto-about-jolla .news-section .quarto-post .metadata {
-  flex-basis: 110px;
-  flex-shrink: 0;
-  flex-grow: 0;
+.quarto-about-jolla .news-section .quarto-post .body {
+  flex: 1;
+  min-width: 0;
+}
+
+.quarto-about-jolla .news-section .quarto-post .body h3 {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Break the projects section out of Jolla's centered flex column */

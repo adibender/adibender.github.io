@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-Automated Scholar + Releases → News → Deploy → Bluesky pipeline.
+Automated Scholar + Releases → News → Deploy pipeline.
 
 Checks Google Scholar for new publications and CRAN for new pammtools
 releases, generates news items, renders the Quarto site, commits,
-pushes, deploys, and posts to Bluesky.
+pushes, and deploys.
 
 Usage:
     python3 check_scholar.py              # full run
-    python3 check_scholar.py --dry-run    # check only, no deploy/post
+    python3 check_scholar.py --dry-run    # check only, no deploy
 """
 
 import argparse
@@ -259,11 +259,11 @@ def check_package_releases():
 
 def generate_release_news_item(release):
     """Create a news .qmd file for a package release."""
-    today = date.today().isoformat()
+    pub_date = release.get("date", date.today().isoformat())
     name = release["package"]
     version = release["version"]
     slug = slugify(f"{name}-{version}")
-    filename = f"{today}-{slug}.qmd"
+    filename = f"{pub_date}-{slug}.qmd"
     filepath = NEWS_DIR / filename
 
     # Summarize changelog
@@ -279,7 +279,7 @@ def generate_release_news_item(release):
 
     content = f"""---
 title: "{name} {version} released"
-date: {today}
+date: {pub_date}
 ---
 
 [{name}](https://adibender.github.io/{name}/) version **{version}** is now available on [CRAN]({release['cran_url']}).
@@ -294,49 +294,6 @@ date: {today}
     filepath.write_text(content)
     log.info(f"Created release news item: {filename}")
     return filepath
-
-
-def post_release_to_bluesky(config, release, dry_run=False):
-    """Post about a package release to Bluesky."""
-    handle = config.get("bluesky_handle", "")
-    password = config.get("bluesky_app_password", "")
-
-    if not handle or not password or password == "FILL_IN":
-        log.warning("Bluesky credentials not configured — skipping post")
-        return
-
-    name = release["package"]
-    version = release["version"]
-    cran_url = release["cran_url"]
-
-    post_text = f"{name} {version} released on CRAN!"
-
-    # Add a short changelog summary
-    changelog = release.get("changelog", "")
-    if changelog:
-        lines = [l.strip().lstrip("- ") for l in changelog.strip().split("\n") if l.strip()]
-        short = "; ".join(lines[:3])
-        if len(short) > 180:
-            short = short[:177] + "..."
-        post_text += f"\n\n{short}"
-
-    if dry_run:
-        log.info(f"[DRY RUN] Would post to Bluesky:\n{post_text}\nLink: {cran_url}")
-        return
-
-    from atproto import Client, client_utils
-
-    client = Client()
-    client.login(handle, password)
-
-    text = (
-        client_utils.TextBuilder()
-        .text(post_text + "\n\n")
-        .link("View on CRAN", cran_url)
-    )
-
-    client.send_post(text)
-    log.info(f"Posted release to Bluesky: {name} {version}")
 
 
 # ---------------------------------------------------------------------------
@@ -441,12 +398,17 @@ def slugify(text):
     return text.strip("-")[:80]
 
 
-def make_summary(pub):
-    """Create a short summary from journal or title."""
-    journal = pub.get("journal", "")
-    if journal:
-        return f"Published in {journal}."
-    return pub["title"]
+def get_latest_news_date():
+    """Find the date of the most recent news item on the site."""
+    if not NEWS_DIR.exists():
+        return None
+    dates = []
+    for f in NEWS_DIR.glob("*.qmd"):
+        # Filenames start with YYYY-MM-DD
+        match = re.match(r"(\d{4}-\d{2}-\d{2})", f.name)
+        if match:
+            dates.append(match.group(1))
+    return max(dates) if dates else None
 
 
 def generate_news_item(pub):
@@ -456,7 +418,6 @@ def generate_news_item(pub):
     filename = f"{today}-{slug}.qmd"
     filepath = NEWS_DIR / filename
 
-    summary = make_summary(pub)
     journal = pub.get("journal", "")
     venue_line = f"*{journal}*\n\n" if journal else ""
     scholar_q = quote(f'"{pub["title"]}"')
@@ -467,9 +428,7 @@ title: "New publication: {pub['title']}"
 date: {today}
 ---
 
-{venue_line}{summary}
-
-[Find paper on Google Scholar]({scholar_link})
+{venue_line}[Find paper on Google Scholar]({scholar_link})
 """
 
     filepath.write_text(content)
@@ -533,56 +492,13 @@ def render_and_deploy(new_titles, dry_run=False):
 
 
 # ---------------------------------------------------------------------------
-# Bluesky
-# ---------------------------------------------------------------------------
-
-
-def post_to_bluesky(config, pub, dry_run=False):
-    """Post about a new publication to Bluesky."""
-    handle = config.get("bluesky_handle", "")
-    password = config.get("bluesky_app_password", "")
-
-    if not handle or not password or password == "FILL_IN":
-        log.warning("Bluesky credentials not configured — skipping post")
-        return
-
-    title = pub["title"]
-    summary = make_summary(pub)
-    site_url = config.get("site_url", "https://adibender.github.io")
-    news_url = f"{site_url}/news.html"
-
-    post_text = f"New publication: {title}\n\n{summary}"
-    # Truncate if needed (Bluesky limit is 300 chars for text, link is separate)
-    if len(post_text) > 250:
-        post_text = post_text[:247] + "..."
-
-    if dry_run:
-        log.info(f"[DRY RUN] Would post to Bluesky:\n{post_text}\nLink: {news_url}")
-        return
-
-    from atproto import Client, client_utils
-
-    client = Client()
-    client.login(handle, password)
-
-    text = (
-        client_utils.TextBuilder()
-        .text(post_text + "\n\n")
-        .link("Read more", news_url)
-    )
-
-    client.send_post(text)
-    log.info(f"Posted to Bluesky: {title[:60]}...")
-
-
-# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Scholar + Releases → News → Deploy → Bluesky")
-    parser.add_argument("--dry-run", action="store_true", help="Check only, no deploy/post")
+    parser = argparse.ArgumentParser(description="Scholar + Releases → News → Deploy")
+    parser.add_argument("--dry-run", action="store_true", help="Check only, no deploy")
     args = parser.parse_args()
 
     config = load_config()
@@ -601,9 +517,27 @@ def main():
         if new_pubs:
             log.info(f"Found {len(new_pubs)} new publication(s):")
             for p in new_pubs:
-                log.info(f"  - {p['title']}")
-            for pub in new_pubs:
+                log.info(f"  - {p['title']} ({p.get('year', '?')})")
+
+            # Only create news for papers published after the latest news item
+            latest_news = get_latest_news_date()
+            if latest_news:
+                cutoff_year = int(latest_news[:4])
+                log.info(f"Latest news item date: {latest_news} (cutoff year: {cutoff_year})")
+            else:
+                cutoff_year = 0
+
+            news_pubs = [p for p in new_pubs
+                         if p.get("year", "").isdigit() and int(p["year"]) >= cutoff_year]
+
+            skipped = len(new_pubs) - len(news_pubs)
+            if skipped:
+                log.info(f"Skipped {skipped} older publication(s) (before {cutoff_year})")
+
+            for pub in news_pubs:
                 generate_news_item(pub)
+
+            # Always update publications page with all pubs
             update_publications_page(current_pubs)
             has_updates = True
         else:
@@ -631,17 +565,11 @@ def main():
     all_titles += [f"{r['package']} {r['version']}" for r in new_releases]
     render_and_deploy(all_titles, dry_run=args.dry_run)
 
-    # Post to Bluesky
-    for pub in new_pubs:
-        post_to_bluesky(config, pub, dry_run=args.dry_run)
-    for rel in new_releases:
-        post_release_to_bluesky(config, rel, dry_run=args.dry_run)
-
     # Save state
     if not args.dry_run:
         if new_pubs:
-            all_titles = {p["title"] for p in current_pubs}
-            save_known_pubs(all_titles)
+            all_pub_titles = {p["title"] for p in current_pubs}
+            save_known_pubs(all_pub_titles)
             log.info("Updated known publications list")
         if new_releases:
             save_known_releases(known_releases)
